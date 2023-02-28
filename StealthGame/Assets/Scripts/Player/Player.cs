@@ -1,34 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    private PlayerInput _playerInput; // Component on player prefab
-    private PlayerInputActions _actionMap; // Asset that defines button to action mappings
+    private PlayerInput _playerInput; // Component on player prefab; Make sure it uses c# events
+    private PlayerInputActions _actionMap; // Asset that defines button to action mappings; must have the asset generate a c# class
 
     private Transform _transform;
     private Rigidbody2D _rb;
 
-    [SerializeField] private float _speed = 2.0f;
+    private Vector2 _moveVec = new Vector2(0, 0);
+
+    [SerializeField] private float _speed = 2.0f; // units per second
 
     private void Start()
     {
         _transform = transform;
         _rb = GetComponent<Rigidbody2D>();
         _playerInput = GetComponent<PlayerInput>();
-
         _actionMap = new PlayerInputActions();
-        _actionMap.Player.Enable();
-        _actionMap.Player.Move.performed += Move;
+
+        _playerInput.onActionTriggered += Input_onActionTriggered;
     }
 
-    private void Move(InputAction.CallbackContext context)
+    private void FixedUpdate()
     {
-        Vector2 dir = context.ReadValue<Vector2>().normalized;
-        Vector2 moveVec = _speed * dir;
-        //_rb.AddForce(dir * _speed, ForceMode2D.Force);
-        _rb.MovePosition(new Vector2(_transform.position.x + moveVec.x, _transform.position.y + moveVec.y));
+        _rb.velocity = _moveVec * _speed; // _moveVec set in OnMove
+        _transform.right = _moveVec; // arrow on player sprite faces right, this makes player face in the direction they move
     }
+
+    #region Input Handling
+
+    private void Input_onActionTriggered(InputAction.CallbackContext context)
+    {
+        if (context.action.name == _actionMap.Player.Move.name)
+        {
+            OnMove(context);
+        }
+    }
+
+    private void OnMove(InputAction.CallbackContext context)
+    {
+        _moveVec = context.ReadValue<Vector2>();
+    }
+
+    #endregion
 }

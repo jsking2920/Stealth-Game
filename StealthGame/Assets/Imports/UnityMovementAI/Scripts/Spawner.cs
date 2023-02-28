@@ -71,7 +71,7 @@ namespace UnityMovementAI
 
             if (CanPlaceObject(halfSize, pos))
             {
-                Transform t = Instantiate(obj, pos, Quaternion.identity) as Transform;
+                Transform t = Instantiate(obj, pos, Quaternion.identity, transform) as Transform;
 
                 if (isObj3D)
                 {
