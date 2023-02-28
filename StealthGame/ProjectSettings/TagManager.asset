@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Obstacle
+  - NPC
   layers:
   - Default
   - TransparentFX
@@ -11,8 +13,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Obstacles
+  - Characters
   - 
   - 
   - 
@@ -40,4 +42,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2786391011
+    locked: 0
+  - name: Obstacles
+    uniqueID: 3151341169
+    locked: 0
+  - name: NPCs
+    uniqueID: 3633205551
+    locked: 0
+  - name: Players
+    uniqueID: 3205630695
     locked: 0
