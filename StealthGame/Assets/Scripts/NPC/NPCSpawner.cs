@@ -1,0 +1,150 @@
+﻿using UnityEngine;
+using System.Collections.Generic;
+using UnityMovementAI;
+
+public class NPCSpawner : MonoBehaviour
+{
+    [SerializeField] private Transform _npcPrefab;
+    // Actual absolute scale is randomly set in this range, not relative to prefabs scale values
+    public float npcMinScale = 0.5f;
+    public float npcMaxScale = 0.7f;
+
+    public int numberOfNPCs = 100; // not all of these will actually get spawned, it will attempt 100 spawns
+    public bool randomizeOrientation = true;
+    public bool randomizeColor = true;
+    public Gradient colorGradient;
+
+    public float boundaryPadding = 1.0f;
+    public float spaceBetweenObjects = 1.0f;
+
+    public MovementAIRigidbody[] obstacles;
+
+    private Vector3 bottomLeft;
+    private Vector3 widthHeight;
+    private bool isObj3D;
+
+    private Transform _npcParentTransform;
+
+    [System.NonSerialized]
+    public List<MovementAIRigidbody> npcs = new List<MovementAIRigidbody>();
+
+    void Start()
+    {
+        _npcParentTransform = transform;
+        
+        MovementAIRigidbody rb = _npcPrefab.GetComponent<MovementAIRigidbody>();
+        // Manually set up the MovementAIRigidbody since the given obj can be a prefab
+        rb.SetUp();
+        isObj3D = rb.is3D;
+
+        // Find the size of the map
+        float distAway = Camera.main.WorldToViewportPoint(Vector3.zero).z;
+
+        bottomLeft = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, distAway));
+        Vector3 topRight = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, distAway));
+        widthHeight = topRight - bottomLeft;
+
+        // Create the create the objects
+        for (int i = 0; i < numberOfNPCs; i++)
+        {
+            /* Try to place the objects multiple times before giving up */
+            for (int j = 0; j < 10; j++)
+            {
+                if (TryToCreateObject())
+                {
+                    break;
+                }
+            }
+        }
+    }
+
+    // TODO: make this try again if it fails but prevent infinite loops
+    bool TryToCreateObject()
+    {
+        float size = Random.Range(npcMinScale, npcMaxScale);
+        float halfSize = size / 2f;
+
+        Vector3 pos = new Vector3();
+        pos.x = bottomLeft.x + Random.Range(boundaryPadding + halfSize, widthHeight.x - boundaryPadding - halfSize);
+
+        if (isObj3D)
+        {
+            pos.z = bottomLeft.z + Random.Range(boundaryPadding + halfSize, widthHeight.z - boundaryPadding - halfSize);
+        }
+        else
+        {
+            pos.y = bottomLeft.y + Random.Range(boundaryPadding + halfSize, widthHeight.y - boundaryPadding - halfSize);
+        }
+
+        if (CanPlaceObject(halfSize, pos))
+        {
+            Transform t = Instantiate(_npcPrefab, pos, Quaternion.identity, _npcParentTransform) as Transform;
+
+            SpriteRenderer sr = t.GetComponent<SpriteRenderer>();
+            if (sr) RandomizeColor(sr);
+
+            if (isObj3D)
+            {
+                t.localScale = new Vector3(size, _npcPrefab.localScale.y, size);
+            }
+            else
+            {
+                t.localScale = new Vector3(size, size, _npcPrefab.localScale.z);
+            }
+
+            if (randomizeOrientation)
+            {
+                Vector3 euler = transform.eulerAngles;
+                if (isObj3D)
+                {
+                    euler.y = Random.Range(0f, 360f);
+                }
+                else
+                {
+                    euler.z = Random.Range(0f, 360f);
+                }
+
+                transform.eulerAngles = euler;
+            }
+
+            npcs.Add(t.GetComponent<MovementAIRigidbody>());
+
+            return true;
+        }
+
+        return false;
+    }
+
+    bool CanPlaceObject(float halfSize, Vector3 pos)
+    {
+        // Make sure it does not overlap with any thing to avoid
+        for (int i = 0; i < obstacles.Length; i++)
+        {
+            float dist = Vector3.Distance(obstacles[i].Position, pos);
+
+            if (dist < halfSize + obstacles[i].Radius)
+            {
+                return false;
+            }
+        }
+
+        // Make sure it does not overlap with any existing object
+        foreach (MovementAIRigidbody npc in npcs)
+        {
+            float dist = Vector3.Distance(npc.Position, pos);
+
+            if (dist < npc.Radius + spaceBetweenObjects + halfSize)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public void RandomizeColor(SpriteRenderer sr)
+    {
+        Color randColor = colorGradient.Evaluate(Random.Range(0f, 1f));
+        sr.color = randColor; // tints sprite, will only really work if sprite is white to begin with
+    }
+}
