@@ -16,6 +16,9 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float _speed = 2.0f; // units per second
 
+    private SpriteRenderer _spriteRenderer;
+    [SerializeField] private Gradient colorGradient;
+
     private void Start()
     {
         _transform = transform;
@@ -24,6 +27,9 @@ public class Player : MonoBehaviour
         _actionMap = new PlayerInputActions();
 
         _playerInput.onActionTriggered += Input_onActionTriggered;
+
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        RandomizeColor();
     }
 
     private void FixedUpdate()
@@ -48,4 +54,10 @@ public class Player : MonoBehaviour
     }
 
     #endregion
+
+    private void RandomizeColor()
+    {
+        Color randColor = colorGradient.Evaluate(Random.Range(0f, 1f));
+        _spriteRenderer.color = randColor; // tints sprite, will only really work if sprite is white to begin with
+    }
 }
