@@ -73,12 +73,12 @@ GameObject:
   - component: {fileID: 4858409627113042275}
   - component: {fileID: 4858409627098127061}
   - component: {fileID: 4858409627098228605}
-  - component: {fileID: 2897631795861654259}
   - component: {fileID: 4858409627098035583}
+  - component: {fileID: 8940865154491846182}
+  - component: {fileID: 2897631795861654259}
   - component: {fileID: 4858409627098083797}
   - component: {fileID: 4858409627098087183}
   - component: {fileID: 4858409627098059891}
-  - component: {fileID: 8940865154491846182}
   - component: {fileID: 1092642664896289460}
   - component: {fileID: 4858409627098024173}
   - component: {fileID: 4858409627096084993}
@@ -193,6 +193,42 @@ MonoBehaviour:
   cohesionWeight: 1.5
   separationWeight: 2
   velocityMatchWeight: 1
+--- !u!114 &4858409627098035583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4858409627092019455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5943b3ef333d3b45b456e9a8ce26d40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wanderRadius: 1.2
+  wanderDistance: 2
+  wanderJitter: 45
+--- !u!114 &8940865154491846182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4858409627092019455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e008bb997f9e8cc42a7861ed1e5b45ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxAcceleration: 40
+  wallDetection: 0
+  castMask:
+    serializedVersion: 2
+    m_Bits: 64
+  wallAvoidDistance: 1
+  mainWhiskerLen: 1.5
+  sideWhiskerLen: 0.85
+  sideWhiskerAngle: 45
 --- !u!114 &2897631795861654259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,21 +245,6 @@ MonoBehaviour:
     nodes:
     - {x: 3, y: 0.5, z: 0}
     - {x: -5, y: 3.5, z: 0}
---- !u!114 &4858409627098035583
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4858409627092019455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5943b3ef333d3b45b456e9a8ce26d40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wanderRadius: 1.2
-  wanderDistance: 2
-  wanderJitter: 45
 --- !u!114 &4858409627098083797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,27 +287,6 @@ MonoBehaviour:
   facingCosine: 90
   timeToTarget: 0.1
   maxAcceleration: 4
---- !u!114 &8940865154491846182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4858409627092019455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e008bb997f9e8cc42a7861ed1e5b45ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxAcceleration: 40
-  wallDetection: 0
-  castMask:
-    serializedVersion: 2
-    m_Bits: 64
-  wallAvoidDistance: 1
-  mainWhiskerLen: 1.5
-  sideWhiskerLen: 0.85
-  sideWhiskerAngle: 45
 --- !u!114 &1092642664896289460
 MonoBehaviour:
   m_ObjectHideFlags: 0
