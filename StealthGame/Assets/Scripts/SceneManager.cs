@@ -25,4 +25,9 @@ public class SceneManager : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(gameplaySceneName);
     }
+
+    public void btn_ExitGame()
+    {
+        Application.Quit();
+    }
 }
