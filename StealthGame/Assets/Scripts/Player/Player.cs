@@ -19,6 +19,9 @@ public class Player : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     [SerializeField] private Gradient colorGradient;
 
+    [SerializeField] private PlayerKnife _knife;
+    [SerializeField] private GameObject _knifeParentObject;
+
     private void Start()
     {
         _transform = transform;
@@ -46,6 +49,10 @@ public class Player : MonoBehaviour
         {
             OnMove(context);
         }
+        else if (context.action.name == _actionMap.Player.Stab.name)
+        {
+            OnStab(context);
+        }
     }
 
     private void OnMove(InputAction.CallbackContext context)
@@ -53,7 +60,28 @@ public class Player : MonoBehaviour
         _moveVec = context.ReadValue<Vector2>();
     }
 
+    private void OnStab(InputAction.CallbackContext context)
+    {
+        if (context.canceled)
+        {
+            _knifeParentObject.SetActive(false);
+        }
+        else if (context.started)
+        {
+            _knifeParentObject.SetActive(true);
+        }
+        else
+        {
+            _knife.Stab(context.ReadValue<Vector2>());
+        } 
+    }
+
     #endregion
+
+    public void GetStabbed()
+    {
+        print("Stabbed!!");
+    }
 
     private void RandomizeColor()
     {

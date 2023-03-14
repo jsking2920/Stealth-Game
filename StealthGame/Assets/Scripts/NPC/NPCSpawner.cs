@@ -4,6 +4,8 @@ using UnityMovementAI;
 
 public class NPCSpawner : MonoBehaviour
 {
+    public static NPCSpawner S;
+    
     [SerializeField] private Transform _npcPrefab;
     // Actual absolute scale is randomly set in this range, not relative to prefabs scale values
     public float npcMinScale = 0.5f;
@@ -27,6 +29,16 @@ public class NPCSpawner : MonoBehaviour
 
     [System.NonSerialized]
     public List<MovementAIRigidbody> npcs = new List<MovementAIRigidbody>();
+
+    private void Awake()
+    {
+        if (S)
+        {
+            print("2 NPC Spawners???");
+            Destroy(gameObject);
+        }
+        S = this;
+    }
 
     void Start()
     {
@@ -58,8 +70,7 @@ public class NPCSpawner : MonoBehaviour
         }
     }
 
-    // TODO: make this try again if it fails but prevent infinite loops
-    bool TryToCreateObject()
+    public bool TryToCreateObject()
     {
         float size = Random.Range(npcMinScale, npcMaxScale);
         float halfSize = size / 2f;
@@ -140,6 +151,11 @@ public class NPCSpawner : MonoBehaviour
         }
 
         return true;
+    }
+
+    public void RemoveNPC(MovementAIRigidbody npc)
+    {
+        npcs.Remove(npc);
     }
 
     public void RandomizeColor(SpriteRenderer sr)
