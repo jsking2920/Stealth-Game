@@ -11,7 +11,6 @@ public class NPCSpawner : MonoBehaviour
     public float npcMinScale = 0.5f;
     public float npcMaxScale = 0.7f;
 
-    public int numberOfNPCs = 100; // not all of these will actually get spawned, it will attempt 100 spawns
     public bool randomizeOrientation = true;
     public bool randomizeColor = true;
     public Gradient colorGradient;
@@ -55,9 +54,11 @@ public class NPCSpawner : MonoBehaviour
         bottomLeft = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, distAway));
         Vector3 topRight = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, distAway));
         widthHeight = topRight - bottomLeft;
+    }
 
-        // Create the create the objects
-        for (int i = 0; i < numberOfNPCs; i++)
+    public void SpawnNPCs(int num = 100) // not all of these will for sure get spawned, it will attempt 100 spawns, 10 times each max
+    {
+        for (int i = 0; i < num; i++)
         {
             /* Try to place the objects multiple times before giving up */
             for (int j = 0; j < 10; j++)
@@ -68,6 +69,15 @@ public class NPCSpawner : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void DestroyNPCs()
+    {
+        foreach (MovementAIRigidbody npc in npcs)
+        {
+            Destroy(npc.gameObject);
+        }
+        npcs.Clear();
     }
 
     public bool TryToCreateObject()

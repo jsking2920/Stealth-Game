@@ -8,6 +8,7 @@ public class SceneManager : MonoBehaviour
     public static SceneManager S;
 
     public string gameplaySceneName = "Main";
+    public string menuSceneName = "Menu";
 
     private void Awake()
     {
@@ -19,6 +20,11 @@ public class SceneManager : MonoBehaviour
 
         S = this;
         DontDestroyOnLoad(this);
+    }
+
+    public void ToMenu()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(menuSceneName);
     }
 
     public void btn_PlayGame()

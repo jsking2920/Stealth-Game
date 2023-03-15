@@ -36,20 +36,23 @@ public class PlayerKnife : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        GameObject obj = collision.gameObject;
-        if (obj.CompareTag("Player") && obj != _thisPlayer)
+        if (GameModeManager.S.playerInteractionEnabled)
         {
-            _audioSource.PlayOneShot(_stabSound);
-            obj.GetComponent<Player>().GetStabbed();
-            Instantiate(bloodPrefab, obj.transform.position, Quaternion.identity);
-        }
-        else if (collision.gameObject.CompareTag("NPC"))
-        {
-            _audioSource.PlayOneShot(_stabSound);
-            Instantiate(bloodPrefab, obj.transform.position, Quaternion.identity);
-            NPCSpawner.S.RemoveNPC(obj.GetComponent<MovementAIRigidbody>());
-            Destroy(obj);
-            //NPCSpawner.S.TryToCreateObject();
+            GameObject obj = collision.gameObject;
+            if (obj.CompareTag("Player") && obj != _thisPlayer)
+            {
+                _audioSource.PlayOneShot(_stabSound);
+                obj.GetComponent<Player>().GetStabbed();
+                Instantiate(bloodPrefab, obj.transform.position, Quaternion.identity);
+            }
+            else if (collision.gameObject.CompareTag("NPC"))
+            {
+                _audioSource.PlayOneShot(_stabSound);
+                Instantiate(bloodPrefab, obj.transform.position, Quaternion.identity);
+                NPCSpawner.S.RemoveNPC(obj.GetComponent<MovementAIRigidbody>());
+                Destroy(obj);
+                //NPCSpawner.S.TryToCreateObject();
+            }
         }
     }
 }
