@@ -16,7 +16,6 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        centerScreenMessage.gameObject.SetActive(false);
         blackScreen.gameObject.SetActive(false);
         timerText.gameObject.SetActive(false);
     }
@@ -27,12 +26,12 @@ public class UIManager : MonoBehaviour
         centerScreenMessage.text = "Press Space To Start";
     }
 
-    public void OnGameStart(string message)
+    public void OnGameStart(string message, bool showTimer)
     {
-        StartCoroutine(CutToBlackCo(message));
+        StartCoroutine(CutToBlackCo(message, showTimer));
     }
 
-    private IEnumerator CutToBlackCo(string message)
+    private IEnumerator CutToBlackCo(string message, bool showTimer)
     {
         centerScreenMessage.gameObject.SetActive(false);
         blackScreen.gameObject.SetActive(true);
@@ -46,6 +45,11 @@ public class UIManager : MonoBehaviour
 
         centerScreenMessage.gameObject.SetActive(false);
         blackScreen.gameObject.SetActive(false);
+
+        if (showTimer)
+        {
+            timerText.gameObject.SetActive(true);
+        }
     }
 
     public void OnGameEnd(string message)
@@ -54,13 +58,10 @@ public class UIManager : MonoBehaviour
         centerScreenMessage.gameObject.SetActive(true);
     }
 
-    public void ShowTimerText()
-    {
-        timerText.gameObject.SetActive(true);
-    }
-
     public void SetTimerText(float time)
     {
-        timerText.text = (((time * 100.0f) % 100) / 100).ToString();
+        float minutes = Mathf.FloorToInt(time / 60.0f);
+        float seconds = Mathf.FloorToInt(time % 60);
+        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 }

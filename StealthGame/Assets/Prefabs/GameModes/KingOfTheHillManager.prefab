@@ -48,6 +48,7 @@ MonoBehaviour:
   numberOfNPCs: 120
   startGameMessages:
   - KING OF THE HILL
+  showTimer: 1
   uiManager: {fileID: 0}
   inputManager: {fileID: 0}
   npcSpawner: {fileID: 0}

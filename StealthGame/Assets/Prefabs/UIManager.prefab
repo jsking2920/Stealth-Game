@@ -45,5 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   centerScreenMessage: {fileID: 0}
+  timerText: {fileID: 0}
   blackScreen: {fileID: 0}
   cutToBlackTime: 2

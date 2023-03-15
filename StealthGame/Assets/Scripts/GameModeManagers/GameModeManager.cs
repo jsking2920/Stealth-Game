@@ -9,8 +9,9 @@ public class GameModeManager : MonoBehaviour
 
     [Header("Game Mode Params")]
     public int playersPerTeam = 1; // 1 means free for all; teams will fill in the order joined
-    public int numberOfNPCs = 100;
+    public int numberOfNPCs = 120;
     public List<string> startGameMessages;
+    public bool showTimer = false;
 
     [Header("Managers and Game Objects")]
     public UIManager uiManager;
@@ -21,6 +22,9 @@ public class GameModeManager : MonoBehaviour
 
     [HideInInspector] public List<Team> teams = new List<Team>();
     [HideInInspector] public bool playerInteractionEnabled = false;
+
+    [HideInInspector] public enum GameState { joining, playing, ended }
+    [HideInInspector] public GameState gameState;
 
 
     private void Awake()
@@ -35,6 +39,7 @@ public class GameModeManager : MonoBehaviour
 
     protected virtual void Start()
     {
+        gameState = GameState.joining;
         inputManager.onPlayerJoined += OnPlayerJoin;
         inputManager.EnableJoining();
         uiManager.SetPreGameUI();
@@ -42,16 +47,16 @@ public class GameModeManager : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            StartGame();
-        }
-        else if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.S.ToMenu();
         }
 
-        if (CheckEndCondition())
+        if (gameState == GameState.joining && Input.GetKeyDown(KeyCode.Space))
+        {
+            StartGame();
+        }
+        else if (gameState == GameState.playing && CheckEndCondition())
         {
             EndGame();
         }
@@ -63,11 +68,13 @@ public class GameModeManager : MonoBehaviour
         inputManager.DisableJoining();
         npcSpawner.SpawnNPCs(numberOfNPCs);
 
-        uiManager.OnGameStart(startGameMessages[Random.Range(0, startGameMessages.Count)]);
+        uiManager.OnGameStart(startGameMessages[Random.Range(0, startGameMessages.Count)], showTimer);
+        gameState = GameState.playing;
     }
 
     protected virtual void EndGame()
     {
+        gameState = GameState.ended;
         playerInteractionEnabled = false;
         npcSpawner.DestroyNPCs();
         int winningTeamIndex = GetWinningTeam();
