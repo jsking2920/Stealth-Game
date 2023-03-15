@@ -54,9 +54,7 @@ public class PlayerKnife : MonoBehaviour
 
                 MovementAIRigidbody npc = obj.GetComponent<MovementAIRigidbody>();
                 GameModeManager.S.OnPlayerKilledNPC(_player, npc);
-                NPCSpawner.S.RemoveNPC(npc);
-                Destroy(obj);
-                
+ 
                 //NPCSpawner.S.TryToCreateObject();
             }
         }

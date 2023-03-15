@@ -63,10 +63,10 @@ public class DeathmatchManager : GameModeManager
 
     public override void OnPlayerKilledNPC(Player killer, MovementAIRigidbody npc)
     {
-        base.OnPlayerKilledNPC(killer, npc);
-
         teams[killer.teamIndex].intScore -= npcKillPenalty;
         uiManager.UpdateTeamScore(killer.teamIndex, teams[killer.teamIndex].intScore.ToString());
+
+        base.OnPlayerKilledNPC(killer, npc);
     }
 
     public override void OnPlayerKilledPlayer(Player killer, Player victim)

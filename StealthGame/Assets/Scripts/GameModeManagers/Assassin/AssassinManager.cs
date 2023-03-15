@@ -86,8 +86,7 @@ public class AssassinManager : GameModeManager
 
     public override void OnPlayerKilledNPC(Player killer, MovementAIRigidbody npc)
     {
-        base.OnPlayerKilledNPC(killer, npc);
-
+        
         if (npc.gameObject == curTarget.gameObject)
         {
             teams[killer.teamIndex].intScore += assassinationValue;
@@ -95,9 +94,12 @@ public class AssassinManager : GameModeManager
         else
         {
             teams[killer.teamIndex].intScore -= npcKillPenalty;
+            killer.OnStabbed(); // killingwrong target forces you to respawn
         }
 
         uiManager.UpdateTeamScore(killer.teamIndex, teams[killer.teamIndex].intScore.ToString());
+
+        base.OnPlayerKilledNPC(killer, npc);
     }
 
     public override void OnPlayerKilledPlayer(Player killer, Player victim)

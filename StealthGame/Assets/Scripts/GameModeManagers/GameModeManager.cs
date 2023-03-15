@@ -127,7 +127,8 @@ public class GameModeManager : MonoBehaviour
 
     public virtual void OnPlayerKilledNPC(Player killer, MovementAIRigidbody npc)
     {
-
+        NPCSpawner.S.RemoveNPC(npc);
+        Destroy(npc.gameObject);
     }
 }
 

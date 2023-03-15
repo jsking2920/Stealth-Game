@@ -80,10 +80,10 @@ public class KingOfTheHillManager : GameModeManager
 
     public override void OnPlayerKilledNPC(Player killer, MovementAIRigidbody npc)
     {
-        base.OnPlayerKilledNPC(killer, npc);
-
         teams[killer.teamIndex].floatScore -= npcKillPenalty;
         uiManager.UpdateTeamScore(killer.teamIndex, teams[killer.teamIndex].floatScore.ToString("F2"));
+
+        base.OnPlayerKilledNPC(killer, npc);
     }
 
     public override void OnPlayerKilledPlayer(Player killer, Player victim)
