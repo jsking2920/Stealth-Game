@@ -785,7 +785,7 @@ PrefabInstance:
       objectReference: {fileID: 1595001602}
     - target: {fileID: 2193723651298728081, guid: 767d4f6e3947da2448a994ff2b8252d5, type: 3}
       propertyPath: numberOfNPCs
-      value: 20
+      value: 140
       objectReference: {fileID: 0}
     - target: {fileID: 2193723651298728081, guid: 767d4f6e3947da2448a994ff2b8252d5, type: 3}
       propertyPath: playersPerTeam
