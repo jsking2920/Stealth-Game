@@ -44,15 +44,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fb972f8c9c038643a8dffdffcc759dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playersPerTeam: 1
-  numberOfNPCs: 120
+  playersPerTeam: 2
+  numberOfNPCs: 140
   startGameMessages:
   - KING OF THE HILL
   showTimer: 1
+  playerRespawnTime: 3
   uiManager: {fileID: 0}
   inputManager: {fileID: 0}
   npcSpawner: {fileID: 0}
   teams: []
   playerInteractionEnabled: 0
+  gameState: 0
   duration: 60
   timeRemaining: 0
+  npcKillPenalty: 3
+  _zonePrefab: {fileID: 6959792341490694199, guid: 1baf69e0299bbb0499a2d5bfde6d78cd, type: 3}
+  zoneScaleMin: 2.5
+  zoneScaleMax: 5
+  zoneRespawnRate: 10

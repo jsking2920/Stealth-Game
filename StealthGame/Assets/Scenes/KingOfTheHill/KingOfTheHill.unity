@@ -301,6 +301,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1133358451}
     - target: {fileID: 6850588374012778396, guid: 64bacfa541c6ad74087a737ff1ec4cd2, type: 3}
+      propertyPath: _zonePrefab
+      value: 
+      objectReference: {fileID: 6959792341490694199, guid: 1baf69e0299bbb0499a2d5bfde6d78cd, type: 3}
+    - target: {fileID: 6850588374012778396, guid: 64bacfa541c6ad74087a737ff1ec4cd2, type: 3}
       propertyPath: inputManager
       value: 
       objectReference: {fileID: 1595001602}

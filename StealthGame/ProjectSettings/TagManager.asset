@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Obstacle
   - NPC
+  - Zone
   layers:
   - Default
   - TransparentFX
@@ -14,9 +15,9 @@ TagManager:
   - Water
   - UI
   - Obstacles
-  - Characters
-  - 
-  - 
+  - NPCs
+  - Players
+  - Zones
   - 
   - 
   - 
@@ -45,6 +46,9 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 2786391011
+    locked: 0
+  - name: Zones
+    uniqueID: 4204209105
     locked: 0
   - name: Blood
     uniqueID: 3556976379

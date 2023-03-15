@@ -125,7 +125,7 @@ public class NPCSpawner : MonoBehaviour
         return false;
     }
 
-    Vector3 GetRandomPos(float halfSize, float size)
+    public Vector3 GetRandomPos(float halfSize, float size)
     {
         Vector3 pos = new Vector3();
         pos.x = bottomLeft.x + Random.Range(boundaryPadding + halfSize, widthHeight.x - boundaryPadding - halfSize);
