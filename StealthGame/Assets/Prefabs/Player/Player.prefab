@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 551386840}
   - component: {fileID: 551386839}
   - component: {fileID: 551386838}
-  - component: {fileID: 8152542207549296977}
   m_Layer: 7
   m_Name: Knife
   m_TagString: Untagged
@@ -47,10 +46,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 500c04db5680db0428d032fcdbb922df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _thisPlayer: {fileID: 6149113657032973536}
+  _player: {fileID: 6691711588453782270}
+  _playerObj: {fileID: 6149113657032973536}
   _restTrans: {fileID: 628373391942822141}
   _stabTrans: {fileID: 1672531821378124678}
   _knifeParent: {fileID: 504866818231212575}
+  _audioSource: {fileID: 8603635376724433152}
   _stabSound: {fileID: 8300000, guid: f56cc7e79ccc066489775084fe5b01d3, type: 3}
   bloodPrefab: {fileID: 4587759593761568677, guid: 5a6ba2086e618da46848612100827021, type: 3}
 --- !u!212 &551386839
@@ -131,19 +132,51 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 14.31049, y: 3.7051935}
   m_EdgeRadius: 0
---- !u!82 &8152542207549296977
+--- !u!1 &36239653817525266
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6519181520213485515}
+  - component: {fileID: 8603635376724433152}
+  m_Layer: 7
+  m_Name: Audio Source
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6519181520213485515
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 36239653817525266}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6149113657032765870}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &8603635376724433152
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 551386836}
+  m_GameObject: {fileID: 36239653817525266}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.575
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -290,7 +323,7 @@ Transform:
   - {fileID: 628373391942822141}
   - {fileID: 1672531821378124678}
   m_Father: {fileID: 6149113657032765870}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6149113657032973536
 GameObject:
@@ -327,6 +360,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6149113657032819164}
+  - {fileID: 6519181520213485515}
   - {fileID: 504866818231212575}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -395,6 +429,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 756c9729c6cbf744bbc7cdf18edbf8d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  teamIndex: -1
+  alive: 1
+  _sensor: {fileID: 6149113657032988130}
   _speed: 2
   colorGradient:
     serializedVersion: 2
@@ -425,6 +462,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 7
     m_NumAlphaKeys: 2
+  color: {r: 0, g: 0, b: 0, a: 0}
   _knife: {fileID: 551386840}
   _knifeParentObject: {fileID: 4110349392100504868}
 --- !u!114 &2464712651831935413

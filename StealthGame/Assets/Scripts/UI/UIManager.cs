@@ -7,12 +7,14 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI centerScreenMessage;
-
     [SerializeField] private TextMeshProUGUI timerText;
+
+    [HideInInspector] public bool useFloatScore = false; // defaults to using int score from teams
+    private int teamsJoined = 0;
+    [SerializeField] private TextMeshProUGUI[] teamTexts; // need to have as many of these as there can be teams (6 currently, technically)
 
     [SerializeField] private Image blackScreen;
     public float cutToBlackTime = 2.0f;
-
 
     private void Start()
     {
@@ -24,6 +26,26 @@ public class UIManager : MonoBehaviour
     {
         centerScreenMessage.gameObject.SetActive(true);
         centerScreenMessage.text = "Press Space To Start";
+
+        foreach(TextMeshProUGUI t in teamTexts)
+        {
+            t.text = "JOIN";
+            t.gameObject.SetActive(true);
+        }
+    }
+
+    public void AddTeamScoreText(Team team)
+    {
+        TextMeshProUGUI t = teamTexts[teamsJoined];
+        t.color = team.color;
+        t.text = useFloatScore ? team.floatScore.ToString() : team.intScore.ToString();
+        t.gameObject.SetActive(true);
+        teamsJoined++;
+    }
+
+    public void UpdateTeamScore(int index, string score)
+    {
+        teamTexts[index].text = score;
     }
 
     public void OnGameStart(string message, bool showTimer)
@@ -33,6 +55,11 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator CutToBlackCo(string message, bool showTimer)
     {
+        for (int i = teamsJoined; i < teamTexts.Length; i++)
+        {
+            teamTexts[i].gameObject.SetActive(false);
+        }
+
         centerScreenMessage.gameObject.SetActive(false);
         blackScreen.gameObject.SetActive(true);
 

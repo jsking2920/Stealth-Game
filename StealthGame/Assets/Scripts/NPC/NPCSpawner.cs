@@ -84,18 +84,7 @@ public class NPCSpawner : MonoBehaviour
     {
         float size = Random.Range(npcMinScale, npcMaxScale);
         float halfSize = size / 2f;
-
-        Vector3 pos = new Vector3();
-        pos.x = bottomLeft.x + Random.Range(boundaryPadding + halfSize, widthHeight.x - boundaryPadding - halfSize);
-
-        if (isObj3D)
-        {
-            pos.z = bottomLeft.z + Random.Range(boundaryPadding + halfSize, widthHeight.z - boundaryPadding - halfSize);
-        }
-        else
-        {
-            pos.y = bottomLeft.y + Random.Range(boundaryPadding + halfSize, widthHeight.y - boundaryPadding - halfSize);
-        }
+        Vector3 pos = GetRandomPos(halfSize, size);
 
         if (CanPlaceObject(halfSize, pos))
         {
@@ -136,6 +125,23 @@ public class NPCSpawner : MonoBehaviour
         return false;
     }
 
+    Vector3 GetRandomPos(float halfSize, float size)
+    {
+        Vector3 pos = new Vector3();
+        pos.x = bottomLeft.x + Random.Range(boundaryPadding + halfSize, widthHeight.x - boundaryPadding - halfSize);
+
+        if (isObj3D)
+        {
+            pos.z = bottomLeft.z + Random.Range(boundaryPadding + halfSize, widthHeight.z - boundaryPadding - halfSize);
+        }
+        else
+        {
+            pos.y = bottomLeft.y + Random.Range(boundaryPadding + halfSize, widthHeight.y - boundaryPadding - halfSize);
+        }
+
+        return pos;
+    }
+
     bool CanPlaceObject(float halfSize, Vector3 pos)
     {
         // Make sure it does not overlap with any thing to avoid
@@ -161,6 +167,22 @@ public class NPCSpawner : MonoBehaviour
         }
 
         return true;
+    }
+
+    public void RandomizePosition(Transform trans)
+    {
+        // assumes players are the same 1 unit by 1 unit circles with equivalent x and y scaling
+        Vector3 pos = GetRandomPos(trans.localScale.x / 2, trans.localScale.x);
+
+        int i = 0;
+        while (!CanPlaceObject(trans.localScale.x / 2, pos))
+        {
+            if (i > 10) break;
+            i++;
+            pos = GetRandomPos(trans.localScale.x / 2, trans.localScale.x);
+        }
+
+        trans.position = pos;
     }
 
     public void RemoveNPC(MovementAIRigidbody npc)

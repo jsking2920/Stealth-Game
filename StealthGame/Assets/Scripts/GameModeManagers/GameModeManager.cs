@@ -12,6 +12,7 @@ public class GameModeManager : MonoBehaviour
     public int numberOfNPCs = 120;
     public List<string> startGameMessages;
     public bool showTimer = false;
+    public float playerRespawnTime = 3.0f;
 
     [Header("Managers and Game Objects")]
     public UIManager uiManager;
@@ -114,7 +115,18 @@ public class GameModeManager : MonoBehaviour
             // Create a new team
             Team newTeam = new Team(playerInput, newPlayer, teams.Count);
             teams.Add(newTeam);
+            uiManager.AddTeamScoreText(newTeam);
         }
+    }
+
+    public virtual void OnPlayerKilledPlayer(Player killer, Player victim)
+    {
+
+    }
+
+    public virtual void OnPlayerKilledNPC(Player killer)
+    {
+
     }
 }
 
@@ -147,7 +159,9 @@ public class Team
 
         // Color of team defaults to first player added to that team
         p.RandomizeColor();
-        color = p.color; 
+        color = p.color;
+
+        p.teamIndex = i;
     }
 
     public void AddPlayer(PlayerInput input, Player p)
@@ -156,6 +170,7 @@ public class Team
         playerInputs.Add(input);
         playerCount++;
         p.SetColor(color);
+        p.teamIndex = index;
     }
 
     public void DestroyPlayers()

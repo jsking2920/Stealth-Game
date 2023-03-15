@@ -6,7 +6,8 @@ using UnityMovementAI;
 
 public class PlayerKnife : MonoBehaviour
 {
-    [SerializeField] private GameObject _thisPlayer;
+    [SerializeField] private Player _player;
+    [SerializeField] private GameObject _playerObj;
 
     public Transform _restTrans;
     public Transform _stabTrans;
@@ -15,14 +16,13 @@ public class PlayerKnife : MonoBehaviour
 
     [SerializeField] private Transform _knifeParent; // for rotations
 
-    private AudioSource _audioSource;
+    [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip _stabSound;
 
     public GameObject bloodPrefab;
 
     private void Start()
     {
-        _audioSource = GetComponent<AudioSource>();
         _restPos = _restTrans.localPosition;
         _stabPos = _stabTrans.localPosition;
     }
@@ -39,11 +39,13 @@ public class PlayerKnife : MonoBehaviour
         if (GameModeManager.S.playerInteractionEnabled)
         {
             GameObject obj = collision.gameObject;
-            if (obj.CompareTag("Player") && obj != _thisPlayer)
+            if (obj.CompareTag("Player") && obj != _playerObj)
             {
+                Player victim = obj.GetComponent<Player>();
                 _audioSource.PlayOneShot(_stabSound);
-                obj.GetComponent<Player>().GetStabbed();
                 Instantiate(bloodPrefab, obj.transform.position, Quaternion.identity);
+                victim.OnStabbed();
+                GameModeManager.S.OnPlayerKilledPlayer(_player, victim);
             }
             else if (collision.gameObject.CompareTag("NPC"))
             {
@@ -51,6 +53,7 @@ public class PlayerKnife : MonoBehaviour
                 Instantiate(bloodPrefab, obj.transform.position, Quaternion.identity);
                 NPCSpawner.S.RemoveNPC(obj.GetComponent<MovementAIRigidbody>());
                 Destroy(obj);
+                GameModeManager.S.OnPlayerKilledNPC(_player);
                 //NPCSpawner.S.TryToCreateObject();
             }
         }
