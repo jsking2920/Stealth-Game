@@ -9,7 +9,7 @@ public class GameModeManager : MonoBehaviour
 
     [Header("Game Mode Params")]
     public int playersPerTeam = 1; // 1 means free for all; teams will fill in the order joined
-    public int numberOfNPCs = 120;
+    public int numberOfNPCs = 140;
     public List<string> startGameMessages;
     public bool showTimer = false;
     public float playerRespawnTime = 3.0f;

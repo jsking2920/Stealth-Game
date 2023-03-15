@@ -17,5 +17,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/KingOfTheHill/KingOfTheHillTeams.unity
     guid: 7dbba646d8a76704a9c92c4a0caf6945
+  - enabled: 1
+    path: Assets/Scenes/Deathmatch/Deathmatch.unity
+    guid: eba314ac2b95cb44ebcfa465bf1fc0ea
+  - enabled: 1
+    path: Assets/Scenes/Deathmatch/DeathmatchTeams.unity
+    guid: da0dc2d732953934985347df41d23336
+  - enabled: 1
+    path: Assets/Scenes/Deathmatch/DeathmatchThrees.unity
+    guid: 7e904c61fd0e5d54695e551643195b0e
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 6a64a6cf1180b5344aa78d1cb6e6f7a8, type: 2}

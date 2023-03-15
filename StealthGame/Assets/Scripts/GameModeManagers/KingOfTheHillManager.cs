@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class KingOfTheHillManager : GameModeManager
 {
+    [Header("King of the Hill Settings")]
     public float duration = 60.0f;
     [HideInInspector] public float timeRemaining = 60.0f;
 
