@@ -16,7 +16,8 @@ public class GameModeManager : MonoBehaviour
     public UIManager uiManager;
     public PlayerInputManager inputManager;
     public NPCSpawner npcSpawner;
-    public GameObject arenaPrefab;
+    // TODO: Implement different arenas
+    // public GameObject arenaPrefab;
 
     [HideInInspector] public List<Team> teams = new List<Team>();
     [HideInInspector] public bool playerInteractionEnabled = false;

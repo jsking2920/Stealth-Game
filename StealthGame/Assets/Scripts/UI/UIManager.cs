@@ -8,14 +8,17 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI centerScreenMessage;
 
+    [SerializeField] private TextMeshProUGUI timerText;
+
     [SerializeField] private Image blackScreen;
-    [SerializeField] private float cutToBlackTime = 2.0f;
+    public float cutToBlackTime = 2.0f;
 
 
     private void Start()
     {
         centerScreenMessage.gameObject.SetActive(false);
         blackScreen.gameObject.SetActive(false);
+        timerText.gameObject.SetActive(false);
     }
 
     public void SetPreGameUI()
@@ -49,5 +52,15 @@ public class UIManager : MonoBehaviour
     {
         centerScreenMessage.text = message;
         centerScreenMessage.gameObject.SetActive(true);
+    }
+
+    public void ShowTimerText()
+    {
+        timerText.gameObject.SetActive(true);
+    }
+
+    public void SetTimerText(float time)
+    {
+        timerText.text = (((time * 100.0f) % 100) / 100).ToString();
     }
 }
