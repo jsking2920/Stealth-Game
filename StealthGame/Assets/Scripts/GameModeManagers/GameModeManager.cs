@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityMovementAI;
 
 public class GameModeManager : MonoBehaviour
 {
@@ -124,7 +125,7 @@ public class GameModeManager : MonoBehaviour
 
     }
 
-    public virtual void OnPlayerKilledNPC(Player killer)
+    public virtual void OnPlayerKilledNPC(Player killer, MovementAIRigidbody npc)
     {
 
     }

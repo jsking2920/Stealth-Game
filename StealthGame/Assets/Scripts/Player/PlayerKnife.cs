@@ -51,9 +51,12 @@ public class PlayerKnife : MonoBehaviour
             {
                 _audioSource.PlayOneShot(_stabSound);
                 Instantiate(bloodPrefab, obj.transform.position, Quaternion.identity);
-                NPCSpawner.S.RemoveNPC(obj.GetComponent<MovementAIRigidbody>());
+
+                MovementAIRigidbody npc = obj.GetComponent<MovementAIRigidbody>();
+                GameModeManager.S.OnPlayerKilledNPC(_player, npc);
+                NPCSpawner.S.RemoveNPC(npc);
                 Destroy(obj);
-                GameModeManager.S.OnPlayerKilledNPC(_player);
+                
                 //NPCSpawner.S.TryToCreateObject();
             }
         }

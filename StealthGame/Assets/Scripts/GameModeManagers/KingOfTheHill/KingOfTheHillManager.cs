@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityMovementAI;
 
 public class KingOfTheHillManager : GameModeManager
 {
@@ -77,9 +78,9 @@ public class KingOfTheHillManager : GameModeManager
         return winningTeam;
     }
 
-    public override void OnPlayerKilledNPC(Player killer)
+    public override void OnPlayerKilledNPC(Player killer, MovementAIRigidbody npc)
     {
-        base.OnPlayerKilledNPC(killer);
+        base.OnPlayerKilledNPC(killer, npc);
 
         teams[killer.teamIndex].floatScore -= npcKillPenalty;
         uiManager.UpdateTeamScore(killer.teamIndex, teams[killer.teamIndex].floatScore.ToString("F2"));

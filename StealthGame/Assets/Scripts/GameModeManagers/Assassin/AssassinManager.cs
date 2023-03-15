@@ -1,20 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityMovementAI;
 
-public class DeathmatchManager : GameModeManager
+public class AssassinManager : GameModeManager
 {
-    [Header("Deathmatch Settings")]
+    [Header("Assassin Settings")]
     public float duration = 60.0f;
     [HideInInspector] public float timeRemaining = 60.0f;
 
+    public float timeToRespawnTarget = 3.0f;
+    private float targetRespawnTimer = 3.0f;
+
+    public int assassinationValue = 3;
+    public int playerKillValue = 1;
     public int npcKillPenalty = 1;
-    public int teamKillPenealty = 2;
+    public int teamKillPenalty = 2;
+
+    [HideInInspector] public MovementAIRigidbody curTarget = null; // randomly selected npc
+
+    public GameObject assassinMarkPrefab;
 
     protected override void Start()
     {
         base.Start();
         uiManager.useFloatScore = false;
+        targetRespawnTimer = timeToRespawnTarget;
     }
 
     protected override void Update()
@@ -25,6 +36,19 @@ public class DeathmatchManager : GameModeManager
         {
             timeRemaining -= Time.deltaTime;
             uiManager.SetTimerText(timeRemaining);
+
+            if (curTarget == null)
+            {
+                if (targetRespawnTimer <= 0.0f)
+                {
+                    SetRandomTarget();
+                    targetRespawnTimer = timeToRespawnTarget;
+                }
+                else
+                {
+                    targetRespawnTimer -= Time.deltaTime;
+                }
+            }
         }
     }
 
@@ -37,7 +61,7 @@ public class DeathmatchManager : GameModeManager
     protected override void EndGame()
     {
         base.EndGame();
-        uiManager.OnGameEnd("You Win\n" + GetWinningTeam().intScore + " Kills"); // messy
+        uiManager.OnGameEnd("You Win\n" + GetWinningTeam().intScore); // messy
     }
 
     protected override bool CheckEndCondition()
@@ -60,11 +84,19 @@ public class DeathmatchManager : GameModeManager
         return winningTeam;
     }
 
-    public override void OnPlayerKilledNPC(Player killer)
+    public override void OnPlayerKilledNPC(Player killer, MovementAIRigidbody npc)
     {
-        base.OnPlayerKilledNPC(killer);
+        base.OnPlayerKilledNPC(killer, npc);
 
-        teams[killer.teamIndex].intScore -= npcKillPenalty;
+        if (npc.gameObject == curTarget.gameObject)
+        {
+            teams[killer.teamIndex].intScore += assassinationValue;
+        }
+        else
+        {
+            teams[killer.teamIndex].intScore -= npcKillPenalty;
+        }
+
         uiManager.UpdateTeamScore(killer.teamIndex, teams[killer.teamIndex].intScore.ToString());
     }
 
@@ -78,12 +110,20 @@ public class DeathmatchManager : GameModeManager
         if (killerTeam.index == victimTeam.index)
         {
             // team kill
-            killerTeam.intScore -= teamKillPenealty;
+            killerTeam.intScore -= teamKillPenalty;
         }
         else
         {
-            killerTeam.intScore++;
+            killerTeam.intScore += playerKillValue;
         }
         uiManager.UpdateTeamScore(killer.teamIndex, teams[killer.teamIndex].intScore.ToString());
+    }
+
+    public void SetRandomTarget()
+    {
+        curTarget = npcSpawner.npcs[Random.Range(0, npcSpawner.npcs.Count)];
+        Instantiate(assassinMarkPrefab, curTarget.transform);
+
+        curTarget.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
     }
 }
