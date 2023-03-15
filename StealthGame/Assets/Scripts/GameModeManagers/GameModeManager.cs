@@ -77,14 +77,15 @@ public class GameModeManager : MonoBehaviour
         gameState = GameState.ended;
         playerInteractionEnabled = false;
         npcSpawner.DestroyNPCs();
-        int winningTeamIndex = GetWinningTeam();
+        Team winningTeam = GetWinningTeam();
         foreach (Team team in teams)
         {
-            if (team.index != winningTeamIndex)
+            if (winningTeam != null && team.index != winningTeam.index)
             {
                 team.DestroyPlayers();
             }
         }
+        uiManager.OnGameEnd(); // Call this in override to set a custom message
     }
 
     protected virtual bool CheckEndCondition()
@@ -92,9 +93,9 @@ public class GameModeManager : MonoBehaviour
         return false;
     }
 
-    protected virtual int GetWinningTeam()
+    protected virtual Team GetWinningTeam()
     {
-        return -1;
+        return null;
     }
 
     protected virtual void OnPlayerJoin(PlayerInput playerInput)
@@ -118,7 +119,7 @@ public class GameModeManager : MonoBehaviour
 }
 
 [System.Serializable]
-public struct Team
+public class Team
 {
     public int index;
     

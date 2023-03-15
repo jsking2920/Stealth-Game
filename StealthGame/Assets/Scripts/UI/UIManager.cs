@@ -52,10 +52,11 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void OnGameEnd(string message)
+    public void OnGameEnd(string message = "You Win")
     {
         centerScreenMessage.text = message;
         centerScreenMessage.gameObject.SetActive(true);
+        timerText.gameObject.SetActive(false);
     }
 
     public void SetTimerText(float time)

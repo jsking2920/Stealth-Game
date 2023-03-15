@@ -18,7 +18,6 @@ public class SceneManager : MonoBehaviour
         }
 
         S = this;
-        DontDestroyOnLoad(this);
     }
 
     public void ToMenu()

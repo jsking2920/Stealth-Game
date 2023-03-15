@@ -9,11 +9,6 @@ public class KingOfTheHillManager : GameModeManager
     public float duration = 60.0f;
     [HideInInspector] public float timeRemaining = 60.0f;
 
-    protected override void Start()
-    {
-        base.Start();
-    }
-
     protected override void Update()
     {
         base.Update();
@@ -31,13 +26,29 @@ public class KingOfTheHillManager : GameModeManager
         base.StartGame();
     }
 
+    protected override void EndGame()
+    {
+        base.EndGame();
+        uiManager.OnGameEnd("You Win\n" + GetWinningTeam().floatScore); // messy
+    }
+
     protected override bool CheckEndCondition()
     {
         return timeRemaining <= 0.0f;
     }
 
-    protected override void OnPlayerJoin(PlayerInput playerInput)
+    protected override Team GetWinningTeam()
     {
-        base.OnPlayerJoin(playerInput);
+        Team winningTeam = teams[0];
+
+        foreach (Team team in teams)
+        {
+            if (team.floatScore > winningTeam.floatScore)
+            {
+                winningTeam = team;
+            }
+        }
+
+        return winningTeam;
     }
 }
