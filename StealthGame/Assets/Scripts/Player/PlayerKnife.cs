@@ -30,7 +30,7 @@ public class PlayerKnife : MonoBehaviour
     public void Stab(Vector2 dir)
     {
         // Knife occaisionally goes in opposite direction when you very lightly move the stick
-        _knifeParent.rotation = Quaternion.EulerAngles(0.0f, 0.0f, Mathf.Atan2(dir.y, dir.x));
+        _knifeParent.rotation = Quaternion.Euler(0.0f, 0.0f, Mathf.Rad2Deg * Mathf.Atan2(dir.y, dir.x));
         transform.localPosition = Vector3.Lerp(_restPos, _stabPos, dir.magnitude);
     }
 
@@ -54,8 +54,6 @@ public class PlayerKnife : MonoBehaviour
 
                 MovementAIRigidbody npc = obj.GetComponent<MovementAIRigidbody>();
                 GameModeManager.S.OnPlayerKilledNPC(_player, npc);
- 
-                //NPCSpawner.S.TryToCreateObject();
             }
         }
     }

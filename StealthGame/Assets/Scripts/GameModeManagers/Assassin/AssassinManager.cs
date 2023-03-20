@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityMovementAI;
 
-public class AssassinManager : GameModeManager
+public class AssassinManager : TimedGameMode
 {
     [Header("Assassin Settings")]
-    public float duration = 60.0f;
-    [HideInInspector] public float timeRemaining = 60.0f;
-
     public float timeToRespawnTarget = 3.0f;
     private float targetRespawnTimer = 3.0f;
 
@@ -34,8 +31,6 @@ public class AssassinManager : GameModeManager
 
         if (gameState == GameState.playing)
         {
-            timeRemaining -= Time.deltaTime;
-            uiManager.SetTimerText(timeRemaining);
 
             if (curTarget == null)
             {
@@ -52,21 +47,9 @@ public class AssassinManager : GameModeManager
         }
     }
 
-    protected override void StartGame()
+    protected override string GetWinMessage()
     {
-        timeRemaining = duration + uiManager.cutToBlackTime;
-        base.StartGame();
-    }
-
-    protected override void EndGame()
-    {
-        base.EndGame();
-        uiManager.OnGameEnd("You Win\n" + GetWinningTeam().intScore); // messy
-    }
-
-    protected override bool CheckEndCondition()
-    {
-        return timeRemaining <= 0.0f;
+        return "You Win\n" + GetWinningTeam().intScore;
     }
 
     protected override Team GetWinningTeam()
@@ -86,7 +69,6 @@ public class AssassinManager : GameModeManager
 
     public override void OnPlayerKilledNPC(Player killer, MovementAIRigidbody npc)
     {
-        
         if (npc.gameObject == curTarget.gameObject)
         {
             teams[killer.teamIndex].intScore += assassinationValue;
@@ -94,7 +76,7 @@ public class AssassinManager : GameModeManager
         else
         {
             teams[killer.teamIndex].intScore -= npcKillPenalty;
-            killer.OnStabbed(); // killingwrong target forces you to respawn
+            killer.OnStabbed(); // killing wrong target forces you to respawn
         }
 
         uiManager.UpdateTeamScore(killer.teamIndex, teams[killer.teamIndex].intScore.ToString());
@@ -123,7 +105,7 @@ public class AssassinManager : GameModeManager
 
     public void SetRandomTarget()
     {
-        curTarget = npcSpawner.npcs[Random.Range(0, npcSpawner.npcs.Count)];
+        curTarget = npcManager.npcs[Random.Range(0, npcManager.npcs.Count)];
         Instantiate(assassinMarkPrefab, curTarget.transform);
 
         curTarget.gameObject.GetComponent<SpriteRenderer>().color = Color.white;

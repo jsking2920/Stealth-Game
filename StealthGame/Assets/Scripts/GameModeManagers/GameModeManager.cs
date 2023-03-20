@@ -11,23 +11,24 @@ public class GameModeManager : MonoBehaviour
     [Header("Game Mode Params")]
     public int playersPerTeam = 1; // 1 means free for all; teams will fill in the order joined
     public int numberOfNPCs = 140;
-    public List<string> startGameMessages;
-    public bool showTimer = false;
-    public float playerRespawnTime = 3.0f;
+    public bool doNPCsRespawn = false; // unimplemented currently
+    public List<string> startGameMessages; // one selected at random
 
-    [Header("Managers and Game Objects")]
-    public UIManager uiManager;
-    public PlayerInputManager inputManager;
-    public NPCSpawner npcSpawner;
+    public float playerRespawnTime = 3.0f;
+    
+    // Must be present in scene, set at runtime
+    [HideInInspector] public UIManager uiManager;
+    [HideInInspector] public PlayerInputManager inputManager;
+    [HideInInspector] public NPCManager npcManager;
+    [HideInInspector] public SceneManager sceneManager;
     // TODO: Implement different arenas
-    // public GameObject arenaPrefab;
+    // [HideInInspector] public GameObject arenaPrefab;
 
     [HideInInspector] public List<Team> teams = new List<Team>();
     [HideInInspector] public bool playerInteractionEnabled = false;
 
-    [HideInInspector] public enum GameState { joining, playing, ended }
+    [HideInInspector] public enum GameState { joining, playing, paused, ended }
     [HideInInspector] public GameState gameState;
-
 
     private void Awake()
     {
@@ -41,26 +42,39 @@ public class GameModeManager : MonoBehaviour
 
     protected virtual void Start()
     {
+        // Having more than one of any of these will cause problems
+        uiManager = FindObjectOfType<UIManager>();
+        inputManager = FindObjectOfType<PlayerInputManager>();
+        npcManager = FindObjectOfType<NPCManager>();
+        sceneManager = FindObjectOfType<SceneManager>();
+
+        if (!uiManager || !inputManager || !npcManager || !sceneManager)
+        {
+            Debug.LogError("Missing a manager in the scene");
+        }
+        
         gameState = GameState.joining;
+
         inputManager.onPlayerJoined += OnPlayerJoin;
         inputManager.EnableJoining();
-        uiManager.SetPreGameUI();
     }
 
     protected virtual void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            SceneManager.S.ToMenu();
-        }
-
-        if (gameState == GameState.joining && Input.GetKeyDown(KeyCode.Space))
-        {
-            StartGame();
-        }
-        else if (gameState == GameState.playing && CheckEndCondition())
+        if (gameState == GameState.playing && CheckEndCondition())
         {
             EndGame();
+        }
+
+        // Pause on esc
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            TogglePause();
+        }
+        // Start game and stop allowing joining on Space
+        else if (gameState == GameState.joining && Input.GetKeyDown(KeyCode.Space))
+        {
+            StartGame();
         }
     }
 
@@ -68,9 +82,9 @@ public class GameModeManager : MonoBehaviour
     {
         playerInteractionEnabled = true;
         inputManager.DisableJoining();
-        npcSpawner.SpawnNPCs(numberOfNPCs);
+        npcManager.SpawnNPCs(numberOfNPCs);
 
-        uiManager.OnGameStart(startGameMessages[Random.Range(0, startGameMessages.Count)], showTimer);
+        uiManager.OnGameStart(startGameMessages[Random.Range(0, startGameMessages.Count)]);
         gameState = GameState.playing;
     }
 
@@ -78,7 +92,8 @@ public class GameModeManager : MonoBehaviour
     {
         gameState = GameState.ended;
         playerInteractionEnabled = false;
-        npcSpawner.DestroyNPCs();
+        npcManager.DestroyNPCs();
+
         Team winningTeam = GetWinningTeam();
         foreach (Team team in teams)
         {
@@ -87,7 +102,39 @@ public class GameModeManager : MonoBehaviour
                 team.DestroyPlayers();
             }
         }
-        uiManager.OnGameEnd(); // Call this in override to set a custom message
+
+        uiManager.OnGameEnd(GetWinMessage()); 
+    }
+
+    protected virtual string GetWinMessage()
+    {
+        return "You Win!";
+    }
+
+    public void TogglePause()
+    {
+        if (gameState == GameState.paused)
+        {
+            gameState = GameState.playing;
+            uiManager.OnResume();
+            Time.timeScale = 1.0f;
+        }
+        else if (gameState == GameState.playing)
+        {
+            gameState = GameState.paused;
+            uiManager.OnPause();
+            Time.timeScale = 0.0f; // will mess with animations and other things, watch out
+        }
+    }
+
+    public void QuitToMenu()
+    {
+        sceneManager.ToMenu();
+    }
+
+    public void QuitGame()
+    {
+        sceneManager.btn_ExitGame();
     }
 
     protected virtual bool CheckEndCondition()
@@ -104,6 +151,7 @@ public class GameModeManager : MonoBehaviour
     {
         Player newPlayer = playerInput.gameObject.GetComponent<Player>();
         newPlayer.Setup();
+        SetSpawnPosition(newPlayer.transform);
 
         // if theres at least 1 team and the most recently created team has less players than required
         if (teams.Count > 0 && teams[teams.Count - 1].players.Count < playersPerTeam)
@@ -120,6 +168,12 @@ public class GameModeManager : MonoBehaviour
         }
     }
 
+    // TODO: Allow different arenas to have predefined spawn positions
+    public virtual void SetSpawnPosition(Transform playerTransform)
+    {
+        npcManager.RandomizePosition(playerTransform);
+    }
+
     public virtual void OnPlayerKilledPlayer(Player killer, Player victim)
     {
 
@@ -127,60 +181,13 @@ public class GameModeManager : MonoBehaviour
 
     public virtual void OnPlayerKilledNPC(Player killer, MovementAIRigidbody npc)
     {
-        NPCSpawner.S.RemoveNPC(npc);
+        npcManager.RemoveNPC(npc);
         Destroy(npc.gameObject);
-    }
-}
 
-[System.Serializable]
-public class Team
-{
-    public int index;
-    
-    public int playerCount;
-    public float floatScore;
-    public int intScore;
-
-    public Color color;
-
-    public List<PlayerInput> playerInputs;
-    public List<Player> players;
-
-    public Team(PlayerInput input, Player p, int i)
-    {
-        players = new List<Player>();
-        players.Add(p);
-        playerInputs = new List<PlayerInput>();
-        playerInputs.Add(input);
-
-        playerCount = 1;
-        floatScore = 0.0f;
-        intScore = 0;
-
-        index = i;
-
-        // Color of team defaults to first player added to that team
-        p.RandomizeColor();
-        color = p.color;
-
-        p.teamIndex = i;
-    }
-
-    public void AddPlayer(PlayerInput input, Player p)
-    {
-        players.Add(p);
-        playerInputs.Add(input);
-        playerCount++;
-        p.SetColor(color);
-        p.teamIndex = index;
-    }
-
-    public void DestroyPlayers()
-    {
-        foreach (Player p in players)
+        if (doNPCsRespawn)
         {
-            UnityEngine.GameObject.Destroy(p.gameObject);
+            // TODO: implement
+            //npcSpawner.SpawnNPC();
         }
-        players.Clear();
     }
 }

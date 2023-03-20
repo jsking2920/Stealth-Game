@@ -1,33 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityMovementAI;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private float _speed = 2.0f; // units per second
+    [SerializeField] private Gradient colorGradient;
+
+    [SerializeField] private GameObject _sensor;
+    [SerializeField] private PlayerKnife _knife;
+    [SerializeField] private GameObject _knifeParentObject;
+
+
     [HideInInspector] public int teamIndex = -1; // set by game mode manager
     [HideInInspector] public bool alive = true;
+    [HideInInspector] public Color color;
+
+    private Vector2 _moveVec = new Vector2(0, 0);
 
     private PlayerInput _playerInput; // Component on player prefab; Make sure it uses c# events
     private PlayerInputActions _actionMap; // Asset that defines button to action mappings; must have the asset generate a c# class
 
     private Transform _transform;
     private Rigidbody2D _rb;
-    private MovementAIRigidbody _aiRb;
-    [SerializeField] private GameObject _sensor;
-
-    private Vector2 _moveVec = new Vector2(0, 0);
-
-    [SerializeField] private float _speed = 2.0f; // units per second
-
     private SpriteRenderer _spriteRenderer;
-    [SerializeField] private Gradient colorGradient;
-    public Color color;
-
-    [SerializeField] private PlayerKnife _knife;
-    [SerializeField] private GameObject _knifeParentObject;
+    private MovementAIRigidbody _aiRb;
 
     // Called in game mode manager when added to a team
     public void Setup()
@@ -41,10 +40,6 @@ public class Player : MonoBehaviour
         _playerInput.onActionTriggered += Input_onActionTriggered;
 
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        // Color gets set by game mode manager when added to a a team
-        //RandomizeColor();
-
-        NPCSpawner.S.RandomizePosition(_transform);
     }
 
     private void FixedUpdate()
@@ -64,6 +59,10 @@ public class Player : MonoBehaviour
         else if (context.action.name == _actionMap.Player.Stab.name)
         {
             OnStab(context);
+        }
+        else if (context.action.name == _actionMap.Player.Pause.name)
+        {
+            GameModeManager.S.TogglePause();
         }
     }
 
@@ -109,7 +108,7 @@ public class Player : MonoBehaviour
         _spriteRenderer.enabled = true;
         _aiRb.enabled = true;
         _sensor.SetActive(true);
-        NPCSpawner.S.RandomizePosition(_transform);
+        GameModeManager.S.SetSpawnPosition(_transform);
     }
 
     public void RandomizeColor()

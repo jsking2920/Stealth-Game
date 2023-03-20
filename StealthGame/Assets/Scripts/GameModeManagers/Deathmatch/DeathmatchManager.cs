@@ -6,9 +6,6 @@ using UnityMovementAI;
 public class DeathmatchManager : GameModeManager
 {
     [Header("Deathmatch Settings")]
-    public float duration = 60.0f;
-    [HideInInspector] public float timeRemaining = 60.0f;
-
     public int npcKillPenalty = 1;
     public int teamKillPenealty = 2;
 
@@ -18,32 +15,9 @@ public class DeathmatchManager : GameModeManager
         uiManager.useFloatScore = false;
     }
 
-    protected override void Update()
+    protected override string GetWinMessage()
     {
-        base.Update();
-
-        if (gameState == GameState.playing)
-        {
-            timeRemaining -= Time.deltaTime;
-            uiManager.SetTimerText(timeRemaining);
-        }
-    }
-
-    protected override void StartGame()
-    {
-        timeRemaining = duration + uiManager.cutToBlackTime;
-        base.StartGame();
-    }
-
-    protected override void EndGame()
-    {
-        base.EndGame();
-        uiManager.OnGameEnd("You Win\n" + GetWinningTeam().intScore + " Kills"); // messy
-    }
-
-    protected override bool CheckEndCondition()
-    {
-        return timeRemaining <= 0.0f;
+        return "You Win\n" + GetWinningTeam().intScore + " Kills";
     }
 
     protected override Team GetWinningTeam()

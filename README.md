@@ -1,5 +1,5 @@
 # Stealth-Game
-Developed for 60-418 at CMU by Scott King
+Developed for 60-418 at CMU by Scott King, Adrian Ma, and Kelly Zheng
 
 # Attributions
 - "Unity Movement AI" Steering Behaviors Library <br>

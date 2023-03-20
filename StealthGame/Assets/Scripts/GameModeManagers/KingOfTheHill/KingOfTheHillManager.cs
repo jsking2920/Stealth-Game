@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityMovementAI;
 
-public class KingOfTheHillManager : GameModeManager
+public class KingOfTheHillManager : TimedGameMode
 {
     [Header("King of the Hill Settings")]
-    public float duration = 60.0f;
-    [HideInInspector] public float timeRemaining = 60.0f;
-
     public float npcKillPenalty = 3.0f;
 
     [SerializeField] private GameObject _zonePrefab;
@@ -30,9 +27,6 @@ public class KingOfTheHillManager : GameModeManager
 
         if (gameState == GameState.playing)
         {
-            timeRemaining -= Time.deltaTime;
-            uiManager.SetTimerText(timeRemaining);
-
             _zoneRespawnTimer -= Time.deltaTime;
             if (_zoneRespawnTimer <= 0.0f)
             {
@@ -45,22 +39,14 @@ public class KingOfTheHillManager : GameModeManager
 
     protected override void StartGame()
     {
-        timeRemaining = duration + uiManager.cutToBlackTime;
-        _zoneRespawnTimer = zoneRespawnRate;
-        
+        _zoneRespawnTimer = zoneRespawnRate;   
         base.StartGame();
         SpawnZone();
     }
 
-    protected override void EndGame()
+    protected override string GetWinMessage()
     {
-        base.EndGame();
-        uiManager.OnGameEnd("You Win\n" + GetWinningTeam().floatScore); // messy
-    }
-
-    protected override bool CheckEndCondition()
-    {
-        return timeRemaining <= 0.0f;
+        return "You Win\n" + GetWinningTeam().floatScore;
     }
 
     protected override Team GetWinningTeam()
@@ -86,14 +72,9 @@ public class KingOfTheHillManager : GameModeManager
         base.OnPlayerKilledNPC(killer, npc);
     }
 
-    public override void OnPlayerKilledPlayer(Player killer, Player victim)
-    {
-        base.OnPlayerKilledPlayer(killer, victim);
-    }
-
     private void SpawnZone()
     {
-        Transform newZone = Instantiate(_zonePrefab, npcSpawner.GetRandomPos(1.0f, 2.0f), Quaternion.identity).transform;
+        Transform newZone = Instantiate(_zonePrefab, npcManager.GetRandomPos(1.0f, 2.0f), Quaternion.identity).transform;
         float s = Random.Range(zoneScaleMin, zoneScaleMax);
         newZone.localScale = new Vector3(s, s, 1.0f);
         _curZone = newZone.gameObject;

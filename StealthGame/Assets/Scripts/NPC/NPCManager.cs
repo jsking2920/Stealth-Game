@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityMovementAI;
 
-public class NPCSpawner : MonoBehaviour
+public class NPCManager : MonoBehaviour
 {
-    public static NPCSpawner S;
-    
     [SerializeField] private Transform _npcPrefab;
+
     // Actual absolute scale is randomly set in this range, not relative to prefabs scale values
     public float npcMinScale = 0.5f;
     public float npcMaxScale = 0.7f;
@@ -20,6 +19,7 @@ public class NPCSpawner : MonoBehaviour
 
     public MovementAIRigidbody[] obstacles;
 
+
     private Vector3 bottomLeft;
     private Vector3 widthHeight;
     private bool isObj3D;
@@ -28,16 +28,6 @@ public class NPCSpawner : MonoBehaviour
 
     [System.NonSerialized]
     public List<MovementAIRigidbody> npcs = new List<MovementAIRigidbody>();
-
-    private void Awake()
-    {
-        if (S)
-        {
-            print("2 NPC Spawners???");
-            Destroy(gameObject);
-        }
-        S = this;
-    }
 
     void Start()
     {
