@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityMovementAI;
 
-public class DeathmatchManager : GameModeManager
+public class DeathmatchManager : TimedGameMode
 {
     [Header("Deathmatch Settings")]
     public int npcKillPenalty = 1;
