@@ -1147,10 +1147,10 @@ MonoBehaviour:
       - m_Target: {fileID: 1518477354}
         m_TargetAssemblyTypeName: SceneManager, Assembly-CSharp
         m_MethodName: btn_PlayGame
-        m_Mode: 5
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 2331715074053790893, guid: 2a3e67a0c60e79e459249aee32414636, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Assassin
@@ -1416,10 +1416,10 @@ MonoBehaviour:
       - m_Target: {fileID: 1518477354}
         m_TargetAssemblyTypeName: SceneManager, Assembly-CSharp
         m_MethodName: btn_PlayGame
-        m_Mode: 5
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 7089579964303996742, guid: 767d4f6e3947da2448a994ff2b8252d5, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: DeathmatchThrees
@@ -1857,10 +1857,10 @@ MonoBehaviour:
       - m_Target: {fileID: 1518477354}
         m_TargetAssemblyTypeName: SceneManager, Assembly-CSharp
         m_MethodName: btn_PlayGame
-        m_Mode: 5
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 6850588374012778397, guid: 64bacfa541c6ad74087a737ff1ec4cd2, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: KingOfTheHill
@@ -1991,10 +1991,10 @@ MonoBehaviour:
       - m_Target: {fileID: 1518477354}
         m_TargetAssemblyTypeName: SceneManager, Assembly-CSharp
         m_MethodName: btn_PlayGame
-        m_Mode: 5
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 7089579964303996742, guid: 767d4f6e3947da2448a994ff2b8252d5, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: DeathmatchTeams
@@ -2318,10 +2318,10 @@ MonoBehaviour:
       - m_Target: {fileID: 1518477354}
         m_TargetAssemblyTypeName: SceneManager, Assembly-CSharp
         m_MethodName: btn_PlayGame
-        m_Mode: 5
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 6850588374012778397, guid: 64bacfa541c6ad74087a737ff1ec4cd2, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: KingOfTheHillTeams
@@ -2587,10 +2587,10 @@ MonoBehaviour:
       - m_Target: {fileID: 1518477354}
         m_TargetAssemblyTypeName: SceneManager, Assembly-CSharp
         m_MethodName: btn_PlayGame
-        m_Mode: 5
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 7089579964303996742, guid: 767d4f6e3947da2448a994ff2b8252d5, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Deathmatch

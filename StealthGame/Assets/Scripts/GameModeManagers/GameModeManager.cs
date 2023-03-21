@@ -40,6 +40,7 @@ public class GameModeManager : MonoBehaviour
         S = this;
     }
 
+    // GameModeManager gets instantiated by SceneManager on scene load, then this gets called
     protected virtual void Start()
     {
         // Having more than one of any of these will cause problems
