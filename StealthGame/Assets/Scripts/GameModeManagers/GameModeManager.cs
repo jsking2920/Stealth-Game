@@ -10,8 +10,9 @@ public class GameModeManager : MonoBehaviour
 
     [Header("Game Mode Params")]
     public int playersPerTeam = 1; // 1 means free for all; teams will fill in the order joined
-    public int numberOfNPCs = 140;
-    public bool doNPCsRespawn = false; // unimplemented currently
+    public int numberOfNpcs = 140;
+    public bool doNpcsRespawn = false; // unimplemented currently
+    public bool doPlayersRespawn = true;
     public List<string> startGameMessages; // one selected at random
 
     public float playerRespawnTime = 3.0f;
@@ -21,6 +22,7 @@ public class GameModeManager : MonoBehaviour
     [HideInInspector] public PlayerInputManager inputManager;
     [HideInInspector] public NPCManager npcManager;
     [HideInInspector] public SceneManager sceneManager;
+    [HideInInspector] public ColorManager colorManager;
     // TODO: Implement different arenas
     // [HideInInspector] public GameObject arenaPrefab;
 
@@ -48,6 +50,7 @@ public class GameModeManager : MonoBehaviour
         inputManager = FindObjectOfType<PlayerInputManager>();
         npcManager = FindObjectOfType<NPCManager>();
         sceneManager = FindObjectOfType<SceneManager>();
+        colorManager = FindObjectOfType<ColorManager>();
 
         if (!uiManager || !inputManager || !npcManager || !sceneManager)
         {
@@ -59,7 +62,7 @@ public class GameModeManager : MonoBehaviour
         inputManager.onPlayerJoined += OnPlayerJoin;
         inputManager.EnableJoining();
     }
-
+    
     protected virtual void Update()
     {
         if (gameState == GameState.playing && CheckEndCondition())
@@ -83,7 +86,7 @@ public class GameModeManager : MonoBehaviour
     {
         playerInteractionEnabled = true;
         inputManager.DisableJoining();
-        npcManager.SpawnNPCs(numberOfNPCs);
+        npcManager.SpawnNPCs(numberOfNpcs);
 
         uiManager.OnGameStart(startGameMessages[Random.Range(0, startGameMessages.Count)]);
         gameState = GameState.playing;
@@ -188,10 +191,22 @@ public class GameModeManager : MonoBehaviour
         if (killer._objective == Player.ObjectiveType.KillNpcs)
             killer._killNpcsCurCount++;
 
-        if (doNPCsRespawn)
+        if (doNpcsRespawn)
         {
             // TODO: implement
             //npcSpawner.SpawnNPC();
         }
+    }
+    
+    public bool CheckIfThereArePlayersLeft(Team team)
+    {
+        List<Player> teamPlayers = team.players;
+        bool playersLeft = true;
+        foreach (Player player in teamPlayers)
+        {
+            if (player.eliminated)
+                playersLeft = false;
+        }
+        return playersLeft;
     }
 }

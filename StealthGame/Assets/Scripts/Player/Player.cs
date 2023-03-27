@@ -49,6 +49,7 @@ public class Player : MonoBehaviour
 
     [HideInInspector] public int teamIndex = -1; // set by game mode manager
     [HideInInspector] public bool alive = true;
+    [HideInInspector] public bool eliminated = false;
     [HideInInspector] public Color color;
 
     private Vector2 _moveVec = new Vector2(0, 0);
@@ -174,8 +175,9 @@ public class Player : MonoBehaviour
             _objectiveCompleted = true;
             Debug.Log("Die to Team Objective Completed");
         }
-        
-        StartCoroutine(RespawnCo());
+
+        if (GameModeManager.S.doPlayersRespawn && !eliminated)
+            StartCoroutine(RespawnCo());
     }
 
     private IEnumerator RespawnCo()
