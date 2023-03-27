@@ -44,7 +44,7 @@ public class PlayerKnife : MonoBehaviour
                 Player victim = obj.GetComponent<Player>();
                 _audioSource.PlayOneShot(_stabSound);
                 Instantiate(bloodPrefab, obj.transform.position, Quaternion.identity);
-                victim.OnStabbed();
+                victim.OnStabbed(_player);
                 GameModeManager.S.OnPlayerKilledPlayer(_player, victim);
             }
             else if (collision.gameObject.CompareTag("NPC"))

@@ -37,7 +37,9 @@ public class DeathmatchManager : TimedGameMode
 
     public override void OnPlayerKilledNPC(Player killer, MovementAIRigidbody npc)
     {
-        teams[killer.teamIndex].intScore -= npcKillPenalty;
+        // experimental: don't decrement score for player with the kill NPC objective
+        if (killer._objective != Player.ObjectiveType.KillNpcs)
+            teams[killer.teamIndex].intScore -= npcKillPenalty;
         uiManager.UpdateTeamScore(killer.teamIndex, teams[killer.teamIndex].intScore.ToString());
 
         base.OnPlayerKilledNPC(killer, npc);

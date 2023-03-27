@@ -185,6 +185,9 @@ public class GameModeManager : MonoBehaviour
         npcManager.RemoveNPC(npc);
         Destroy(npc.gameObject);
 
+        if (killer._objective == Player.ObjectiveType.KillNpcs)
+            killer._killNpcsCurCount++;
+
         if (doNPCsRespawn)
         {
             // TODO: implement

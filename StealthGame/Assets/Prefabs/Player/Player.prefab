@@ -429,9 +429,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 756c9729c6cbf744bbc7cdf18edbf8d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teamIndex: -1
-  alive: 1
-  _sensor: {fileID: 6149113657032988130}
+  _objective: 0
+  _objectiveCompletionScore: 0
+  _standStillMaxTime: 20
+  _occupyZoneMaxTime: 10
+  _occupyZoneCurTime: 0
+  _killNpcsMaxCount: 10
+  _killNpcsCurCount: 0
   _speed: 2
   colorGradient:
     serializedVersion: 2
@@ -462,9 +466,12 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 7
     m_NumAlphaKeys: 2
-  color: {r: 0, g: 0, b: 0, a: 0}
+  _sensor: {fileID: 6149113657032988130}
   _knife: {fileID: 551386840}
   _knifeParentObject: {fileID: 4110349392100504868}
+  teamIndex: -1
+  alive: 1
+  color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &2464712651831935413
 MonoBehaviour:
   m_ObjectHideFlags: 0
