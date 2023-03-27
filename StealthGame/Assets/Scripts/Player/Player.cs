@@ -184,6 +184,14 @@ public class Player : MonoBehaviour
 
         if (GameModeManager.S.doPlayersRespawn && !eliminated)
             StartCoroutine(RespawnCo());
+        else
+        {
+            alive = false;
+            _spriteRenderer.enabled = false;
+            _aiRb.enabled = false;
+            _sensor.SetActive(false);
+            transform.position = new Vector3(1000, 1000, 1000);
+        }
     }
 
     private IEnumerator RespawnCo()

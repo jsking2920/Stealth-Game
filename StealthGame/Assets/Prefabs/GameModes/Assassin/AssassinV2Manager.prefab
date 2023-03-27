@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b35afe568e2754b9db45a8e3178f2869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playersPerTeam: 3
+  playersPerTeam: 1
   numberOfNpcs: 140
   doNpcsRespawn: 0
   doPlayersRespawn: 0
@@ -61,8 +61,7 @@ MonoBehaviour:
   gameState: 0
   duration: 60
   timeRemaining: 60
-  timeToRespawnTarget: 3
-  curTarget: {fileID: 0}
+  numberOfFakeTargets: 0
   assassinMarkPrefab: {fileID: 1022082520692363602, guid: 11891513c9d555f449b5e09dd95fc9ef, type: 3}
   npcKillPenalty: 1
   teamKillPenalty: 2

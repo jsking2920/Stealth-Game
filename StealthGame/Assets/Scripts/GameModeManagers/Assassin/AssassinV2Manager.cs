@@ -27,7 +27,7 @@ public class AssassinV2Manager : TimedGameMode
     protected override void StartGame()
     {
         base.StartGame();
-        SetFakeTargets(numberOfFakeTargets);
+        // SetFakeTargets(numberOfFakeTargets);
     }
     
     protected override string GetWinMessage()
@@ -114,7 +114,7 @@ public class AssassinV2Manager : TimedGameMode
             Team t = teams[teams.Count - 1];
             
             // set victim color
-            if (teams.Count - 1 == 0)
+            if (teams.Count - 1 != 0)
             {
                 Instantiate(assassinMarkPrefab, newPlayer.transform);
                 newPlayer.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
