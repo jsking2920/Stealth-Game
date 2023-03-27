@@ -83,40 +83,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        // standStill objective check
-        if (!_objectiveCompleted && _objective == ObjectiveType.StandStill)
-        {
-            if (_rb.velocity == new Vector2(0, 0))
-            {
-                _standStillCurTime += Time.deltaTime;
-            }
-            
-            if (_standStillCurTime >= _standStillMaxTime)
-            {
-                GameModeManager.S.teams[teamIndex].intScore += _objectiveCompletionScore;
-                _objectiveCompleted = true;
-                Debug.Log("Stand Still Objective Completed");
-            }
-        }
-        
-        // killNPC objective check
-        if (!_objectiveCompleted && _objective == ObjectiveType.KillNpcs && _killNpcsCurCount >= _killNpcsMaxCount)
-        {
-            GameModeManager.S.teams[teamIndex].intScore += _objectiveCompletionScore;
-            _objectiveCompleted = true;
-            Debug.Log("Kill Npcs Objective Completed");
-        }
-        
-        // occupyZone objective check
-        if (!_objectiveCompleted && _objective == ObjectiveType.OccupyZone)
-        {
-            if (_occupyZoneCurTime >= _occupyZoneMaxTime)
-            {
-                GameModeManager.S.teams[teamIndex].intScore += _objectiveCompletionScore;
-                _objectiveCompleted = true;
-                Debug.Log("Occupy Zone Objective Completed");
-            }
-        }
+        if (!_objectiveCompleted) CheckObjective();
     }
 
     private void FixedUpdate()
@@ -165,6 +132,44 @@ public class Player : MonoBehaviour
     }
 
     #endregion
+
+    public void CheckObjective()
+    {
+        switch (_objective)
+        {
+            case ObjectiveType.StandStill:
+                if (_rb.velocity == new Vector2(0, 0))
+                {
+                    _standStillCurTime += Time.deltaTime;
+                }
+
+                if (_standStillCurTime >= _standStillMaxTime)
+                {
+                    GameModeManager.S.teams[teamIndex].intScore += _objectiveCompletionScore;
+                    _objectiveCompleted = true;
+                    Debug.Log("Stand Still Objective Completed");
+                }
+                break;
+
+            case ObjectiveType.KillNpcs:
+                if (_killNpcsCurCount >= _killNpcsMaxCount)
+                {
+                    GameModeManager.S.teams[teamIndex].intScore += _objectiveCompletionScore;
+                    _objectiveCompleted = true;
+                    Debug.Log("Kill Npcs Objective Completed");
+                }
+                break;
+
+            case ObjectiveType.OccupyZone:
+                if (_occupyZoneCurTime >= _occupyZoneMaxTime)
+                {
+                    GameModeManager.S.teams[teamIndex].intScore += _objectiveCompletionScore;
+                    _objectiveCompleted = true;
+                    Debug.Log("Occupy Zone Objective Completed");
+                }
+                break;
+        }
+    }
 
     public void OnStabbed(Player killer)
     {
