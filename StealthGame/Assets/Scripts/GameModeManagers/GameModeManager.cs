@@ -52,7 +52,7 @@ public class GameModeManager : MonoBehaviour
         sceneManager = FindObjectOfType<SceneManager>();
         colorManager = FindObjectOfType<ColorManager>();
 
-        if (!uiManager || !inputManager || !npcManager || !sceneManager)
+        if (!uiManager || !inputManager || !npcManager || !sceneManager || !colorManager)
         {
             Debug.LogError("Missing a manager in the scene");
         }

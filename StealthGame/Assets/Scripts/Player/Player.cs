@@ -135,6 +135,7 @@ public class Player : MonoBehaviour
 
     public void CheckObjective()
     {
+        // TODO: Eac of these should be a seperate subclass of Player
         switch (_objective)
         {
             case ObjectiveType.StandStill:
