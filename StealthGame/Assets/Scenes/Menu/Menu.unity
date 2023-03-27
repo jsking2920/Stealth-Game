@@ -1149,7 +1149,7 @@ MonoBehaviour:
         m_MethodName: btn_PlayGame
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 2331715074053790893, guid: 2a3e67a0c60e79e459249aee32414636, type: 3}
+          m_ObjectArgument: {fileID: 1991438190750315367, guid: 179acad1e24194e69b27e73d5f3ee21e, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -1279,7 +1279,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 53.3
+  m_fontSize: 51.4
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1690,7 +1690,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 87
+  m_fontSize: 83.85
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

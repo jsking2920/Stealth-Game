@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityMovementAI;
+using Random = UnityEngine.Random;
 
 public class GameModeManager : MonoBehaviour
 {
@@ -156,6 +158,25 @@ public class GameModeManager : MonoBehaviour
         Player newPlayer = playerInput.gameObject.GetComponent<Player>();
         newPlayer.Setup();
         SetSpawnPosition(newPlayer.transform);
+
+        int rand = Random.Range(0, Enum.GetNames(typeof(Player.ObjectiveType)).Length);
+        switch (rand)
+        {
+            case 0:
+                newPlayer._objective = Player.ObjectiveType.DieToTeam;
+                break;
+            case 1:
+                newPlayer._objective = Player.ObjectiveType.StandStill;
+                break;
+            case 2: 
+                newPlayer._objective = Player.ObjectiveType.OccupyZone;
+                break;
+            case 3:
+                newPlayer._objective = Player.ObjectiveType.KillNpcs;
+                break;
+            default:
+                break;
+        }
 
         // if theres at least 1 team and the most recently created team has less players than required
         if (teams.Count > 0 && teams[teams.Count - 1].players.Count < playersPerTeam)
