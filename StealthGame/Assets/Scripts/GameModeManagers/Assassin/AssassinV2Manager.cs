@@ -113,8 +113,6 @@ public class AssassinV2Manager : TimedGameMode
         {
             Team t = teams[teams.Count - 1];
             
-            
-
             t.AddPlayer(playerInput, newPlayer);
         }
         else
@@ -126,6 +124,7 @@ public class AssassinV2Manager : TimedGameMode
             if (teams.Count - 1 == 0)
             {
                 newPlayer.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+                newTeam.teamColor = Color.white;
                 //npcManager.RandomizeColor(newPlayer.gameObject.GetComponent<SpriteRenderer>());
             }
             
