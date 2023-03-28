@@ -27,7 +27,6 @@ public class AssassinV2Manager : TimedGameMode
     protected override void StartGame()
     {
         base.StartGame();
-        GameModeManager.S.teams[0].teamColor = Color.white;
     }
     
     protected override string GetWinMessage()
@@ -114,12 +113,7 @@ public class AssassinV2Manager : TimedGameMode
         {
             Team t = teams[teams.Count - 1];
             
-            // set victim color
-            if (teams.Count - 1 != 0)
-            {
-                newPlayer.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
-                //npcManager.RandomizeColor(newPlayer.gameObject.GetComponent<SpriteRenderer>());
-            }
+            
 
             t.AddPlayer(playerInput, newPlayer);
         }
@@ -127,6 +121,14 @@ public class AssassinV2Manager : TimedGameMode
         {
             // Create a new team
             Team newTeam = new Team(playerInput, newPlayer, teams.Count);
+            
+            // set killer color
+            if (teams.Count - 1 == 0)
+            {
+                newPlayer.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+                //npcManager.RandomizeColor(newPlayer.gameObject.GetComponent<SpriteRenderer>());
+            }
+            
             teams.Add(newTeam);
             uiManager.AddTeamScoreText(newTeam);
         }
