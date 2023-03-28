@@ -171,7 +171,7 @@ public class Player : MonoBehaviour
                 break;
         }
     }
-
+    
     public void OnStabbed(Player killer)
     {
         //check if teammate was killer and if dieToTeam was the objective
@@ -193,7 +193,7 @@ public class Player : MonoBehaviour
             transform.position = new Vector3(1000, 1000, 1000);
         }
     }
-
+    
     private IEnumerator RespawnCo()
     {
         alive = false;

@@ -27,7 +27,7 @@ public class AssassinV2Manager : TimedGameMode
     protected override void StartGame()
     {
         base.StartGame();
-        // SetFakeTargets(numberOfFakeTargets);
+        GameModeManager.S.teams[0].teamColor = Color.white;
     }
     
     protected override string GetWinMessage()
@@ -56,6 +56,7 @@ public class AssassinV2Manager : TimedGameMode
         // experimental: don't decrement score for player with the kill NPC objective
         if (killer._objective != Player.ObjectiveType.KillNpcs) 
             teams[killer.teamIndex].intScore -= npcKillPenalty;
+        killer.OnStabbed(null); // killing wrong target forces you to respawn
 
         uiManager.UpdateTeamScore(killer.teamIndex, teams[killer.teamIndex].intScore.ToString());
 
@@ -116,7 +117,6 @@ public class AssassinV2Manager : TimedGameMode
             // set victim color
             if (teams.Count - 1 != 0)
             {
-                Instantiate(assassinMarkPrefab, newPlayer.transform);
                 newPlayer.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
                 //npcManager.RandomizeColor(newPlayer.gameObject.GetComponent<SpriteRenderer>());
             }
