@@ -26,7 +26,7 @@ public class AssassinV2Manager : TimedGameMode
 
     protected override string GetWinMessage()
     {
-        return "You Win\n Team " + GetWinningTeam().index;
+        return GetWinningTeam().index == 0 ? "Victims Win!" : "Assassins Win!";
     }
 
     protected override Team GetWinningTeam()
@@ -98,6 +98,7 @@ public class AssassinV2Manager : TimedGameMode
             if (teams.Count - 1 == 0)
             {
                 newPlayer.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+                newPlayer.canStab = false;
                 newTeam.teamColor = Color.white;
                 //npcManager.RandomizeColor(newPlayer.gameObject.GetComponent<SpriteRenderer>());
             }
