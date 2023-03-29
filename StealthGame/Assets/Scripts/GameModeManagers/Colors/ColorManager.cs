@@ -24,7 +24,6 @@ public class ColorManager : MonoBehaviour
     
     public void LoadGame()
     {
-        SetNPCColors();
         if (GameModeManager.S.teams.Count > 0)
             SetTeamAppearances();
     }
@@ -39,12 +38,6 @@ public class ColorManager : MonoBehaviour
         
     }
 
-    // needs to be called before SpawnNPCs() on NPCManager is called
-    void SetNPCColors()
-    {
-        //GameModeManager.S.npcManager.colorList = currentColorProfile.npcColors;
-    }
-
     // sets all player appearance to the colors and sprites of their team
     void SetTeamAppearances()
     {
@@ -57,8 +50,8 @@ public class ColorManager : MonoBehaviour
                 ColorData.PlayerAppearance reference = currentColorProfile.teamAppearances[i];
                 if (teamMatch == TeamMatchToAppearance.Color || teamMatch == TeamMatchToAppearance.SpriteAndColor)
                     player.SetColor(reference.color);
-                // if (teamMatch == TeamMatchToAppearance.Sprite || teamMatch == TeamMatchToAppearance.SpriteAndColor)
-                //     player.gameObject.GetComponent<SpriteRenderer>().sprite = reference.sprite;
+                if (teamMatch == TeamMatchToAppearance.Sprite || teamMatch == TeamMatchToAppearance.SpriteAndColor)
+                    player.gameObject.GetComponent<SpriteRenderer>().sprite = reference.sprite;
             }
         }
     }

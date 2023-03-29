@@ -83,7 +83,7 @@ public class NPCManager : MonoBehaviour
             Transform t = Instantiate(_npcPrefab, pos, Quaternion.identity, _npcParentTransform) as Transform;
 
             SpriteRenderer sr = t.GetComponent<SpriteRenderer>();
-            if (sr) RandomizeColor(sr);
+            if (sr) SetColor(sr);
 
             if (isObj3D)
             {
