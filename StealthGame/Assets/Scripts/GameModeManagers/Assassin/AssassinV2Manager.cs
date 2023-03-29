@@ -26,7 +26,7 @@ public class AssassinV2Manager : TimedGameMode
 
     protected override string GetWinMessage()
     {
-        return "You Win\n" + GetWinningTeam().index;
+        return "You Win\n Team " + GetWinningTeam().index;
     }
 
     protected override Team GetWinningTeam()

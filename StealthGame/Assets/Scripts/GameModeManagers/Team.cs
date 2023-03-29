@@ -42,7 +42,7 @@ public class Team
         players.Add(p);
         playerInputs.Add(input);
         playerCount++;
-        //p.SetColor(teamColor));
+        // p.SetColor(teamColor);
         p.teamIndex = index;
         GameModeManager.S.colorManager.SetPlayerAppearance(p);
     }
