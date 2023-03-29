@@ -5,6 +5,15 @@ using UnityEngine;
 
 public class ColorManager : MonoBehaviour
 {
+    private enum TeamMatchToAppearance
+    {
+        Sprite,
+        Color,
+        SpriteAndColor,
+    };
+
+    [SerializeField] private TeamMatchToAppearance teamMatch;
+    
     public ColorData currentColorProfile;
     [SerializeField] private ColorData[] allColorProfiles;
 
@@ -13,10 +22,10 @@ public class ColorManager : MonoBehaviour
         currentColorProfile = allColorProfiles[profileIndex];
     }
     
-    void LoadGame()
+    public void LoadGame()
     {
         SetNPCColors();
-        SetTeamColors();
+        SetTeamAppearances();
     }
 
     void SetEnvironmentColors()
@@ -35,16 +44,20 @@ public class ColorManager : MonoBehaviour
         //GameModeManager.S.npcManager.colorList = currentColorProfile.npcColors;
     }
 
-    // sets all player colors to the colors of their team
-    void SetTeamColors()
+    // sets all player appearance to the colors and sprites of their team
+    void SetTeamAppearances()
     {
         List<Team> teams = GameModeManager.S.teams;
 
-        for (int i = 0; i < currentColorProfile.teamColors.Count; i++)
+        for (int i = 0; i < currentColorProfile.teamAppearances.Count; i++)
         {
             foreach (Player player in teams[i].players)
             {
-                player.SetColor(currentColorProfile.teamColors[i]);
+                ColorData.PlayerAppearance reference = currentColorProfile.teamAppearances[i];
+                if (teamMatch == TeamMatchToAppearance.Color || teamMatch == TeamMatchToAppearance.SpriteAndColor)
+                    player.SetColor(reference.color);
+                if (teamMatch == TeamMatchToAppearance.Sprite || teamMatch == TeamMatchToAppearance.SpriteAndColor)
+                    player.gameObject.GetComponent<SpriteRenderer>().sprite = reference.sprite;
             }
         }
     }

@@ -8,37 +8,6 @@ using Random = UnityEngine.Random;
 
 public class Player : MonoBehaviour
 {
-    #region Objective Fields
-    public enum ObjectiveType
-    {
-        DieToTeam,
-        StandStill,
-        OccupyZone,
-        KillNpcs,
-    }
-    
-    // other objective handling options: 
-    //  - make objective completion scores different per objective
-    //  - objectives are never "completed"; achieving them continuously increases score
-    
-    [Header("Global Objective Fields")]
-    public ObjectiveType _objective;
-    public bool _objectiveCompleted { get; private set; }
-    [SerializeField] private int _objectiveCompletionScore;
-    
-    [Header("Specific Objective Fields")]
-    [SerializeField] private float _standStillMaxTime;
-    private float _standStillCurTime;
-
-    [SerializeField] private float _occupyZoneMaxTime;
-    [HideInInspector] public float _occupyZoneCurTime;
-
-    [SerializeField] private int _killNpcsMaxCount;
-    [HideInInspector] public int _killNpcsCurCount;
-
-    #endregion
-
-    [Header("Other")]
     [SerializeField] private float _speed = 2.0f; // units per second
     [SerializeField] private Gradient colorGradient;
 
@@ -74,16 +43,6 @@ public class Player : MonoBehaviour
         _playerInput.onActionTriggered += Input_onActionTriggered;
 
         _spriteRenderer = GetComponent<SpriteRenderer>();
-
-        _objectiveCompleted = false;
-        _standStillCurTime = 0f;
-        _occupyZoneCurTime = 0f;
-        _killNpcsCurCount = 0;
-    }
-
-    private void Update()
-    {
-        if (!_objectiveCompleted) CheckObjective();
     }
 
     private void FixedUpdate()
@@ -133,55 +92,8 @@ public class Player : MonoBehaviour
 
     #endregion
 
-    public void CheckObjective()
-    {
-        // TODO: Eac of these should be a seperate subclass of Player
-        switch (_objective)
-        {
-            case ObjectiveType.StandStill:
-                if (_rb.velocity == new Vector2(0, 0))
-                {
-                    _standStillCurTime += Time.deltaTime;
-                }
-
-                if (_standStillCurTime >= _standStillMaxTime)
-                {
-                    GameModeManager.S.teams[teamIndex].intScore += _objectiveCompletionScore;
-                    _objectiveCompleted = true;
-                    Debug.Log("Stand Still Objective Completed");
-                }
-                break;
-
-            case ObjectiveType.KillNpcs:
-                if (_killNpcsCurCount >= _killNpcsMaxCount)
-                {
-                    GameModeManager.S.teams[teamIndex].intScore += _objectiveCompletionScore;
-                    _objectiveCompleted = true;
-                    Debug.Log("Kill Npcs Objective Completed");
-                }
-                break;
-
-            case ObjectiveType.OccupyZone:
-                if (_occupyZoneCurTime >= _occupyZoneMaxTime)
-                {
-                    GameModeManager.S.teams[teamIndex].intScore += _objectiveCompletionScore;
-                    _objectiveCompleted = true;
-                    Debug.Log("Occupy Zone Objective Completed");
-                }
-                break;
-        }
-    }
-    
     public void OnStabbed(Player killer)
     {
-        //check if teammate was killer and if dieToTeam was the objective
-        if (!_objectiveCompleted && killer.teamIndex == teamIndex && _objective == ObjectiveType.DieToTeam)
-        {
-            GameModeManager.S.teams[teamIndex].intScore += _objectiveCompletionScore;
-            _objectiveCompleted = true;
-            Debug.Log("Die to Team Objective Completed");
-        }
-
         if (GameModeManager.S.doPlayersRespawn && !eliminated)
             StartCoroutine(RespawnCo());
         else

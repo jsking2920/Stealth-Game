@@ -24,11 +24,6 @@ public class AssassinV2Manager : TimedGameMode
         uiManager.useFloatScore = false;
     }
 
-    protected override void StartGame()
-    {
-        base.StartGame();
-    }
-    
     protected override string GetWinMessage()
     {
         return "You Win\n" + GetWinningTeam().index;
@@ -52,9 +47,7 @@ public class AssassinV2Manager : TimedGameMode
 
     public override void OnPlayerKilledNPC(Player killer, MovementAIRigidbody npc)
     {
-        // experimental: don't decrement score for player with the kill NPC objective
-        if (killer._objective != Player.ObjectiveType.KillNpcs) 
-            teams[killer.teamIndex].intScore -= npcKillPenalty;
+        teams[killer.teamIndex].intScore -= npcKillPenalty;
         killer.OnStabbed(null); // killing wrong target forces you to respawn
 
         uiManager.UpdateTeamScore(killer.teamIndex, teams[killer.teamIndex].intScore.ToString());
@@ -88,25 +81,6 @@ public class AssassinV2Manager : TimedGameMode
         newPlayer.Setup();
 
         SetSpawnPosition(newPlayer.transform);
-        
-        int rand = Random.Range(0, Enum.GetNames(typeof(Player.ObjectiveType)).Length);
-        switch (rand)
-        {
-            case 0:
-                newPlayer._objective = Player.ObjectiveType.DieToTeam;
-                break;
-            case 1:
-                newPlayer._objective = Player.ObjectiveType.StandStill;
-                break;
-            case 2: 
-                newPlayer._objective = Player.ObjectiveType.OccupyZone;
-                break;
-            case 3:
-                newPlayer._objective = Player.ObjectiveType.KillNpcs;
-                break;
-            default:
-                break;
-        }
 
         // if theres at least 1 team and the most recently created team has less players than required
         if (teams.Count > 0 && teams[teams.Count - 1].players.Count < playersPerTeam)
@@ -130,17 +104,6 @@ public class AssassinV2Manager : TimedGameMode
             
             teams.Add(newTeam);
             uiManager.AddTeamScoreText(newTeam);
-        }
-    }
-    
-    public void SetFakeTargets(int count)
-    {
-        for (int i = 0; i < count; i++)
-        {
-            MovementAIRigidbody fake = npcManager.npcs[Random.Range(0, npcManager.npcs.Count)];
-            Instantiate(assassinMarkPrefab, fake.transform);
-
-            fake.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
         }
     }
 }

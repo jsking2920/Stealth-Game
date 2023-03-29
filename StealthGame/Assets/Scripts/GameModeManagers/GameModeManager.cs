@@ -92,6 +92,8 @@ public class GameModeManager : MonoBehaviour
 
         uiManager.OnGameStart(startGameMessages[Random.Range(0, startGameMessages.Count)]);
         gameState = GameState.playing;
+
+        colorManager.LoadGame();
     }
 
     protected virtual void EndGame()
@@ -159,25 +161,6 @@ public class GameModeManager : MonoBehaviour
         newPlayer.Setup();
         SetSpawnPosition(newPlayer.transform);
 
-        int rand = Random.Range(0, Enum.GetNames(typeof(Player.ObjectiveType)).Length);
-        switch (rand)
-        {
-            case 0:
-                newPlayer._objective = Player.ObjectiveType.DieToTeam;
-                break;
-            case 1:
-                newPlayer._objective = Player.ObjectiveType.StandStill;
-                break;
-            case 2: 
-                newPlayer._objective = Player.ObjectiveType.OccupyZone;
-                break;
-            case 3:
-                newPlayer._objective = Player.ObjectiveType.KillNpcs;
-                break;
-            default:
-                break;
-        }
-
         // if theres at least 1 team and the most recently created team has less players than required
         if (teams.Count > 0 && teams[teams.Count - 1].players.Count < playersPerTeam)
         {
@@ -208,9 +191,6 @@ public class GameModeManager : MonoBehaviour
     {
         npcManager.RemoveNPC(npc);
         Destroy(npc.gameObject);
-
-        if (killer._objective == Player.ObjectiveType.KillNpcs)
-            killer._killNpcsCurCount++;
 
         if (doNpcsRespawn)
         {

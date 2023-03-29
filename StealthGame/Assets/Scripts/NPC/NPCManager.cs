@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using UnityMovementAI;
+using Random = UnityEngine.Random;
 
 public class NPCManager : MonoBehaviour
 {
@@ -81,7 +82,7 @@ public class NPCManager : MonoBehaviour
             Transform t = Instantiate(_npcPrefab, pos, Quaternion.identity, _npcParentTransform) as Transform;
 
             SpriteRenderer sr = t.GetComponent<SpriteRenderer>();
-            if (sr) RandomizeColor(sr);
+            if (sr) SetColor(sr);
 
             if (isObj3D)
             {
@@ -180,9 +181,16 @@ public class NPCManager : MonoBehaviour
         npcs.Remove(npc);
     }
 
-    public void RandomizeColor(SpriteRenderer sr)
+    // public void RandomizeColor(SpriteRenderer sr)
+    // {
+    //     Color randColor = colorGradient.Evaluate(Random.Range(0f, 1f));
+    //     sr.color = randColor; // tints sprite, will only really work if sprite is white to begin with
+    // }
+
+    public void SetColor(SpriteRenderer sr)
     {
-        Color randColor = colorGradient.Evaluate(Random.Range(0f, 1f));
-        sr.color = randColor; // tints sprite, will only really work if sprite is white to begin with
+        List<Color> colors = GameModeManager.S.colorManager.currentColorProfile.npcColors;
+        int rand = Random.Range(0, colors.Count);
+        sr.color = colors[rand];
     }
 }

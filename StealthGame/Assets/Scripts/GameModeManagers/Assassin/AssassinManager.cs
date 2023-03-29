@@ -75,9 +75,7 @@ public class AssassinManager : TimedGameMode
         }   
         else
         {
-            // experimental: don't decrement score for player with the kill NPC objective
-            if (killer._objective != Player.ObjectiveType.KillNpcs) 
-                teams[killer.teamIndex].intScore -= npcKillPenalty;
+            teams[killer.teamIndex].intScore -= npcKillPenalty;
             killer.OnStabbed(null); // killing wrong target forces you to respawn
         }
 

@@ -21,9 +21,16 @@ public class ColorData : ScriptableObject
         public Color nonClickable;
         public Color text;
     }
+
+    [System.Serializable]
+    public class PlayerAppearance
+    {
+        public Color color;
+        public Sprite sprite; 
+    }
     
-    public List<Color> teamColors;
-    public List<Color> playerColors;
+    public List<PlayerAppearance> teamAppearances;
+    public List<PlayerAppearance> playerAppearances;
     public List<Color> npcColors;
     public EnvironmentColors environmentColors;
     public UIColors uiColors;
