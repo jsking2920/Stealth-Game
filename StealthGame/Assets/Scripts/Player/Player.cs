@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject _knifeParentObject;
 
 
-    [HideInInspector] public int teamIndex = -1; // set by game mode manager
+    public int teamIndex = -1; // set by game mode manager
     [HideInInspector] public bool alive = true;
     [HideInInspector] public bool eliminated = false;
     [HideInInspector] public Color color;
@@ -131,7 +131,6 @@ public class Player : MonoBehaviour
 
     public void SetColor(Color c)
     {
-        color = c;
         _spriteRenderer.color = c;
     }
 }

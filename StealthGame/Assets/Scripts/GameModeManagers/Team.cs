@@ -31,8 +31,8 @@ public class Team
         index = i;
 
         // Color of team defaults to first player added to that team
-        p.RandomizeColor();
-        teamColor = p.color;
+        // p.RandomizeColor();
+        // teamColor = p.color;
 
         p.teamIndex = i;
     }
