@@ -158,6 +158,7 @@ public class GameModeManager : MonoBehaviour
         Player newPlayer = playerInput.gameObject.GetComponent<Player>();
         newPlayer.Setup();
         SetSpawnPosition(newPlayer.transform);
+        Debug.Log("set appearance");
 
         // if theres at least 1 team and the most recently created team has less players than required
         if (teams.Count > 0 && teams[teams.Count - 1].players.Count < playersPerTeam)
