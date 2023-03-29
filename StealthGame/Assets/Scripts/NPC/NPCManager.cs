@@ -83,7 +83,7 @@ public class NPCManager : MonoBehaviour
             Transform t = Instantiate(_npcPrefab, pos, Quaternion.identity, _npcParentTransform) as Transform;
 
             SpriteRenderer sr = t.GetComponent<SpriteRenderer>();
-            if (sr) SetColor(sr);
+            if (sr) SetColorAndSprite(sr);
 
             if (isObj3D)
             {
@@ -188,10 +188,13 @@ public class NPCManager : MonoBehaviour
         sr.color = randColor; // tints sprite, will only really work if sprite is white to begin with
     }
 
-    public void SetColor(SpriteRenderer sr)
+    public void SetColorAndSprite(SpriteRenderer sr)
     {
         List<Color> colors = GameModeManager.S.colorManager.currentColorProfile.npcColors;
-        int rand = Random.Range(0, colors.Count);
-        sr.color = colors[rand];
+        List<Sprite> sprites = GameModeManager.S.colorManager.currentColorProfile.npcSprites;
+        int randColor = Random.Range(0, colors.Count);
+        int randSprite = Random.Range(0, sprites.Count);
+        sr.color = colors[randColor];
+        sr.sprite = sprites[randSprite];
     }
 }

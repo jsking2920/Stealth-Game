@@ -13,7 +13,7 @@ public class ColorManager : MonoBehaviour
     };
 
     [SerializeField] private TeamMatchToAppearance teamMatch;
-    
+
     public ColorData currentColorProfile;
     [SerializeField] private ColorData[] allColorProfiles;
 

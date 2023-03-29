@@ -32,6 +32,7 @@ public class ColorData : ScriptableObject
     public List<PlayerAppearance> teamAppearances;
     public List<PlayerAppearance> playerAppearances;
     public List<Color> npcColors;
+    public List<Sprite> npcSprites;
     public EnvironmentColors environmentColors;
     public UIColors uiColors;
 }
