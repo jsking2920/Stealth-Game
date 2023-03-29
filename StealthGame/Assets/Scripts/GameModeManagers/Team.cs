@@ -35,6 +35,7 @@ public class Team
         // teamColor = p.color;
 
         p.teamIndex = i;
+        GameModeManager.S.colorManager.SetPlayerAppearance(p);
     }
 
     public void AddPlayer(PlayerInput input, Player p)
