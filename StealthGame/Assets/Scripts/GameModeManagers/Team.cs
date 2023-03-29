@@ -43,8 +43,8 @@ public class Team
         playerInputs.Add(input);
         playerCount++;
         //p.SetColor(teamColor));
-        GameModeManager.S.colorManager.SetPlayerAppearance(p);
         p.teamIndex = index;
+        GameModeManager.S.colorManager.SetPlayerAppearance(p);
     }
 
     public void DestroyPlayers()
