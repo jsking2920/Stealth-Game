@@ -49,6 +49,7 @@ public class NPCManager : MonoBehaviour
 
     public void SpawnNPCs(int num = 100) // not all of these will for sure get spawned, it will attempt 100 spawns, 10 times each max
     {
+        Debug.Log("spawning");
         for (int i = 0; i < num; i++)
         {
             /* Try to place the objects multiple times before giving up */
@@ -82,7 +83,7 @@ public class NPCManager : MonoBehaviour
             Transform t = Instantiate(_npcPrefab, pos, Quaternion.identity, _npcParentTransform) as Transform;
 
             SpriteRenderer sr = t.GetComponent<SpriteRenderer>();
-            if (sr) SetColor(sr);
+            if (sr) RandomizeColor(sr);
 
             if (isObj3D)
             {
@@ -181,11 +182,11 @@ public class NPCManager : MonoBehaviour
         npcs.Remove(npc);
     }
 
-    // public void RandomizeColor(SpriteRenderer sr)
-    // {
-    //     Color randColor = colorGradient.Evaluate(Random.Range(0f, 1f));
-    //     sr.color = randColor; // tints sprite, will only really work if sprite is white to begin with
-    // }
+    public void RandomizeColor(SpriteRenderer sr)
+    {
+        Color randColor = colorGradient.Evaluate(Random.Range(0f, 1f));
+        sr.color = randColor; // tints sprite, will only really work if sprite is white to begin with
+    }
 
     public void SetColor(SpriteRenderer sr)
     {

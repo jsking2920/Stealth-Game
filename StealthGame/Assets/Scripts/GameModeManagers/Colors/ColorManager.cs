@@ -25,7 +25,8 @@ public class ColorManager : MonoBehaviour
     public void LoadGame()
     {
         SetNPCColors();
-        SetTeamAppearances();
+        if (GameModeManager.S.teams.Count > 0)
+            SetTeamAppearances();
     }
 
     void SetEnvironmentColors()
@@ -56,8 +57,8 @@ public class ColorManager : MonoBehaviour
                 ColorData.PlayerAppearance reference = currentColorProfile.teamAppearances[i];
                 if (teamMatch == TeamMatchToAppearance.Color || teamMatch == TeamMatchToAppearance.SpriteAndColor)
                     player.SetColor(reference.color);
-                if (teamMatch == TeamMatchToAppearance.Sprite || teamMatch == TeamMatchToAppearance.SpriteAndColor)
-                    player.gameObject.GetComponent<SpriteRenderer>().sprite = reference.sprite;
+                // if (teamMatch == TeamMatchToAppearance.Sprite || teamMatch == TeamMatchToAppearance.SpriteAndColor)
+                //     player.gameObject.GetComponent<SpriteRenderer>().sprite = reference.sprite;
             }
         }
     }
