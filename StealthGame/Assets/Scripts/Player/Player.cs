@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
         _playerInput.onActionTriggered += Input_onActionTriggered;
 
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        GameModeManager.S.colorManager.SetPlayerAppearance(this);
+        // GameModeManager.S.colorManager.SetPlayerAppearance(this);
     }
 
     private void FixedUpdate()
