@@ -35,7 +35,6 @@ public class ColorManager : MonoBehaviour
     // sets all player appearance to the colors and sprites of their team
     public void SetPlayerAppearance(Player player)
     {
-        Debug.Log("set appearance");
         ColorData.PlayerAppearance reference = currentColorProfile.teamAppearances[player.teamIndex];
         
         if (teamMatch == TeamMatchToAppearance.Color || teamMatch == TeamMatchToAppearance.SpriteAndColor)
