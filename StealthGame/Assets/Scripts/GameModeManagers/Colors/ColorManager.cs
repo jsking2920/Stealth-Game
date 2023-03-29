@@ -21,12 +21,6 @@ public class ColorManager : MonoBehaviour
     {
         currentColorProfile = allColorProfiles[profileIndex];
     }
-    
-    public void LoadGame()
-    {
-        if (GameModeManager.S.teams.Count > 0)
-            SetTeamAppearances();
-    }
 
     void SetEnvironmentColors()
     {
@@ -39,20 +33,13 @@ public class ColorManager : MonoBehaviour
     }
 
     // sets all player appearance to the colors and sprites of their team
-    void SetTeamAppearances()
+    public void SetPlayerAppearance(Player player)
     {
-        List<Team> teams = GameModeManager.S.teams;
-
-        for (int i = 0; i < currentColorProfile.teamAppearances.Count; i++)
-        {
-            foreach (Player player in teams[i].players)
-            {
-                ColorData.PlayerAppearance reference = currentColorProfile.teamAppearances[i];
-                if (teamMatch == TeamMatchToAppearance.Color || teamMatch == TeamMatchToAppearance.SpriteAndColor)
-                    player.SetColor(reference.color);
-                if (teamMatch == TeamMatchToAppearance.Sprite || teamMatch == TeamMatchToAppearance.SpriteAndColor)
-                    player.gameObject.GetComponent<SpriteRenderer>().sprite = reference.sprite;
-            }
-        }
+        ColorData.PlayerAppearance reference = currentColorProfile.teamAppearances[player.teamIndex];
+        
+        if (teamMatch == TeamMatchToAppearance.Color || teamMatch == TeamMatchToAppearance.SpriteAndColor)
+            player.SetColor(reference.color);
+        if (teamMatch == TeamMatchToAppearance.Sprite || teamMatch == TeamMatchToAppearance.SpriteAndColor)
+            player.gameObject.GetComponent<SpriteRenderer>().sprite = reference.sprite;
     }
 }

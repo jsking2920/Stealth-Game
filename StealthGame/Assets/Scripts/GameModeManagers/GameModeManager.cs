@@ -92,8 +92,6 @@ public class GameModeManager : MonoBehaviour
 
         uiManager.OnGameStart(startGameMessages[Random.Range(0, startGameMessages.Count)]);
         gameState = GameState.playing;
-
-        colorManager.LoadGame();
     }
 
     protected virtual void EndGame()
