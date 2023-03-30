@@ -97,12 +97,15 @@ public class AssassinV2Manager : TimedGameMode
             // set killer color
             if (teams.Count - 1 == 0)
             {
-                newPlayer.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
                 newPlayer.canStab = false;
-                newTeam.teamColor = Color.white;
-                //npcManager.RandomizeColor(newPlayer.gameObject.GetComponent<SpriteRenderer>());
             }
-            
+            else
+            {
+                newPlayer.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+                newTeam.teamColor = Color.white;
+                Instantiate(assassinMarkPrefab, newPlayer.transform);
+            }
+
             teams.Add(newTeam);
             uiManager.AddTeamScoreText(newTeam);
         }
