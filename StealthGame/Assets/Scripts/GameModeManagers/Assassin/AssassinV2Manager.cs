@@ -79,8 +79,6 @@ public class AssassinV2Manager : TimedGameMode
     {
         Player newPlayer = playerInput.gameObject.GetComponent<Player>();
         newPlayer.Setup();
-        if (newPlayer.teamIndex == 0)
-            newPlayer.canStab = false;
 
         SetSpawnPosition(newPlayer.transform);
 
@@ -90,11 +88,15 @@ public class AssassinV2Manager : TimedGameMode
             Team t = teams[teams.Count - 1];
             
             t.AddPlayer(playerInput, newPlayer);
+            if (newPlayer.teamIndex == 0)
+                newPlayer.canStab = false;
         }
         else
         {
             // Create a new team
             Team newTeam = new Team(playerInput, newPlayer, teams.Count);
+            if (newPlayer.teamIndex == 0)
+                newPlayer.canStab = false;
             
             // set killer color
             if (teams.Count - 1 == 0)
