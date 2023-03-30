@@ -79,6 +79,8 @@ public class AssassinV2Manager : TimedGameMode
     {
         Player newPlayer = playerInput.gameObject.GetComponent<Player>();
         newPlayer.Setup();
+        if (newPlayer.teamIndex == 0)
+            newPlayer.canStab = false;
 
         SetSpawnPosition(newPlayer.transform);
 
@@ -101,7 +103,7 @@ public class AssassinV2Manager : TimedGameMode
                 newTeam.teamColor = Color.white;
                 //npcManager.RandomizeColor(newPlayer.gameObject.GetComponent<SpriteRenderer>());
             }
-            
+
             teams.Add(newTeam);
             uiManager.AddTeamScoreText(newTeam);
         }

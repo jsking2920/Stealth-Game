@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float _speed = 2.0f; // units per second
     [SerializeField] private Gradient colorGradient;
+    public bool canStab; 
 
     [SerializeField] private GameObject _sensor;
     [SerializeField] private PlayerKnife _knife;
@@ -76,18 +77,21 @@ public class Player : MonoBehaviour
 
     private void OnStab(InputAction.CallbackContext context)
     {
-        if (context.canceled)
+        if (canStab)
         {
-            _knifeParentObject.SetActive(false);
+            if (context.canceled)
+            {
+                _knifeParentObject.SetActive(false);
+            }
+            else if (context.started)
+            {
+                _knifeParentObject.SetActive(true);
+            }
+            else
+            {
+                _knife.Stab(context.ReadValue<Vector2>());
+            } 
         }
-        else if (context.started)
-        {
-            _knifeParentObject.SetActive(true);
-        }
-        else
-        {
-            _knife.Stab(context.ReadValue<Vector2>());
-        } 
     }
 
     #endregion
