@@ -13,8 +13,16 @@ MonoBehaviour:
   m_Name: Default
   m_EditorClassIdentifier: 
   teamAppearances:
-  - color: {r: 0.9607843, g: 1, b: 0.3647059, a: 1}
+  - color: {r: 0.33333334, g: 0.9921569, b: 0.14509805, a: 1}
     sprite: {fileID: 21300000, guid: 757852d914d769944a4ee2b493f66e5f, type: 3}
+  - color: {r: 0.3921569, g: 0.46274513, b: 1, a: 1}
+    sprite: {fileID: 21300000, guid: f13cd5bb98e874d42a0b2b48ccc73d59, type: 3}
+  - color: {r: 0.9921569, g: 0.3803922, b: 0.3803922, a: 1}
+    sprite: {fileID: 21300000, guid: f13cd5bb98e874d42a0b2b48ccc73d59, type: 3}
+  - color: {r: 1, g: 0.6627451, b: 0.3254902, a: 1}
+    sprite: {fileID: 21300000, guid: f13cd5bb98e874d42a0b2b48ccc73d59, type: 3}
+  - color: {r: 0.9960785, g: 0.56078434, b: 1, a: 1}
+    sprite: {fileID: 21300000, guid: f13cd5bb98e874d42a0b2b48ccc73d59, type: 3}
   - color: {r: 0.32549024, g: 1, b: 0.83394575, a: 1}
     sprite: {fileID: 21300000, guid: f13cd5bb98e874d42a0b2b48ccc73d59, type: 3}
   playerAppearances: []
@@ -24,6 +32,7 @@ MonoBehaviour:
   - {r: 0.3320577, g: 0.990566, b: 0.14391239, a: 1}
   - {r: 1, g: 0.6627533, b: 0.32549024, a: 1}
   - {r: 0.9972864, g: 0.56037736, b: 1, a: 1}
+  - {r: 0.3254902, g: 1, b: 0.8352942, a: 1}
   npcSprites:
   - {fileID: 21300000, guid: 757852d914d769944a4ee2b493f66e5f, type: 3}
   - {fileID: 21300000, guid: f13cd5bb98e874d42a0b2b48ccc73d59, type: 3}
