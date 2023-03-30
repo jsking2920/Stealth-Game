@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playersPerTeam: 2
-  numberOfNpcs: 120
+  numberOfNpcs: 70
   doNpcsRespawn: 0
   doPlayersRespawn: 1
   startGameMessages:
