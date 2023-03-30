@@ -95,7 +95,7 @@ SpriteRenderer:
   m_SortingLayerID: 397087631
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e21fa95366251dc4f8d3ea66e19a6ad0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f759e274f4dedc8469e2f907d926e06b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -122,8 +122,8 @@ BoxCollider2D:
   m_Offset: {x: 15.534756, y: 0.5891814}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.43292296, y: 0.5039457}
-    oldSize: {x: 22.69, y: 22.69}
+    pivot: {x: 0.07087336, y: 0.4842172}
+    oldSize: {x: 38.28, y: 39.65475}
     newSize: {x: 22.69, y: 22.69}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -316,7 +316,7 @@ Transform:
   m_GameObject: {fileID: 4110349392100504868}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 551386837}
@@ -355,8 +355,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6149113657032973536}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.066483, y: 1.1078408, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6149113657032819164}
@@ -406,7 +406,7 @@ SpriteRenderer:
   m_SortingLayerID: -661761745
   m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f86036af4b9862940b330425ab36597f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8413f98999ff4a8448900b885e58b780, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -429,14 +429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 756c9729c6cbf744bbc7cdf18edbf8d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objective: 0
-  _objectiveCompletionScore: 0
-  _standStillMaxTime: 20
-  _occupyZoneMaxTime: 10
-  _occupyZoneCurTime: 0
-  _killNpcsMaxCount: 10
-  _killNpcsCurCount: 0
-  _speed: 2
+  _speed: 2.25
   colorGradient:
     serializedVersion: 2
     key0: {r: 1, g: 0, b: 0, a: 1}
@@ -466,11 +459,13 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 7
     m_NumAlphaKeys: 2
+  canStab: 1
   _sensor: {fileID: 6149113657032988130}
   _knife: {fileID: 551386840}
   _knifeParentObject: {fileID: 4110349392100504868}
   teamIndex: -1
   alive: 1
+  eliminated: 0
   color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &2464712651831935413
 MonoBehaviour:
@@ -609,7 +604,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Radius: 1.5
 --- !u!1 &6149113657032988130
 GameObject:
   m_ObjectHideFlags: 0
@@ -636,7 +631,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6149113657032988130}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -668,9 +663,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.2462579, y: -0.3230101}
   serializedVersion: 2
-  m_Radius: 3.7
+  m_Radius: 1.7806128
 --- !u!1 &9004226822585572776
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,7 +690,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9004226822585572776}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.53, y: 0, z: 0}
+  m_LocalPosition: {x: 1.553, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

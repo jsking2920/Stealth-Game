@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8757630650171779880}
   - component: {fileID: 2193723651298728081}
   m_Layer: 0
-  m_Name: DeathmatchManager
+  m_Name: DeathmatchThreesManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 932258e76ed5ac343873443ccb40d0ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playersPerTeam: 1
+  playersPerTeam: 3
   numberOfNpcs: 70
   doNpcsRespawn: 0
   doPlayersRespawn: 1
