@@ -30,12 +30,8 @@ public class Team
 
         index = i;
 
-        // Color of team defaults to first player added to that team
-        // p.RandomizeColor();
-        // teamColor = p.color;
-
         p.teamIndex = i;
-        GameModeManager.S.colorManager.SetPlayerAppearance(p);
+        teamColor = GameModeManager.S.colorManager.SetPlayerAppearance(p);
     }
 
     public void AddPlayer(PlayerInput input, Player p)
