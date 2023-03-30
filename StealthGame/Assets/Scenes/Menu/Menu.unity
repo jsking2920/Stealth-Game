@@ -495,7 +495,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -171}
+  m_AnchoredPosition: {x: 0, y: -91}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &888472781
@@ -534,7 +534,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -97.77}
+  m_AnchoredPosition: {x: 0, y: -17.769997}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &945253942
@@ -1283,7 +1283,7 @@ MonoBehaviour:
         m_MethodName: btn_PlayGame
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 7089579964303996742, guid: 767d4f6e3947da2448a994ff2b8252d5, type: 3}
+          m_ObjectArgument: {fileID: 7089579964303996742, guid: 27d86b81ed5e7ba4998bd736a42b16dd, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -1686,7 +1686,7 @@ MonoBehaviour:
         m_MethodName: btn_PlayGame
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 7089579964303996742, guid: 767d4f6e3947da2448a994ff2b8252d5, type: 3}
+          m_ObjectArgument: {fileID: 7089579964303996742, guid: a14790830897d9d40ba07cef62376900, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0

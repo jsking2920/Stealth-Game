@@ -568,6 +568,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ArenaDefault
       objectReference: {fileID: 0}
+    - target: {fileID: 8307912811008529854, guid: ba55c991f84b3eb4b8b4144afb61c9c9, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1779301724}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba55c991f84b3eb4b8b4144afb61c9c9, type: 3}
 --- !u!114 &1697549646 stripped
