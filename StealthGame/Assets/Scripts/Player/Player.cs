@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     [HideInInspector] public bool eliminated = false;
     [HideInInspector] public Color color;
 
-    private Vector2 _moveVec = new Vector2(0, 0);
+    [SerializeField] private Vector2 _moveVec = new Vector2(0, 0);
 
     private PlayerInput _playerInput; // Component on player prefab; Make sure it uses c# events
     private PlayerInputActions _actionMap; // Asset that defines button to action mappings; must have the asset generate a c# class
