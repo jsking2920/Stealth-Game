@@ -90,6 +90,7 @@ public class AssassinV2Manager : TimedGameMode
             t.AddPlayer(playerInput, newPlayer);
             if (newPlayer.teamIndex == 0)
                 newPlayer.canStab = false;
+            else newPlayer.canStab = true;
         }
         else
         {
@@ -97,6 +98,7 @@ public class AssassinV2Manager : TimedGameMode
             Team newTeam = new Team(playerInput, newPlayer, teams.Count);
             if (newPlayer.teamIndex == 0)
                 newPlayer.canStab = false;
+            else newPlayer.canStab = true;
             
             // set killer color
             if (teams.Count - 1 == 0)
