@@ -42,13 +42,14 @@ public class AssassinV2Manager : TimedGameMode
 
     protected override bool CheckEndCondition()
     {
-        return base.CheckEndCondition() || (teams.Count > 0 && !CheckIfThereArePlayersLeft(teams[0]));
+        return base.CheckEndCondition() || (teams.Count > 0 && (!CheckIfThereArePlayersLeft(teams[0]) || !CheckIfThereArePlayersLeft(teams[1])));
     }
 
     public override void OnPlayerKilledNPC(Player killer, MovementAIRigidbody npc)
     {
         teams[killer.teamIndex].intScore -= npcKillPenalty;
         killer.OnStabbed(null); // killing wrong target forces you to respawn
+        killer.lives--;
 
         uiManager.UpdateTeamScore(killer.teamIndex, teams[killer.teamIndex].intScore.ToString());
 
@@ -89,7 +90,10 @@ public class AssassinV2Manager : TimedGameMode
             
             t.AddPlayer(playerInput, newPlayer);
             if (newPlayer.teamIndex == 0)
+            {
                 newPlayer.canStab = false;
+                newPlayer.lives = 1;
+            }
         }
         else
         {
@@ -100,6 +104,7 @@ public class AssassinV2Manager : TimedGameMode
             if (newPlayer.teamIndex == 0)
             {
                 newPlayer.canStab = false;
+                newPlayer.lives = 1;
             }
             else
             {
