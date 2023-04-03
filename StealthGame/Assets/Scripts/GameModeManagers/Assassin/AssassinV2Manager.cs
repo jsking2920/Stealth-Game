@@ -42,7 +42,8 @@ public class AssassinV2Manager : TimedGameMode
 
     protected override bool CheckEndCondition()
     {
-        return base.CheckEndCondition() || (teams.Count > 0 && !CheckIfThereArePlayersLeft(teams[0]));
+        return base.CheckEndCondition() || (teams.Count > 1 && 
+                                            (!CheckIfThereArePlayersLeft(teams[0]) || !CheckIfThereArePlayersLeft(teams[1])));
     }
 
     public override void OnPlayerKilledNPC(Player killer, MovementAIRigidbody npc)
