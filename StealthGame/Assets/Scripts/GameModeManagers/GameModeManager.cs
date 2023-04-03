@@ -14,7 +14,6 @@ public class GameModeManager : MonoBehaviour
     public int playersPerTeam = 1; // 1 means free for all; teams will fill in the order joined
     public int numberOfNpcs = 140;
     public bool doNpcsRespawn = false; // unimplemented currently
-    public bool doPlayersRespawn = true;
     public List<string> startGameMessages; // one selected at random
 
     public float playerRespawnTime = 3.0f;
@@ -201,11 +200,11 @@ public class GameModeManager : MonoBehaviour
     public bool CheckIfThereArePlayersLeft(Team team)
     {
         List<Player> teamPlayers = team.players;
-        bool playersLeft = true;
+        bool playersLeft = false;
         foreach (Player player in teamPlayers)
         {
-            if (player.eliminated)
-                playersLeft = false;
+            if (player.lives > 0)
+                playersLeft = true;
         }
         return playersLeft;
     }

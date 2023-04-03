@@ -69,7 +69,7 @@ public class AssassinV2Manager : TimedGameMode
         }
         else
         {
-            victim.eliminated = true;
+            victim.lives -= 1;
         }
  
         uiManager.UpdateTeamScore(killer.teamIndex, teams[killer.teamIndex].intScore.ToString());
