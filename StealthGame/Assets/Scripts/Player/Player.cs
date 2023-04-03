@@ -49,7 +49,8 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         _rb.velocity = _moveVec * _speed; // _moveVec set in OnMove
-        _transform.right = _moveVec; // arrow on player sprite faces right, this makes player face in the direction they move
+        if (_moveVec != Vector2.zero)
+            _transform.right = _moveVec; // arrow on player sprite faces right, this makes player face in the direction they move
     }
 
     #region Input Handling
