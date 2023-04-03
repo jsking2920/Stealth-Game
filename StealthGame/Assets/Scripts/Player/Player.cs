@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
 
     public int teamIndex = -1; // set by game mode manager
     [HideInInspector] public bool alive = true;
-    [HideInInspector] public bool eliminated = false;
+    public int lives = 3; // only  used in game modes with finite lives
     [HideInInspector] public Color color;
 
     private Vector2 _moveVec = new Vector2(0, 0);
@@ -49,7 +49,8 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         _rb.velocity = _moveVec * _speed; // _moveVec set in OnMove
-        _transform.right = _moveVec; // arrow on player sprite faces right, this makes player face in the direction they move
+        if (_moveVec != Vector2.zero)
+            _transform.right = _moveVec; // arrow on player sprite faces right, this makes player face in the direction they move
     }
 
     #region Input Handling
@@ -98,7 +99,7 @@ public class Player : MonoBehaviour
 
     public void OnStabbed(Player killer)
     {
-        if (GameModeManager.S.doPlayersRespawn && !eliminated)
+        if (lives > 0)
             StartCoroutine(RespawnCo());
         else
         {

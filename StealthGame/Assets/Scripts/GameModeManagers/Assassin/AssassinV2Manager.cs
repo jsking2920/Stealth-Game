@@ -69,7 +69,7 @@ public class AssassinV2Manager : TimedGameMode
         }
         else
         {
-            victim.eliminated = true;
+            victim.lives -= 1;
         }
  
         uiManager.UpdateTeamScore(killer.teamIndex, teams[killer.teamIndex].intScore.ToString());
@@ -88,14 +88,16 @@ public class AssassinV2Manager : TimedGameMode
             Team t = teams[teams.Count - 1];
             
             t.AddPlayer(playerInput, newPlayer);
+            if (newPlayer.teamIndex == 0)
+                newPlayer.canStab = false;
         }
         else
         {
             // Create a new team
             Team newTeam = new Team(playerInput, newPlayer, teams.Count);
-            
+
             // set killer color
-            if (teams.Count - 1 == 0)
+            if (newPlayer.teamIndex == 0)
             {
                 newPlayer.canStab = false;
             }
