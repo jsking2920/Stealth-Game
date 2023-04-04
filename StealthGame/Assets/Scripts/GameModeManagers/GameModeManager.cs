@@ -85,7 +85,6 @@ public class GameModeManager : MonoBehaviour
 
     protected virtual void StartGame()
     {
-        playerInteractionEnabled = true;
         inputManager.DisableJoining();
         npcManager.SpawnNPCs(numberOfNpcs);
 
