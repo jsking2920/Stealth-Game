@@ -35,9 +35,8 @@ public class AssassinV2Manager : TimedGameMode
         //if team 0 is not all dead, team 0 wins, 
         
         if (CheckIfThereArePlayersLeft(teams[0]))
-            return teams[0];
-        else 
-            return teams[1];
+            return teams[0]; 
+        return teams[1];
     }
 
     protected override bool CheckEndCondition()

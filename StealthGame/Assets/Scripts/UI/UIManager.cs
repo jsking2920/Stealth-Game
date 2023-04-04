@@ -126,6 +126,11 @@ public class UIManager : MonoBehaviour
         GameModeManager.S.QuitToMenu();
     }
 
+    public void btn_RestartGameMode()
+    {
+        GameModeManager.S.RestartGame();
+    }
+
     public void btn_QuitGame()
     {
         GameModeManager.S.QuitGame();

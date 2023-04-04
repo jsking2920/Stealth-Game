@@ -34,6 +34,11 @@ public class SceneManager : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene(gameSceneName);
     }
 
+    public void btn_RestartGame()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+    }
+
     public void btn_ExitGame()
     {
         Application.Quit();

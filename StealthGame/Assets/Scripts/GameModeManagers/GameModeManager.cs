@@ -132,6 +132,11 @@ public class GameModeManager : MonoBehaviour
         }
     }
 
+    public void RestartGame()
+    {
+        sceneManager.btn_RestartGame();
+    }
+
     public void QuitToMenu()
     {
         sceneManager.ToMenu();
