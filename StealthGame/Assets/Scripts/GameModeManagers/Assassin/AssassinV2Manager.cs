@@ -88,33 +88,21 @@ public class AssassinV2Manager : TimedGameMode
             Team t = teams[teams.Count - 1];
             
             t.AddPlayer(playerInput, newPlayer);
-            if (newPlayer.teamIndex == 0)
-            {
-                newPlayer.canStab = false;
-                newPlayer.lives = 1;
-            }
         }
         else
         {
             // Create a new team
             Team newTeam = new Team(playerInput, newPlayer, teams.Count);
 
-            // set killer color
-            if (newPlayer.teamIndex == 0)
-            {
-                newPlayer.canStab = false;
-                newPlayer.lives = 1;
-                newPlayer.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
-            }
-            else
-            {
-                newPlayer.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
-                newTeam.teamColor = Color.white;
-                Instantiate(assassinMarkPrefab, newPlayer.transform);
-            }
-
             teams.Add(newTeam);
             uiManager.AddTeamScoreText(newTeam);
+        }
+        
+        if (newPlayer.teamIndex == 0)
+        {
+            newPlayer.canStab = false;
+            newPlayer.lives = 1;
+            newPlayer.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
         }
     }
 }
