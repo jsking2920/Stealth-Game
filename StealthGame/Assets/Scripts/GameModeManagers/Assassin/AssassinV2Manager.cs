@@ -17,6 +17,9 @@ public class AssassinV2Manager : TimedGameMode
     public int npcKillPenalty = 1;
     public int teamKillPenalty = 2;
 
+    [SerializeField] private Color assassinColor = Color.white;
+    [SerializeField] private float assassinSpeedIncrease = 0.30f;
+
     // teamIndex 0 are victims, teamIndex 1 are the assassins
     protected override void Start()
     {
@@ -35,21 +38,20 @@ public class AssassinV2Manager : TimedGameMode
         //if team 0 is not all dead, team 0 wins, 
         
         if (CheckIfThereArePlayersLeft(teams[0]))
-            return teams[0];
-        else 
-            return teams[1];
+            return teams[0]; 
+        return teams[1];
     }
 
     protected override bool CheckEndCondition()
     {
-        return base.CheckEndCondition() || (teams.Count > 1 && 
-                                            (!CheckIfThereArePlayersLeft(teams[0]) || !CheckIfThereArePlayersLeft(teams[1])));
+        return base.CheckEndCondition() || (teams.Count > 0 && (!CheckIfThereArePlayersLeft(teams[0]) || !CheckIfThereArePlayersLeft(teams[1])));
     }
 
     public override void OnPlayerKilledNPC(Player killer, MovementAIRigidbody npc)
     {
         teams[killer.teamIndex].intScore -= npcKillPenalty;
         killer.OnStabbed(null); // killing wrong target forces you to respawn
+        killer.lives--;
 
         uiManager.UpdateTeamScore(killer.teamIndex, teams[killer.teamIndex].intScore.ToString());
 
@@ -89,28 +91,25 @@ public class AssassinV2Manager : TimedGameMode
             Team t = teams[teams.Count - 1];
             
             t.AddPlayer(playerInput, newPlayer);
-            if (newPlayer.teamIndex == 0)
-                newPlayer.canStab = false;
         }
         else
         {
             // Create a new team
             Team newTeam = new Team(playerInput, newPlayer, teams.Count);
 
-            // set killer color
-            if (newPlayer.teamIndex == 0)
-            {
-                newPlayer.canStab = false;
-            }
-            else
-            {
-                newPlayer.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
-                newTeam.teamColor = Color.white;
-                Instantiate(assassinMarkPrefab, newPlayer.transform);
-            }
-
             teams.Add(newTeam);
             uiManager.AddTeamScoreText(newTeam);
+        }
+        
+        if (newPlayer.teamIndex == 0)
+        {
+            newPlayer.canStab = false;
+            newPlayer.lives = 1;
+        }
+        else
+        {
+            newPlayer.gameObject.GetComponent<SpriteRenderer>().color = assassinColor;
+            newPlayer._maxVelocity += assassinSpeedIncrease;
         }
     }
 }

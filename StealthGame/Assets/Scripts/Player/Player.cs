@@ -8,8 +8,9 @@ using Random = UnityEngine.Random;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float _speed = 2.0f; // units per second
-    [SerializeField] private Gradient colorGradient;
+    public float _maxVelocity = 3.5f;
+    [SerializeField] private float _maxAcceleration = 2.25f;
+    //[SerializeField] private Gradient colorGradient;
     public bool canStab = true; 
 
     [SerializeField] private GameObject _sensor;
@@ -22,7 +23,7 @@ public class Player : MonoBehaviour
     public int lives = 3; // only  used in game modes with finite lives
     [HideInInspector] public Color color;
 
-    private Vector2 _moveVec = new Vector2(0, 0);
+    private Vector2 _moveVec = new Vector2(0, 0); // Should be normalized to [0, 1]
 
     private PlayerInput _playerInput; // Component on player prefab; Make sure it uses c# events
     private PlayerInputActions _actionMap; // Asset that defines button to action mappings; must have the asset generate a c# class
@@ -48,9 +49,9 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rb.velocity = _moveVec * _speed; // _moveVec set in OnMove
-        if (_moveVec != Vector2.zero)
-            _transform.right = _moveVec; // arrow on player sprite faces right, this makes player face in the direction they move
+        _rb.velocity += _moveVec * _maxAcceleration;
+        _rb.velocity = Vector2.ClampMagnitude(_rb.velocity, _maxVelocity);
+        _transform.right = _rb.velocity.normalized;
     }
 
     #region Input Handling
@@ -130,8 +131,8 @@ public class Player : MonoBehaviour
 
     public void RandomizeColor()
     {
-        color = colorGradient.Evaluate(Random.Range(0f, 1f));
-        _spriteRenderer.color = color; // tints sprite, will only really work if sprite is white to begin with
+        //color = colorGradient.Evaluate(Random.Range(0f, 1f));
+        //_spriteRenderer.color = color; // tints sprite, will only really work if sprite is white to begin with
     }
 
     public void SetColor(Color c)

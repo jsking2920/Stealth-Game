@@ -96,7 +96,6 @@ public class GameModeManager : MonoBehaviour
     protected virtual void EndGame()
     {
         gameState = GameState.ended;
-        playerInteractionEnabled = false;
         npcManager.DestroyNPCs();
 
         Team winningTeam = GetWinningTeam();
@@ -130,6 +129,11 @@ public class GameModeManager : MonoBehaviour
             uiManager.OnPause();
             Time.timeScale = 0.0f; // will mess with animations and other things, watch out
         }
+    }
+
+    public void RestartGame()
+    {
+        sceneManager.btn_RestartGame();
     }
 
     public void QuitToMenu()

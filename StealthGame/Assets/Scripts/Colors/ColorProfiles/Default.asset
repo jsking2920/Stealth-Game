@@ -14,17 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teamAppearances:
   - color: {r: 0.33333334, g: 0.9921569, b: 0.14509805, a: 1}
-    sprite: {fileID: 21300000, guid: 757852d914d769944a4ee2b493f66e5f, type: 3}
+    sprite: {fileID: 21300000, guid: 648c2456aad63304b80a9ba52e91aaab, type: 3}
   - color: {r: 0.3921569, g: 0.46274513, b: 1, a: 1}
-    sprite: {fileID: 21300000, guid: f13cd5bb98e874d42a0b2b48ccc73d59, type: 3}
+    sprite: {fileID: 21300000, guid: cc1df749708ada9468277aa2e0b96889, type: 3}
   - color: {r: 0.9921569, g: 0.3803922, b: 0.3803922, a: 1}
-    sprite: {fileID: 21300000, guid: f13cd5bb98e874d42a0b2b48ccc73d59, type: 3}
+    sprite: {fileID: 21300000, guid: e1455b411edf26f41a9fc5248e9ec658, type: 3}
   - color: {r: 1, g: 0.6627451, b: 0.3254902, a: 1}
-    sprite: {fileID: 21300000, guid: f13cd5bb98e874d42a0b2b48ccc73d59, type: 3}
+    sprite: {fileID: 21300000, guid: f25538e670e34984aaf4ffe938247ed8, type: 3}
   - color: {r: 0.9960785, g: 0.56078434, b: 1, a: 1}
-    sprite: {fileID: 21300000, guid: f13cd5bb98e874d42a0b2b48ccc73d59, type: 3}
+    sprite: {fileID: 21300000, guid: 648c2456aad63304b80a9ba52e91aaab, type: 3}
   - color: {r: 0.32549024, g: 1, b: 0.83394575, a: 1}
-    sprite: {fileID: 21300000, guid: f13cd5bb98e874d42a0b2b48ccc73d59, type: 3}
+    sprite: {fileID: 21300000, guid: cc1df749708ada9468277aa2e0b96889, type: 3}
   playerAppearances: []
   npcColors:
   - {r: 0.3915094, g: 0.46235555, b: 1, a: 1}
@@ -34,10 +34,10 @@ MonoBehaviour:
   - {r: 0.9972864, g: 0.56037736, b: 1, a: 1}
   - {r: 0.3254902, g: 1, b: 0.8352942, a: 1}
   npcSprites:
-  - {fileID: 21300000, guid: 757852d914d769944a4ee2b493f66e5f, type: 3}
-  - {fileID: 21300000, guid: f13cd5bb98e874d42a0b2b48ccc73d59, type: 3}
-  - {fileID: 21300000, guid: a7bef5a39cb715b4189f6b8f75662c9e, type: 3}
-  - {fileID: 21300000, guid: 8413f98999ff4a8448900b885e58b780, type: 3}
+  - {fileID: 21300000, guid: 648c2456aad63304b80a9ba52e91aaab, type: 3}
+  - {fileID: 21300000, guid: cc1df749708ada9468277aa2e0b96889, type: 3}
+  - {fileID: 21300000, guid: e1455b411edf26f41a9fc5248e9ec658, type: 3}
+  - {fileID: 21300000, guid: f25538e670e34984aaf4ffe938247ed8, type: 3}
   environmentColors:
     background: {r: 0, g: 0, b: 0, a: 0}
     obstacles: {r: 0, g: 0, b: 0, a: 0}

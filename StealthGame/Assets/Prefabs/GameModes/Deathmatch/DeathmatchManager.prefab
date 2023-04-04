@@ -47,7 +47,6 @@ MonoBehaviour:
   playersPerTeam: 1
   numberOfNpcs: 70
   doNpcsRespawn: 0
-  doPlayersRespawn: 1
   startGameMessages:
   - DEATHMATCH
   playerRespawnTime: 3
@@ -59,7 +58,8 @@ MonoBehaviour:
   teams: []
   playerInteractionEnabled: 0
   gameState: 0
-  duration: 60
+  duration: 90
   timeRemaining: 60
+  killValue: 3
   npcKillPenalty: 1
   teamKillPenalty: 2

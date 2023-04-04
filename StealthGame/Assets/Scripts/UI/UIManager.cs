@@ -92,6 +92,8 @@ public class UIManager : MonoBehaviour
         {
             timerText.gameObject.SetActive(true);
         }
+
+        GameModeManager.S.playerInteractionEnabled = true;
     }
     public void AddTeamScoreText(Team team)
     {
@@ -124,6 +126,11 @@ public class UIManager : MonoBehaviour
     public void btn_QuitToMenu()
     {
         GameModeManager.S.QuitToMenu();
+    }
+
+    public void btn_RestartGameMode()
+    {
+        GameModeManager.S.RestartGame();
     }
 
     public void btn_QuitGame()

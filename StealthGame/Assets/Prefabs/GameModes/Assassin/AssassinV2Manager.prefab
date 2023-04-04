@@ -47,7 +47,6 @@ MonoBehaviour:
   playersPerTeam: 1
   numberOfNpcs: 140
   doNpcsRespawn: 0
-  doPlayersRespawn: 1
   startGameMessages:
   - FIND AND ASSASSINATE THE IMPOSTERS
   playerRespawnTime: 3
@@ -59,9 +58,10 @@ MonoBehaviour:
   teams: []
   playerInteractionEnabled: 0
   gameState: 0
-  duration: 60
+  duration: 90
   timeRemaining: 60
   numberOfFakeTargets: 0
   assassinMarkPrefab: {fileID: 1022082520692363602, guid: 11891513c9d555f449b5e09dd95fc9ef, type: 3}
   npcKillPenalty: 1
   teamKillPenalty: 2
+  assassinColor: {r: 1, g: 1, b: 1, a: 1}

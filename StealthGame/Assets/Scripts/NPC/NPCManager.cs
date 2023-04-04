@@ -13,7 +13,7 @@ public class NPCManager : MonoBehaviour
 
     public bool randomizeOrientation = true;
     public bool randomizeColor = true;
-    public Gradient colorGradient;
+    //public Gradient colorGradient;
 
     public float boundaryPadding = 1.0f;
     public float spaceBetweenObjects = 1.0f;
@@ -184,8 +184,8 @@ public class NPCManager : MonoBehaviour
 
     public void RandomizeColor(SpriteRenderer sr)
     {
-        Color randColor = colorGradient.Evaluate(Random.Range(0f, 1f));
-        sr.color = randColor; // tints sprite, will only really work if sprite is white to begin with
+        //Color randColor = colorGradient.Evaluate(Random.Range(0f, 1f));
+        //sr.color = randColor; // tints sprite, will only really work if sprite is white to begin with
     }
 
     public void SetColorAndSprite(SpriteRenderer sr)
