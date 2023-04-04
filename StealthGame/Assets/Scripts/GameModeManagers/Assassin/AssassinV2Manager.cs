@@ -105,6 +105,7 @@ public class AssassinV2Manager : TimedGameMode
             {
                 newPlayer.canStab = false;
                 newPlayer.lives = 1;
+                newPlayer.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
             }
             else
             {
