@@ -92,6 +92,8 @@ public class UIManager : MonoBehaviour
         {
             timerText.gameObject.SetActive(true);
         }
+
+        GameModeManager.S.playerInteractionEnabled = true;
     }
     public void AddTeamScoreText(Team team)
     {
