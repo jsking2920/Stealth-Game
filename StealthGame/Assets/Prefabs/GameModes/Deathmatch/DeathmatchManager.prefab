@@ -58,7 +58,7 @@ MonoBehaviour:
   teams: []
   playerInteractionEnabled: 0
   gameState: 0
-  duration: 5
+  duration: 90
   timeRemaining: 60
   killValue: 3
   npcKillPenalty: 1
