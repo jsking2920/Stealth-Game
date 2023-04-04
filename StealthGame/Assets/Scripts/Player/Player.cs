@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float _maxVelocity = 3.5f;
+    public float _maxVelocity = 3.5f;
     [SerializeField] private float _maxAcceleration = 2.25f;
     //[SerializeField] private Gradient colorGradient;
     public bool canStab = true; 

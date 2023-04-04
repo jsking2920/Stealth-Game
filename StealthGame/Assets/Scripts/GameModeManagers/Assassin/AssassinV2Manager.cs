@@ -17,6 +17,8 @@ public class AssassinV2Manager : TimedGameMode
     public int npcKillPenalty = 1;
     public int teamKillPenalty = 2;
 
+    [SerializeField] private Color assassinColor = Color.white;
+
     // teamIndex 0 are victims, teamIndex 1 are the assassins
     protected override void Start()
     {
@@ -102,7 +104,11 @@ public class AssassinV2Manager : TimedGameMode
         {
             newPlayer.canStab = false;
             newPlayer.lives = 1;
-            newPlayer.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+        }
+        else
+        {
+            newPlayer.gameObject.GetComponent<SpriteRenderer>().color = assassinColor;
+            newPlayer._maxVelocity += 0.25f;
         }
     }
 }
