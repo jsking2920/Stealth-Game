@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityMovementAI;
+using Random = UnityEngine.Random;
 
 public class DeathmatchManager : TimedGameMode
 {
@@ -61,5 +62,17 @@ public class DeathmatchManager : TimedGameMode
             killerTeam.intScore += killValue;
         }
         uiManager.UpdateTeamScore(killer.teamIndex, teams[killer.teamIndex].intScore.ToString());
+        
+        RandomizeColorForFFA(victim);
+    }
+
+    public void RandomizeColorForFFA(Player player)
+    {
+        if (playersPerTeam == 1)
+        {
+            List <Color> colors = colorManager.currentColorProfile.npcColors;
+            int rand = Random.Range(0, colors.Count);
+            player.SetColor(colors[rand]);
+        }
     }
 }
