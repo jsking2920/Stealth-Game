@@ -90,6 +90,14 @@ public class GameModeManager : MonoBehaviour
 
         uiManager.OnGameStart(startGameMessages[Random.Range(0, startGameMessages.Count)]);
         gameState = GameState.playing;
+
+        foreach (Team team in teams)
+        {
+            foreach (Player player in team.players)
+            {
+                colorManager.SetPlayerAppearance(player);
+            }
+        }
     }
 
     protected virtual void EndGame()

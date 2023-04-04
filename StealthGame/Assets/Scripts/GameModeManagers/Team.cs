@@ -31,7 +31,8 @@ public class Team
         index = i;
 
         p.teamIndex = i;
-        teamColor = GameModeManager.S.colorManager.SetPlayerAppearance(p);
+        teamColor = GameModeManager.S.colorManager.SetTeamColor(p);
+        GameModeManager.S.colorManager.SetLobbyAppearance(p);
     }
 
     public void AddPlayer(PlayerInput input, Player p)
@@ -42,7 +43,8 @@ public class Team
         // p.SetColor(teamColor);
         p.teamIndex = index;
         Debug.Log("Add Player");
-        GameModeManager.S.colorManager.SetPlayerAppearance(p);
+        GameModeManager.S.colorManager.SetLobbyAppearance(p);
+        // GameModeManager.S.colorManager.SetPlayerAppearance(p);
     }
 
     public void DestroyPlayers()
