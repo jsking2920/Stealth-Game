@@ -6,6 +6,7 @@ using UnityMovementAI;
 public class DeathmatchManager : TimedGameMode
 {
     [Header("Deathmatch Settings")]
+    public int killValue = 3;
     public int npcKillPenalty = 1;
     public int teamKillPenalty = 2;
 
@@ -57,7 +58,7 @@ public class DeathmatchManager : TimedGameMode
         }
         else
         {
-            killerTeam.intScore++;
+            killerTeam.intScore += killValue;
         }
         uiManager.UpdateTeamScore(killer.teamIndex, teams[killer.teamIndex].intScore.ToString());
     }
