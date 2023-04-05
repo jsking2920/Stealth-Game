@@ -27,6 +27,16 @@ public class AssassinV2Manager : TimedGameMode
         uiManager.useFloatScore = false;
     }
 
+    protected override void StartGame()
+    {
+        base.StartGame();
+        List<Player> assassins = teams[1].players;
+        foreach (Player killer in assassins)
+        {
+            killer.SetColor(assassinColor);
+        }
+    }
+
     protected override string GetWinMessage()
     {
         return GetWinningTeam().index == 0 ? "Victims Win!" : "Assassins Win!";
@@ -108,7 +118,6 @@ public class AssassinV2Manager : TimedGameMode
         }
         else
         {
-            newPlayer.gameObject.GetComponent<SpriteRenderer>().color = assassinColor;
             newPlayer._maxVelocity += assassinSpeedIncrease;
         }
     }
