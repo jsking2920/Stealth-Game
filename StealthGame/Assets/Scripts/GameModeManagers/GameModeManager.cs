@@ -82,6 +82,17 @@ public class GameModeManager : MonoBehaviour
             StartGame();
         }
     }
+    
+    private System.Random _random = new System.Random();
+    
+    void Shuffle(List<T> list) {
+        int p = list.Count;
+        for (int n = p-1; n > 0 ; n--)
+        {
+            int r = _random.Next(1, n);
+            (list[r], list[n]) = (list[n], list[r]);
+        }
+    }
 
     protected virtual void StartGame()
     {
@@ -91,6 +102,7 @@ public class GameModeManager : MonoBehaviour
         uiManager.OnGameStart(startGameMessages[Random.Range(0, startGameMessages.Count)]);
         gameState = GameState.playing;
 
+        colorManager.currentColorProfile.teamAppearances = Shuffle(colorManager.currentColorProfile.teamAppearances);
         foreach (Team team in teams)
         {
             foreach (Player player in team.players)
