@@ -85,7 +85,7 @@ public class GameModeManager : MonoBehaviour
     
     private System.Random _random = new System.Random();
     
-    void Shuffle(List<T> list) {
+    void Shuffle<T>(List<T> list) {
         int p = list.Count;
         for (int n = p-1; n > 0 ; n--)
         {
@@ -102,7 +102,7 @@ public class GameModeManager : MonoBehaviour
         uiManager.OnGameStart(startGameMessages[Random.Range(0, startGameMessages.Count)]);
         gameState = GameState.playing;
 
-        colorManager.currentColorProfile.teamAppearances = Shuffle(colorManager.currentColorProfile.teamAppearances);
+        Shuffle(colorManager.currentColorProfile.teamAppearances);
         foreach (Team team in teams)
         {
             foreach (Player player in team.players)
