@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _npcPrefab: {fileID: 4858409627092288945, guid: babef6bb8e6359e46a5fcfd53e1524f3, type: 3}
-  npcMinScale: 0.5
-  npcMaxScale: 0.7
+  npcMinScale: 0.54
+  npcMaxScale: 0.66
   randomizeOrientation: 1
   randomizeColor: 1
   boundaryPadding: 1
