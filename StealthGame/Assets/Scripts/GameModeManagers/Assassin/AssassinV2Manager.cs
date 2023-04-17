@@ -63,7 +63,7 @@ public class AssassinV2Manager : TimedGameMode
         killer.OnStabbed(null); // killing wrong target forces you to respawn
         killer.lives--;
 
-        uiManager.UpdateTeamScore(killer.teamIndex, teams[killer.teamIndex].intScore.ToString());
+        uiManager.UpdateLivesText(killer.playerIndex, killer.lives.ToString());
 
         base.OnPlayerKilledNPC(killer, npc);
     }
@@ -85,7 +85,7 @@ public class AssassinV2Manager : TimedGameMode
             victim.lives -= 1;
         }
  
-        uiManager.UpdateTeamScore(killer.teamIndex, teams[killer.teamIndex].intScore.ToString());
+        uiManager.UpdateLivesText(killer.playerIndex, killer.lives.ToString());
     }
 
     protected override void OnPlayerJoin(PlayerInput playerInput)

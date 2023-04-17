@@ -120,6 +120,11 @@ public class UIManager : MonoBehaviour
     {
         teamTexts[index].text = score;
     }
+    
+    public void UpdateLivesText(int index, string lives)
+    {
+        teamTexts[index].text = lives;
+    }
 
     public void SetTimerText(float time)
     {

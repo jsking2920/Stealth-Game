@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
 
 
     public int teamIndex = -1; // set by game mode manager
+    public int playerIndex = -1;
     [HideInInspector] public bool alive = true;
     public int lives = 3; // only  used in game modes with finite lives
     [HideInInspector] public Color color;
