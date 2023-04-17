@@ -13,26 +13,26 @@ MonoBehaviour:
   m_Name: Default
   m_EditorClassIdentifier: 
   teamAppearances:
-  - color: {r: 0.33333334, g: 0.9921569, b: 0.14509805, a: 1}
-    sprite: {fileID: 21300000, guid: 648c2456aad63304b80a9ba52e91aaab, type: 3}
-  - color: {r: 0.3921569, g: 0.46274513, b: 1, a: 1}
-    sprite: {fileID: 21300000, guid: cc1df749708ada9468277aa2e0b96889, type: 3}
-  - color: {r: 0.9921569, g: 0.3803922, b: 0.3803922, a: 1}
-    sprite: {fileID: 21300000, guid: e1455b411edf26f41a9fc5248e9ec658, type: 3}
   - color: {r: 1, g: 0.6627451, b: 0.3254902, a: 1}
     sprite: {fileID: 21300000, guid: f25538e670e34984aaf4ffe938247ed8, type: 3}
+  - color: {r: 0.9921569, g: 0.3803922, b: 0.3803922, a: 1}
+    sprite: {fileID: 21300000, guid: e1455b411edf26f41a9fc5248e9ec658, type: 3}
   - color: {r: 0.9960785, g: 0.56078434, b: 1, a: 1}
     sprite: {fileID: 21300000, guid: 648c2456aad63304b80a9ba52e91aaab, type: 3}
   - color: {r: 0.32549024, g: 1, b: 0.83394575, a: 1}
     sprite: {fileID: 21300000, guid: cc1df749708ada9468277aa2e0b96889, type: 3}
+  - color: {r: 0.33333334, g: 0.9921569, b: 0.14509805, a: 1}
+    sprite: {fileID: 21300000, guid: 648c2456aad63304b80a9ba52e91aaab, type: 3}
+  - color: {r: 0.3921569, g: 0.46274513, b: 1, a: 1}
+    sprite: {fileID: 21300000, guid: cc1df749708ada9468277aa2e0b96889, type: 3}
   playerAppearances: []
   npcColors:
-  - {r: 0.3915094, g: 0.46235555, b: 1, a: 1}
-  - {r: 0.990566, g: 0.378471, b: 0.378471, a: 1}
-  - {r: 0.3320577, g: 0.990566, b: 0.14391239, a: 1}
-  - {r: 1, g: 0.6627533, b: 0.32549024, a: 1}
-  - {r: 0.9972864, g: 0.56037736, b: 1, a: 1}
-  - {r: 0.3254902, g: 1, b: 0.8352942, a: 1}
+  - {r: 0.25943398, g: 0.34543514, b: 1, a: 1}
+  - {r: 1, g: 0.25943398, b: 0.25943398, a: 1}
+  - {r: 0.13519046, g: 0.9245283, b: 0.20214286, a: 1}
+  - {r: 1, g: 0.25943398, b: 0.69671834, a: 1}
+  - {r: 0.23113209, g: 1, b: 0.9631359, a: 1}
+  - {r: 0.79510546, g: 1, b: 0.19339621, a: 1}
   npcSprites:
   - {fileID: 21300000, guid: 648c2456aad63304b80a9ba52e91aaab, type: 3}
   - {fileID: 21300000, guid: cc1df749708ada9468277aa2e0b96889, type: 3}

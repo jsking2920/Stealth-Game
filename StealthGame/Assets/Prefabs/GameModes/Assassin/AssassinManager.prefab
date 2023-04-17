@@ -45,22 +45,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playersPerTeam: 1
-  numberOfNPCs: 160
+  numberOfNpcs: 140
+  doNpcsRespawn: 0
   startGameMessages:
   - ASSASSINATE THE MARKED NPC AND KILL THE OPPOSITION
-  showTimer: 1
   playerRespawnTime: 3
   uiManager: {fileID: 0}
   inputManager: {fileID: 0}
-  npcSpawner: {fileID: 0}
+  npcManager: {fileID: 0}
+  sceneManager: {fileID: 0}
+  colorManager: {fileID: 0}
   teams: []
   playerInteractionEnabled: 0
   gameState: 0
   duration: 60
   timeRemaining: 60
+  timeToRespawnTarget: 3
   assassinationValue: 3
   playerKillValue: 1
   npcKillPenalty: 1
   teamKillPenalty: 2
   curTarget: {fileID: 0}
-  assassinMarkPrefab: {fileID: 1022082520692363602, guid: 11891513c9d555f449b5e09dd95fc9ef, type: 3}
+  assassinMarkPrefab: {fileID: 665281642154585031, guid: 04b2d145b6a664c87a191ce80bc3a2b3, type: 3}

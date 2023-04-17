@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityMovementAI;
+using Vector3 = System.Numerics.Vector3;
 
 public class AssassinManager : TimedGameMode
 {
