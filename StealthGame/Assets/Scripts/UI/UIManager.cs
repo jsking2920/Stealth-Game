@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     private bool showTimer = false;
     [HideInInspector] public bool useFloatScore = false; // defaults to using int score from teams
     private int teamsJoined = 0;
+    private int killersJoined = 0;
 
     public float cutToBlackTime = 4f;
 
@@ -103,6 +104,16 @@ public class UIManager : MonoBehaviour
         t.gameObject.SetActive(true);
 
         teamsJoined++;
+    }
+
+    public void AddPlayerLivesText(Player player)
+    {
+        TextMeshProUGUI t = teamTexts[killersJoined];
+        t.color = GameModeManager.S.teams[player.teamIndex].teamColor;
+        t.text = player.lives.ToString();
+        t.gameObject.SetActive(true);
+
+        killersJoined++;
     }
 
     public void UpdateTeamScore(int index, string score)

@@ -108,10 +108,9 @@ public class AssassinV2Manager : TimedGameMode
             Team newTeam = new Team(playerInput, newPlayer, teams.Count);
 
             teams.Add(newTeam);
-            uiManager.AddTeamScoreText(newTeam);
         }
         
-        if (newPlayer.teamIndex == 0)
+        if (newPlayer.teamIndex == 0) // victim setup
         {
             newPlayer.canStab = false;
             newPlayer.lives = 1;
@@ -119,6 +118,7 @@ public class AssassinV2Manager : TimedGameMode
         else
         {
             newPlayer._maxVelocity += assassinSpeedIncrease;
+            uiManager.AddPlayerLivesText(newPlayer);
         }
     }
 }
