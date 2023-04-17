@@ -2,18 +2,51 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject mainMenuPanel;
     [SerializeField] private List<GameObject> gamemodePanels;
+    [SerializeField] private List<Button> gamemodePanelButtons;
     [SerializeField] private GameObject gamemodeButtons;
+    [SerializeField] private Button playButton;
     private GameObject currentPanel;
     private int currentGamemodeIndex = 0;
+
+    private bool holdingLeftRight = false;
 
     private void Start()
     {
         currentPanel = mainMenuPanel;
+    }
+
+    private void Update()
+    {
+        if (!mainMenuPanel.activeSelf)
+        {
+            float x = Input.GetAxis("Horizontal");
+            if (x > 0.5f && !holdingLeftRight)
+            {
+                SwipeRight();
+                holdingLeftRight = true;
+            }
+            else if (x < -0.5f && !holdingLeftRight)
+            {
+                SwipeLeft();
+                holdingLeftRight = true;
+            }
+            else if (x < 0.5f && x > -0.5f)
+            {
+                holdingLeftRight = false;
+            }
+            
+            if (Input.GetButtonDown("Fire2"))
+            {
+                BackToMainMenu();
+            }
+        }
     }
 
     public void BackToMainMenu()
@@ -21,6 +54,7 @@ public class MainMenuManager : MonoBehaviour
         mainMenuPanel.SetActive(true);
         currentPanel.SetActive(false);
         gamemodeButtons.SetActive(false);
+        playButton.Select();
     }
     
     // Start is called before the first frame update
@@ -42,6 +76,7 @@ public class MainMenuManager : MonoBehaviour
         gamemodePanels[currentGamemodeIndex + 1].SetActive(true);
         currentGamemodeIndex++;
         currentPanel = gamemodePanels[currentGamemodeIndex];
+        gamemodePanelButtons[currentGamemodeIndex].Select();
     }
 
     public void SwipeLeft()
