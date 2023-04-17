@@ -59,7 +59,6 @@ public class AssassinV2Manager : TimedGameMode
 
     public override void OnPlayerKilledNPC(Player killer, MovementAIRigidbody npc)
     {
-        teams[killer.teamIndex].intScore -= npcKillPenalty;
         killer.OnStabbed(null); // killing wrong target forces you to respawn
         killer.lives--;
 
@@ -75,12 +74,7 @@ public class AssassinV2Manager : TimedGameMode
         Team killerTeam = teams[killer.teamIndex];
         Team victimTeam = teams[victim.teamIndex];
 
-        if (killerTeam.index == victimTeam.index)
-        {
-            // team kill
-            killerTeam.intScore -= teamKillPenalty;
-        }
-        else
+        if (killerTeam.index != victimTeam.index)
         {
             victim.lives -= 1;
         }

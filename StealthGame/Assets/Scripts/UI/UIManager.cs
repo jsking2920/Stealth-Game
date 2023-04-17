@@ -109,11 +109,12 @@ public class UIManager : MonoBehaviour
     public void AddPlayerLivesText(Player player)
     {
         TextMeshProUGUI t = teamTexts[killersJoined];
-        t.color = GameModeManager.S.teams[player.teamIndex].teamColor;
+        t.color = Color.white;
         t.text = player.lives.ToString();
         t.gameObject.SetActive(true);
 
         killersJoined++;
+        teamsJoined++;
     }
 
     public void UpdateTeamScore(int index, string score)
