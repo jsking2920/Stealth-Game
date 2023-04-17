@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ColorManager : MonoBehaviour
 {
@@ -15,8 +16,25 @@ public class ColorManager : MonoBehaviour
     [SerializeField] private TeamMatchToAppearance teamMatch;
 
     public ColorData currentColorProfile;
+    public List<ColorData.PlayerAppearance> teamAppearances; 
     [SerializeField] private ColorData[] allColorProfiles;
 
+    private void Start()
+    {
+        teamAppearances = currentColorProfile.teamAppearances;
+        Shuffle();
+    }
+
+    void Shuffle()
+    {
+        List<ColorData.PlayerAppearance> skins = teamAppearances;
+        for (int i = 0; i < skins.Count; i++) {
+            ColorData.PlayerAppearance temp = skins[i];
+            int randomIndex = Random.Range(i, skins.Count);
+            skins[i] = skins[randomIndex];
+            skins[randomIndex] = temp;
+        }
+    }
     void SwitchColorProfile(int profileIndex)
     {
         currentColorProfile = allColorProfiles[profileIndex];
@@ -36,7 +54,7 @@ public class ColorManager : MonoBehaviour
     public void SetPlayerAppearance(Player player)
     {
         Debug.Log("Set Appearance");
-        ColorData.PlayerAppearance reference = currentColorProfile.teamAppearances[player.teamIndex];
+        ColorData.PlayerAppearance reference = teamAppearances[player.teamIndex];
         
         if (teamMatch == TeamMatchToAppearance.Color || teamMatch == TeamMatchToAppearance.SpriteAndColor)
             player.SetColor(reference.color);
@@ -46,14 +64,14 @@ public class ColorManager : MonoBehaviour
 
     public void SetLobbyAppearance(Player player)
     {
-        ColorData.PlayerAppearance reference = currentColorProfile.teamAppearances[0];
+        ColorData.PlayerAppearance reference = teamAppearances[0];
         player.SetColor(Color.gray);
         player.gameObject.GetComponent<SpriteRenderer>().sprite = reference.sprite;
     }
 
     public Color SetTeamColor(Player player)
     {
-        ColorData.PlayerAppearance reference = currentColorProfile.teamAppearances[player.teamIndex];
+        ColorData.PlayerAppearance reference = teamAppearances[player.teamIndex];
         return reference.color;
     }
 }
