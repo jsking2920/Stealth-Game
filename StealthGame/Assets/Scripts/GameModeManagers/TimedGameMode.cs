@@ -20,7 +20,7 @@ public class TimedGameMode : GameModeManager
         }
     }
 
-    protected override void StartGame()
+    public override void StartGame()
     {
         timeRemaining = duration + uiManager.cutToBlackTime;
         uiManager.ShowTimerAfterCut();

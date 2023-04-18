@@ -67,9 +67,16 @@ public class Player : MonoBehaviour
         {
             OnStab(context);
         }
-        else if (context.action.name == _actionMap.Player.Pause.name)
+        else if (context.action.name == _actionMap.Player.Pause.name && context.performed)
         {
-            GameModeManager.S.TogglePause();
+            if (GameModeManager.S.gameState == GameModeManager.GameState.joining)
+            {
+                GameModeManager.S.StartGame();
+            }
+            else if (GameModeManager.S.gameState == GameModeManager.GameState.playing || GameModeManager.S.gameState == GameModeManager.GameState.paused)
+            {
+                GameModeManager.S.TogglePause();
+            }
         }
     }
 

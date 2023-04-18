@@ -94,7 +94,7 @@ public class GameModeManager : MonoBehaviour
         }
     }
 
-    protected virtual void StartGame()
+    public virtual void StartGame()
     {
         inputManager.DisableJoining();
         npcManager.SpawnNPCs(numberOfNpcs);

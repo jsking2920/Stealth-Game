@@ -27,7 +27,7 @@ public class AssassinV2Manager : TimedGameMode
         uiManager.useFloatScore = false;
     }
 
-    protected override void StartGame()
+    public override void StartGame()
     {
         base.StartGame();
         List<Player> assassins = teams[1].players;

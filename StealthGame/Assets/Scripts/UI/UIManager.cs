@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI centerScreenMessage;
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private GameObject pausePanel;
+    [SerializeField] private Button resumeButton;
     [SerializeField] private GameObject endGamePanel;
     [SerializeField] private Image blackScreen; // used for fade to black/cuts
 
@@ -47,6 +48,7 @@ public class UIManager : MonoBehaviour
     public void OnPause()
     {
         pausePanel.SetActive(true);
+        resumeButton.Select();
     }
 
     public void OnResume()
