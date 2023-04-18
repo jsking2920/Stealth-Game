@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI[] teamTexts; // need to have as many of these as there can be teams (6 currently, technically)
+    public TextMeshProUGUI[] teamTexts; // need to have as many of these as there can be teams (6 currently, technically)
     [SerializeField] private TextMeshProUGUI centerScreenMessage;
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private GameObject pausePanel;
@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
     public float cutToBlackTime = 4f;
 
     private void Start()
-    {
+    {   
         blackScreen.gameObject.SetActive(false);
         timerText.gameObject.SetActive(false);
         pausePanel.SetActive(false);
