@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b35afe568e2754b9db45a8e3178f2869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playersPerTeam: 1
+  playersPerTeam: 2
   numberOfNpcs: 140
   doNpcsRespawn: 0
   startGameMessages:
@@ -65,3 +65,4 @@ MonoBehaviour:
   npcKillPenalty: 1
   teamKillPenalty: 2
   assassinColor: {r: 1, g: 1, b: 1, a: 1}
+  assassinSpeedIncrease: 0.3
