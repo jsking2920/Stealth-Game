@@ -112,7 +112,7 @@ public class UIManager : MonoBehaviour
     {
         TextMeshProUGUI t = teamTexts[killersJoined];
         t.color = Color.white;
-        t.text = player.lives.ToString();
+        t.text = (player.lives + 1).ToString();
         t.gameObject.SetActive(true);
 
         killersJoined++;
