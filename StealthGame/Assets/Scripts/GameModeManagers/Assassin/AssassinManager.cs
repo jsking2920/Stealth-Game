@@ -76,7 +76,7 @@ public class AssassinManager : TimedGameMode
         }   
         else
         {
-            teams[killer.teamIndex].intScore -= npcKillPenalty;
+            teams[killer.teamIndex].intScore = Mathf.Clamp(teams[killer.teamIndex].intScore - npcKillPenalty, 0, 10000);
             killer.OnStabbed(null); // killing wrong target forces you to respawn
         }
 
@@ -95,7 +95,7 @@ public class AssassinManager : TimedGameMode
         if (killerTeam.index == victimTeam.index)
         {
             // team kill
-            killerTeam.intScore -= teamKillPenalty;
+            killerTeam.intScore = Mathf.Clamp(killerTeam.intScore - teamKillPenalty, 0, 10000);
         }
         else
         {

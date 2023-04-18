@@ -39,7 +39,7 @@ public class DeathmatchManager : TimedGameMode
 
     public override void OnPlayerKilledNPC(Player killer, MovementAIRigidbody npc)
     {
-        teams[killer.teamIndex].intScore -= npcKillPenalty;
+        teams[killer.teamIndex].intScore = Mathf.Clamp(teams[killer.teamIndex].intScore - npcKillPenalty, 0, 10000);
         uiManager.UpdateTeamScore(killer.teamIndex, teams[killer.teamIndex].intScore.ToString());
 
         base.OnPlayerKilledNPC(killer, npc);
@@ -55,7 +55,7 @@ public class DeathmatchManager : TimedGameMode
         if (killerTeam.index == victimTeam.index)
         {
             // team kill
-            killerTeam.intScore -= teamKillPenalty;
+            killerTeam.intScore = Mathf.Clamp(killerTeam.intScore - teamKillPenalty, 0, 10000);
         }
         else
         {
