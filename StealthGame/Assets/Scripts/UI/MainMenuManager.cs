@@ -63,13 +63,13 @@ public class MainMenuManager : MonoBehaviour
         mainMenuPanel.SetActive(false);
         gamemodePanels[currentGamemodeIndex].SetActive(true);
         currentPanel = gamemodePanels[currentGamemodeIndex];
+        gamemodePanelButtons[currentGamemodeIndex].Select();
         gamemodeButtons.SetActive(true);
     }
 
     // Update is called once per frame
     public void SwipeRight()
     {
-        Debug.Log("click");
         gamemodePanels[currentGamemodeIndex].SetActive(false);
         if (currentGamemodeIndex + 1 >= gamemodePanels.Count)
             currentGamemodeIndex = -1;
@@ -87,5 +87,11 @@ public class MainMenuManager : MonoBehaviour
         gamemodePanels[currentGamemodeIndex - 1].SetActive(true);
         currentGamemodeIndex--;
         currentPanel = gamemodePanels[currentGamemodeIndex];
+        gamemodePanelButtons[currentGamemodeIndex].Select();
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }
