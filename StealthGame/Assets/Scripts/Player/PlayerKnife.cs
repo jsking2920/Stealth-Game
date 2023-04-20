@@ -16,9 +16,6 @@ public class PlayerKnife : MonoBehaviour
 
     [SerializeField] private Transform _knifeParent; // for rotations
 
-    [SerializeField] private AudioSource _audioSource;
-    [SerializeField] private AudioClip _stabSound;
-
     public GameObject bloodPrefab;
 
     private void Start()
@@ -42,15 +39,14 @@ public class PlayerKnife : MonoBehaviour
             if (obj.CompareTag("Player") && obj != _playerObj)
             {
                 Player victim = obj.GetComponent<Player>();
-                _audioSource.PlayOneShot(_stabSound);
                 Instantiate(bloodPrefab, obj.transform.position, Quaternion.identity);
                 victim.OnStabbed(_player);
                 GameModeManager.S.OnPlayerKilledPlayer(_player, victim);
             }
             else if (collision.gameObject.CompareTag("NPC"))
             {
-                _audioSource.PlayOneShot(_stabSound);
                 Instantiate(bloodPrefab, obj.transform.position, Quaternion.identity);
+                AudioManager.S.PlayExplosion();
 
                 MovementAIRigidbody npc = obj.GetComponent<MovementAIRigidbody>();
                 GameModeManager.S.OnPlayerKilledNPC(_player, npc);

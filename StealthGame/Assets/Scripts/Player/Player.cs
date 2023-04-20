@@ -118,6 +118,7 @@ public class Player : MonoBehaviour
             _sensor.SetActive(false);
             transform.position = new Vector3(1000, 1000, 1000);
         }
+        AudioManager.S.PlayExplosion();
     }
     
     private IEnumerator RespawnCo()
