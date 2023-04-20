@@ -22,8 +22,7 @@ public class Player : MonoBehaviour
     public int teamIndex = -1; // set by game mode manager
     public int playerIndex = -1;
     [HideInInspector] public bool alive = true;
-    public int lives = 3; // only  used in game modes with finite lives
-    [HideInInspector] public Color color;
+    public int lives = 2; // only  used in game modes with finite lives
 
     private Vector2 _moveVec = new Vector2(0, 0); // Should be normalized to [0, 1]
 
