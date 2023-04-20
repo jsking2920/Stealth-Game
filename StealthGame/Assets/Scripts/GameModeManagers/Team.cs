@@ -60,6 +60,10 @@ public class Team
 
     public void DestroyPlayers()
     {
+        foreach(PlayerInput pi in playerInputs)
+        {
+            pi.DeactivateInput();
+        }
         foreach (Player p in players)
         {
             GameObject.Destroy(p.gameObject);

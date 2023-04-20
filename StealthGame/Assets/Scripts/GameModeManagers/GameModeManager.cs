@@ -28,6 +28,7 @@ public class GameModeManager : MonoBehaviour
     // [HideInInspector] public GameObject arenaPrefab;
 
     [HideInInspector] public List<Team> teams = new List<Team>();
+    private Team winningTeam = null;
     [HideInInspector] public bool playerInteractionEnabled = false;
 
     [HideInInspector] public enum GameState { joining, playing, paused, ended }
@@ -98,6 +99,7 @@ public class GameModeManager : MonoBehaviour
     {
         inputManager.DisableJoining();
         npcManager.SpawnNPCs(numberOfNpcs);
+        winningTeam = null;
 
         uiManager.OnGameStart(startGameMessages[Random.Range(0, startGameMessages.Count)]);
         gameState = GameState.playing;
@@ -117,7 +119,7 @@ public class GameModeManager : MonoBehaviour
         gameState = GameState.ended;
         npcManager.DestroyNPCs();
 
-        Team winningTeam = GetWinningTeam();
+        winningTeam = GetWinningTeam();
         foreach (Team team in teams)
         {
             if (winningTeam != null && team.index != winningTeam.index)
@@ -152,11 +154,13 @@ public class GameModeManager : MonoBehaviour
 
     public void RestartGame()
     {
+        if (winningTeam != null) winningTeam.DestroyPlayers();
         sceneManager.btn_RestartGame();
     }
 
     public void QuitToMenu()
     {
+        if (winningTeam != null) winningTeam.DestroyPlayers();
         sceneManager.ToMenu();
     }
 

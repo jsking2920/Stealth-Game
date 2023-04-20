@@ -16,7 +16,6 @@ public class AudioManager : MonoBehaviour
     {
         if (S != null)
         {
-            Debug.LogError("Two Audio Managers!!!");
             Destroy(gameObject);
         }
         else
