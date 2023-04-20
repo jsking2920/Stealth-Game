@@ -6,7 +6,9 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    public TextMeshProUGUI[] teamTexts; // need to have as many of these as there can be teams (6 currently, technically)
+    public TextMeshProUGUI[] teamTexts; // need to have as many of these as there can be teams
+    public Image[] teamImages;
+
     [SerializeField] private TextMeshProUGUI centerScreenMessage;
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private GameObject pausePanel;
@@ -102,8 +104,10 @@ public class UIManager : MonoBehaviour
     {
         TextMeshProUGUI t = teamTexts[teamsJoined];
         t.color = team.teamColor;
+        teamImages[teamsJoined].color = team.teamColor;
         t.text = useFloatScore ? team.floatScore.ToString() : team.intScore.ToString();
         t.gameObject.SetActive(true);
+        teamImages[teamsJoined].gameObject.SetActive(true);
 
         teamsJoined++;
     }
@@ -133,7 +137,7 @@ public class UIManager : MonoBehaviour
     {
         float minutes = Mathf.FloorToInt(time / 60.0f);
         float seconds = Mathf.FloorToInt(time % 60);
-        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        timerText.text = string.Format("{0:0}:{1:00}", minutes, seconds);
     }
 
     #region Button Callbacks 
