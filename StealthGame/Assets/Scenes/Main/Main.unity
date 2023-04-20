@@ -212,6 +212,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 882079980548559456, guid: b4caba1dc1fa4eb4cb798c39ca24674d, type: 3}
+      propertyPath: m_margin.y
+      value: 6.9284363
+      objectReference: {fileID: 0}
+    - target: {fileID: 882079980548559456, guid: b4caba1dc1fa4eb4cb798c39ca24674d, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 882079980548559456, guid: b4caba1dc1fa4eb4cb798c39ca24674d, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 882079980548559456, guid: b4caba1dc1fa4eb4cb798c39ca24674d, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 882079980548559456, guid: b4caba1dc1fa4eb4cb798c39ca24674d, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 882079982023837922, guid: b4caba1dc1fa4eb4cb798c39ca24674d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -267,7 +287,7 @@ PrefabInstance:
     - target: {fileID: 882079982023837932, guid: b4caba1dc1fa4eb4cb798c39ca24674d, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: f082ff2fd65b9aa4ea9bd7f2165444bf, type: 3}
+      objectReference: {fileID: 21300000, guid: 3a5be82c14f22114fb3c9b0ddf5e2988, type: 3}
     - target: {fileID: 1558105058297047382, guid: b4caba1dc1fa4eb4cb798c39ca24674d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -335,7 +355,31 @@ PrefabInstance:
     - target: {fileID: 1558105058297047384, guid: b4caba1dc1fa4eb4cb798c39ca24674d, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: f082ff2fd65b9aa4ea9bd7f2165444bf, type: 3}
+      objectReference: {fileID: 21300000, guid: 3a5be82c14f22114fb3c9b0ddf5e2988, type: 3}
+    - target: {fileID: 1558105058969646036, guid: b4caba1dc1fa4eb4cb798c39ca24674d, type: 3}
+      propertyPath: m_margin.y
+      value: 6.928421
+      objectReference: {fileID: 0}
+    - target: {fileID: 1558105058969646036, guid: b4caba1dc1fa4eb4cb798c39ca24674d, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1558105058969646036, guid: b4caba1dc1fa4eb4cb798c39ca24674d, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1558105058969646036, guid: b4caba1dc1fa4eb4cb798c39ca24674d, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1558105058969646036, guid: b4caba1dc1fa4eb4cb798c39ca24674d, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1558105058969646036, guid: b4caba1dc1fa4eb4cb798c39ca24674d, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 2524783146731560563, guid: b4caba1dc1fa4eb4cb798c39ca24674d, type: 3}
       propertyPath: m_Name
       value: MainCanvas
@@ -515,7 +559,27 @@ PrefabInstance:
     - target: {fileID: 8254499147274904779, guid: b4caba1dc1fa4eb4cb798c39ca24674d, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: f082ff2fd65b9aa4ea9bd7f2165444bf, type: 3}
+      objectReference: {fileID: 21300000, guid: 3a5be82c14f22114fb3c9b0ddf5e2988, type: 3}
+    - target: {fileID: 8254499148750061127, guid: b4caba1dc1fa4eb4cb798c39ca24674d, type: 3}
+      propertyPath: m_margin.y
+      value: 9.897766
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254499148750061127, guid: b4caba1dc1fa4eb4cb798c39ca24674d, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254499148750061127, guid: b4caba1dc1fa4eb4cb798c39ca24674d, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254499148750061127, guid: b4caba1dc1fa4eb4cb798c39ca24674d, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254499148750061127, guid: b4caba1dc1fa4eb4cb798c39ca24674d, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4caba1dc1fa4eb4cb798c39ca24674d, type: 3}
 --- !u!114 &178395632 stripped

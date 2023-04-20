@@ -60,6 +60,10 @@ public class Team
 
     public void DestroyPlayers()
     {
+        foreach(PlayerInput pi in playerInputs)
+        {
+            pi.DeactivateInput();
+        }
         foreach (Player p in players)
         {
             UnityEngine.GameObject.Destroy(p.gameObject);
