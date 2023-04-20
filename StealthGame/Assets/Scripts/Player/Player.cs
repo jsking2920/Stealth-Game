@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public float _maxVelocity = 3.5f;
     [SerializeField] private float _maxAcceleration = 2.25f;
     //[SerializeField] private Gradient colorGradient;
+    private ParticleSystem _particleSystem;
     public bool canStab = true; 
 
     [SerializeField] private GameObject _sensor;
@@ -21,8 +22,7 @@ public class Player : MonoBehaviour
     public int teamIndex = -1; // set by game mode manager
     public int playerIndex = -1;
     [HideInInspector] public bool alive = true;
-    public int lives = 3; // only  used in game modes with finite lives
-    [HideInInspector] public Color color;
+    public int lives = 2; // only  used in game modes with finite lives
 
     private Vector2 _moveVec = new Vector2(0, 0); // Should be normalized to [0, 1]
 
@@ -42,10 +42,17 @@ public class Player : MonoBehaviour
         _aiRb = GetComponent<MovementAIRigidbody>();
         _playerInput = GetComponent<PlayerInput>();
         _actionMap = new PlayerInputActions();
+        _particleSystem = GetComponentInChildren<ParticleSystem>();
 
         _playerInput.onActionTriggered += Input_onActionTriggered;
 
         _spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    private void Update()
+    {
+        var main = _particleSystem.main;
+        main.startColor = _spriteRenderer.color;
     }
 
     private void FixedUpdate()
@@ -119,6 +126,7 @@ public class Player : MonoBehaviour
             transform.position = new Vector3(1000, 1000, 1000);
         }
         AudioManager.S.PlayExplosion();
+        _particleSystem.Play();
     }
     
     private IEnumerator RespawnCo()

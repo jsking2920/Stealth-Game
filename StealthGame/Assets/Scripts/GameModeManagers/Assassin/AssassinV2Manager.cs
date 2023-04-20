@@ -59,8 +59,8 @@ public class AssassinV2Manager : TimedGameMode
 
     public override void OnPlayerKilledNPC(Player killer, MovementAIRigidbody npc)
     {
-        killer.OnStabbed(null); // killing wrong target forces you to respawn
         killer.lives--;
+        killer.OnStabbed(null); // killing wrong target forces you to respawn
 
         uiManager.UpdateLivesText(killer.playerIndex, (killer.lives + 1).ToString());
 
