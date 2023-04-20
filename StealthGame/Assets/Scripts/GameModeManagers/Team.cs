@@ -66,7 +66,7 @@ public class Team
         }
         foreach (Player p in players)
         {
-            UnityEngine.GameObject.Destroy(p.gameObject);
+            GameObject.Destroy(p.gameObject);
         }
         players.Clear();
     }
