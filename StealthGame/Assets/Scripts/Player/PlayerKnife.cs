@@ -39,18 +39,13 @@ public class PlayerKnife : MonoBehaviour
             if (obj.CompareTag("Player") && obj != _playerObj)
             {
                 Player victim = obj.GetComponent<Player>();
-                // Instantiate(bloodPrefab, obj.transform.position, Quaternion.identity);
-                Debug.Log(victim.pS.isPlaying);
-                victim.pS.Play();
-                Debug.Log(victim.pS.isPlaying);
                 GameModeManager.S.OnPlayerKilledPlayer(_player, victim);
                 victim.OnStabbed(_player);
             }
             else if (collision.gameObject.CompareTag("NPC"))
             {
-                // Instantiate(bloodPrefab, obj.transform.position, Quaternion.identity);
                 AudioManager.S.PlayExplosion();
-                collision.gameObject.GetComponentInChildren<ParticleSystem>().Play();
+                _player.PlayExplosionNPC(collision.transform.position, collision.GetComponent<SpriteRenderer>().color);
                 MovementAIRigidbody npc = obj.GetComponent<MovementAIRigidbody>();
                 GameModeManager.S.OnPlayerKilledNPC(_player, npc);
             }

@@ -16,8 +16,8 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject _sensor;
     [SerializeField] private PlayerKnife _knife;
     [SerializeField] private GameObject _knifeParentObject;
-    public ParticleSystem pS;
 
+    [SerializeField] private GameObject explosionPrefab;
 
     public int teamIndex = -1; // set by game mode manager
     public int playerIndex = -1;
@@ -42,17 +42,10 @@ public class Player : MonoBehaviour
         _aiRb = GetComponent<MovementAIRigidbody>();
         _playerInput = GetComponent<PlayerInput>();
         _actionMap = new PlayerInputActions();
-        pS = GetComponentInChildren<ParticleSystem>();
 
         _playerInput.onActionTriggered += Input_onActionTriggered;
 
         _spriteRenderer = GetComponent<SpriteRenderer>();
-    }
-
-    private void Update()
-    {
-        var main = pS.main;
-        main.startColor = _spriteRenderer.color;
     }
 
     private void FixedUpdate()
@@ -115,6 +108,7 @@ public class Player : MonoBehaviour
 
     public void OnStabbed(Player killer)
     {
+        PlayExplosionSelf();
         if (lives > 0)
             StartCoroutine(RespawnCo());
         else
@@ -154,5 +148,23 @@ public class Player : MonoBehaviour
     public void SetColor(Color c)
     {
         _spriteRenderer.color = c;
+    }
+
+    private void PlayExplosionSelf()
+    {
+        ParticleSystem ps = Instantiate(explosionPrefab).GetComponent<ParticleSystem>();
+        var main = ps.main;
+        main.startColor = _spriteRenderer.color;
+        ps.Play();
+        Destroy(ps.gameObject, main.duration + 1.0f);
+    }
+
+    public void PlayExplosionNPC(Vector3 pos, Color col)
+    {
+        ParticleSystem ps = Instantiate(explosionPrefab, pos, Quaternion.identity).GetComponent<ParticleSystem>();
+        var main = ps.main;
+        main.startColor = col;
+        ps.Play();
+        Destroy(ps.gameObject, main.duration + 1.0f);
     }
 }
