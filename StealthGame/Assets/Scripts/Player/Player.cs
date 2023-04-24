@@ -11,12 +11,12 @@ public class Player : MonoBehaviour
     public float _maxVelocity = 3.5f;
     [SerializeField] private float _maxAcceleration = 2.25f;
     //[SerializeField] private Gradient colorGradient;
-    private ParticleSystem _particleSystem;
     public bool canStab = true; 
 
     [SerializeField] private GameObject _sensor;
     [SerializeField] private PlayerKnife _knife;
     [SerializeField] private GameObject _knifeParentObject;
+    private ParticleSystem _particleSystem;
 
 
     public int teamIndex = -1; // set by game mode manager
@@ -126,7 +126,6 @@ public class Player : MonoBehaviour
             transform.position = new Vector3(1000, 1000, 1000);
         }
         AudioManager.S.PlayExplosion();
-        _particleSystem.Play();
     }
     
     private IEnumerator RespawnCo()

@@ -214,10 +214,6 @@ public class GameModeManager : MonoBehaviour
 
     public virtual void OnPlayerKilledNPC(Player killer, MovementAIRigidbody npc)
     {
-        ParticleSystem particles = npc.gameObject.GetComponentInChildren<ParticleSystem>();
-        var main = particles.main;
-        main.startColor = npc.GetComponent<SpriteRenderer>().color;
-        particles.Play();
         npcManager.RemoveNPC(npc);
         Destroy(npc.gameObject);
 
