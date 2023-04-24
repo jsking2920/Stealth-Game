@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject _sensor;
     [SerializeField] private PlayerKnife _knife;
     [SerializeField] private GameObject _knifeParentObject;
-    public ParticleSystem particleSystem;
+    public ParticleSystem pS;
 
 
     public int teamIndex = -1; // set by game mode manager
@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
         _aiRb = GetComponent<MovementAIRigidbody>();
         _playerInput = GetComponent<PlayerInput>();
         _actionMap = new PlayerInputActions();
-        particleSystem = GetComponentInChildren<ParticleSystem>();
+        pS = GetComponentInChildren<ParticleSystem>();
 
         _playerInput.onActionTriggered += Input_onActionTriggered;
 
@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        var main = particleSystem.main;
+        var main = pS.main;
         main.startColor = _spriteRenderer.color;
     }
 

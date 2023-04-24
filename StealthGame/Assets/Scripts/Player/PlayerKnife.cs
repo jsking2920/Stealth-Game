@@ -40,7 +40,9 @@ public class PlayerKnife : MonoBehaviour
             {
                 Player victim = obj.GetComponent<Player>();
                 // Instantiate(bloodPrefab, obj.transform.position, Quaternion.identity);
-                victim.GetComponent<ParticleSystem>().Play();
+                Debug.Log(victim.pS.isPlaying);
+                victim.pS.Play();
+                Debug.Log(victim.pS.isPlaying);
                 GameModeManager.S.OnPlayerKilledPlayer(_player, victim);
                 victim.OnStabbed(_player);
             }

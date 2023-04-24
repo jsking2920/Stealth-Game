@@ -51,8 +51,6 @@ MonoBehaviour:
   _restTrans: {fileID: 628373391942822141}
   _stabTrans: {fileID: 1672531821378124678}
   _knifeParent: {fileID: 504866818231212575}
-  _audioSource: {fileID: 8603635376724433152}
-  _stabSound: {fileID: 8300000, guid: f56cc7e79ccc066489775084fe5b01d3, type: 3}
   bloodPrefab: {fileID: 4587759593761568677, guid: 5a6ba2086e618da46848612100827021, type: 3}
 --- !u!212 &551386839
 SpriteRenderer:
@@ -356,7 +354,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6149113657032765870}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &8713835473019904283
 ParticleSystem:
@@ -375,7 +373,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -5105,8 +5103,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1089336601
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -5172,8 +5170,8 @@ Transform:
   m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6513418934043271690}
   - {fileID: 6149113657032819164}
+  - {fileID: 6513418934043271690}
   - {fileID: 6519181520213485515}
   - {fileID: 504866818231212575}
   m_Father: {fileID: 0}
@@ -5249,11 +5247,11 @@ MonoBehaviour:
   _sensor: {fileID: 6149113657032988130}
   _knife: {fileID: 551386840}
   _knifeParentObject: {fileID: 4110349392100504868}
+  pS: {fileID: 0}
   teamIndex: -1
   playerIndex: -1
   alive: 1
   lives: 2
-  color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &2464712651831935413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5423,7 +5421,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6149113657032765870}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6149113657022759346
 MonoBehaviour:
