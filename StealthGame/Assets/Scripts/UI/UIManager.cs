@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Button resumeButton;
     [SerializeField] private GameObject endGamePanel;
     [SerializeField] private Image blackScreen; // used for fade to black/cuts
+    [SerializeField] private Image controls;
 
     private bool showTimer = false;
     [HideInInspector] public bool useFloatScore = false; // defaults to using int score from teams
@@ -31,6 +32,7 @@ public class UIManager : MonoBehaviour
         endGamePanel.SetActive(false);
 
         centerScreenMessage.gameObject.SetActive(true);
+        controls.gameObject.SetActive(true);
         centerScreenMessage.text = "Press Space To Start";
 
         foreach (TextMeshProUGUI t in teamTexts)
@@ -81,6 +83,7 @@ public class UIManager : MonoBehaviour
         }
 
         centerScreenMessage.gameObject.SetActive(false);
+        controls.gameObject.SetActive(false);
         blackScreen.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(cutToBlackTime * 0.2f);
