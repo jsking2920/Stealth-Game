@@ -83,8 +83,7 @@ public class NPCManager : MonoBehaviour
             Transform t = Instantiate(_npcPrefab, pos, Quaternion.identity, _npcParentTransform) as Transform;
 
             SpriteRenderer sr = t.GetComponent<SpriteRenderer>();
-            ParticleSystem ps = t.GetComponent<ParticleSystem>();
-            if (sr && ps) SetColorAndSprite(sr, ps);
+            if (sr) SetColorAndSprite(sr, ps);
 
             if (isObj3D)
             {
