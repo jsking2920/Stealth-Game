@@ -212,30 +212,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1956261347, guid: b4caba1dc1fa4eb4cb798c39ca24674d, type: 3}
-      propertyPath: m_fontSize
-      value: 48
-      objectReference: {fileID: 0}
-    - target: {fileID: 1956261347, guid: b4caba1dc1fa4eb4cb798c39ca24674d, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 48
-      objectReference: {fileID: 0}
-    - target: {fileID: 1956261347, guid: b4caba1dc1fa4eb4cb798c39ca24674d, type: 3}
-      propertyPath: m_enableAutoSizing
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1956261347, guid: b4caba1dc1fa4eb4cb798c39ca24674d, type: 3}
-      propertyPath: m_enableWordWrapping
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 371054840280171122, guid: b4caba1dc1fa4eb4cb798c39ca24674d, type: 3}
-      propertyPath: m_enableAutoSizing
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 715472855139480205, guid: b4caba1dc1fa4eb4cb798c39ca24674d, type: 3}
-      propertyPath: m_enableAutoSizing
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2524783146731560563, guid: b4caba1dc1fa4eb4cb798c39ca24674d, type: 3}
       propertyPath: m_Name
       value: MainCanvas
@@ -323,14 +299,6 @@ PrefabInstance:
     - target: {fileID: 2524783146731560575, guid: b4caba1dc1fa4eb4cb798c39ca24674d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7701094735166199086, guid: b4caba1dc1fa4eb4cb798c39ca24674d, type: 3}
-      propertyPath: m_enableAutoSizing
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8456198387186371411, guid: b4caba1dc1fa4eb4cb798c39ca24674d, type: 3}
-      propertyPath: m_enableAutoSizing
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4caba1dc1fa4eb4cb798c39ca24674d, type: 3}
