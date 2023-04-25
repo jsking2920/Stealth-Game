@@ -49,12 +49,18 @@ MonoBehaviour:
   doNpcsRespawn: 0
   startGameMessages:
   - DEATHMATCH
+  name: FFA Deathmatch
+  scoringRules:
+  - +3 points for killing players
+  - -1 point for killing AI
+  ruleIsGood: 0100
   playerRespawnTime: 3
   uiManager: {fileID: 0}
   inputManager: {fileID: 0}
   npcManager: {fileID: 0}
   sceneManager: {fileID: 0}
   colorManager: {fileID: 0}
+  arenaManager: {fileID: 0}
   teams: []
   playerInteractionEnabled: 0
   gameState: 0

@@ -47,19 +47,26 @@ MonoBehaviour:
   playersPerTeam: 2
   numberOfNpcs: 70
   doNpcsRespawn: 0
-  doPlayersRespawn: 1
   startGameMessages:
   - DEATHMATCH
+  name: Team Deathmatch
+  scoringRules:
+  - +3 points for killing players
+  - -1 point for killing AI
+  - -2 points for killing teammates
+  ruleIsGood: 010000
   playerRespawnTime: 3
   uiManager: {fileID: 0}
   inputManager: {fileID: 0}
   npcManager: {fileID: 0}
   sceneManager: {fileID: 0}
   colorManager: {fileID: 0}
+  arenaManager: {fileID: 0}
   teams: []
   playerInteractionEnabled: 0
   gameState: 0
   duration: 60
   timeRemaining: 60
+  killValue: 3
   npcKillPenalty: 1
   teamKillPenalty: 2

@@ -15,6 +15,9 @@ public class GameModeManager : MonoBehaviour
     public int numberOfNpcs = 140;
     public bool doNpcsRespawn = false; // unimplemented currently
     public List<string> startGameMessages; // one selected at random
+    public String name;
+    public List<String> scoringRules;
+    public List<bool> ruleIsGood;// true = green, false = red
 
     public float playerRespawnTime = 3.0f;
     
@@ -51,7 +54,7 @@ public class GameModeManager : MonoBehaviour
         sceneManager = FindObjectOfType<SceneManager>();
         colorManager = FindObjectOfType<ColorManager>();
         arenaManager = FindObjectOfType<ArenaManager>();
-
+        
         if (!uiManager || !inputManager || !npcManager || !sceneManager || !colorManager)
         {
             Debug.LogError("Missing a manager in the scene");
@@ -62,6 +65,7 @@ public class GameModeManager : MonoBehaviour
     protected virtual void Start()
     {
         gameState = GameState.joining;
+        uiManager.OnLobbyEnter(name, scoringRules, ruleIsGood);
 
         inputManager.onPlayerJoined += OnPlayerJoin;
         inputManager.EnableJoining();

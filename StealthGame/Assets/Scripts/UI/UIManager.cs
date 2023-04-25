@@ -17,6 +17,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image blackScreen; // used for fade to black/cuts
     [SerializeField] private GameObject lobbyPanel;
 
+    [SerializeField] private TextMeshProUGUI lobbyGamemodeName;
+    [SerializeField] private TextMeshProUGUI[] lobbyRules;
+    [SerializeField] private Color plusScoreColor;
+    [SerializeField] private Color minusScoreColor;
+
     private bool showTimer = false;
     [HideInInspector] public bool useFloatScore = false; // defaults to using int score from teams
     private int teamsJoined = 0;
@@ -32,8 +37,10 @@ public class UIManager : MonoBehaviour
         endGamePanel.SetActive(false);
 
         centerScreenMessage.gameObject.SetActive(false);
-        lobbyPanel.gameObject.SetActive(true);
         centerScreenMessage.text = "Press Space To Start";
+        
+        lobbyPanel.gameObject.SetActive(true);
+        lobbyRules = lobbyPanel.GetComponentInChildren<VerticalLayoutGroup>().gameObject.GetComponentsInChildren<TextMeshProUGUI>();
 
         foreach (TextMeshProUGUI t in teamTexts)
         {
@@ -73,6 +80,18 @@ public class UIManager : MonoBehaviour
     public void OnGameStart(string message)
     {
         StartCoroutine(CutToBlackCo(message));
+    }
+
+    // rules and colors need to be a same length — change to a dict / 2D array in the future
+    public void OnLobbyEnter(string name, List<string> rules, List<bool> colors)
+    {
+        lobbyGamemodeName.text = name;
+        for (int i = 0; i < rules.Count; i++)
+        {
+            lobbyRules[i].text = rules[i];
+            if (colors[i]) lobbyRules[i].color = plusScoreColor;
+            else lobbyRules[i].color = minusScoreColor;
+        }
     }
 
     private IEnumerator CutToBlackCo(string message)
