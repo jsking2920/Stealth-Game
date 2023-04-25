@@ -49,6 +49,10 @@ MonoBehaviour:
   obstacles:
   - {fileID: 3486488582325219346}
   - {fileID: 3486488582442109558}
+  rotationSpeed: 0.1
+  rotatingObjects:
+  - {fileID: 3486488582315211802}
+  - {fileID: 3486488582431147646}
 --- !u!1001 &6311106653394159730
 PrefabInstance:
   m_ObjectHideFlags: 0

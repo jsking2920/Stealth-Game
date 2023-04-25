@@ -47,6 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstacles:
   - {fileID: 8312444760078553250}
+  rotationSpeed: 0.1
+  rotatingObjects:
+  - {fileID: 8312444760071822506}
 --- !u!1001 &1489649702969873062
 PrefabInstance:
   m_ObjectHideFlags: 0
