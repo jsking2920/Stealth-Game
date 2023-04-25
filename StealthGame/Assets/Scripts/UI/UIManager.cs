@@ -18,7 +18,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject lobbyPanel;
 
     [SerializeField] private TextMeshProUGUI lobbyGamemodeName;
-    [SerializeField] private TextMeshProUGUI[] lobbyRules;
+    private TextMeshProUGUI[] lobbyRules;
     [SerializeField] private Color plusScoreColor;
     [SerializeField] private Color minusScoreColor;
 
