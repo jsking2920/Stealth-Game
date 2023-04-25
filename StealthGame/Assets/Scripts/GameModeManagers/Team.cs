@@ -53,7 +53,6 @@ public class Team
         p.teamIndex = index;
         p.playerIndex = playerIndex;
         playerIndex++;
-        Debug.Log("Add Player");
         GameModeManager.S.colorManager.SetLobbyAppearance(p);
         // GameModeManager.S.colorManager.SetPlayerAppearance(p);
     }
