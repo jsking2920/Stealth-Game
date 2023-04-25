@@ -152,7 +152,7 @@ public class Player : MonoBehaviour
 
     private void PlayExplosionSelf()
     {
-        ParticleSystem ps = Instantiate(explosionPrefab).GetComponent<ParticleSystem>();
+        ParticleSystem ps = Instantiate(explosionPrefab, transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
         var main = ps.main;
         main.startColor = _spriteRenderer.color;
         ps.Play();

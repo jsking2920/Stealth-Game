@@ -24,6 +24,7 @@ public class GameModeManager : MonoBehaviour
     [HideInInspector] public NPCManager npcManager;
     [HideInInspector] public SceneManager sceneManager;
     [HideInInspector] public ColorManager colorManager;
+    [HideInInspector] public ArenaManager arenaManager;
     // TODO: Implement different arenas
     // [HideInInspector] public GameObject arenaPrefab;
 
@@ -42,27 +43,30 @@ public class GameModeManager : MonoBehaviour
             Destroy(gameObject);
         }
         S = this;
-    }
 
-    // GameModeManager gets instantiated by SceneManager on scene load, then this gets called
-    protected virtual void Start()
-    {
         // Having more than one of any of these will cause problems
         uiManager = FindObjectOfType<UIManager>();
         inputManager = FindObjectOfType<PlayerInputManager>();
         npcManager = FindObjectOfType<NPCManager>();
         sceneManager = FindObjectOfType<SceneManager>();
         colorManager = FindObjectOfType<ColorManager>();
+        arenaManager = FindObjectOfType<ArenaManager>();
 
         if (!uiManager || !inputManager || !npcManager || !sceneManager || !colorManager)
         {
             Debug.LogError("Missing a manager in the scene");
         }
-        
+    }
+
+    // GameModeManager gets instantiated by SceneManager on scene load, then this gets called
+    protected virtual void Start()
+    {
         gameState = GameState.joining;
 
         inputManager.onPlayerJoined += OnPlayerJoin;
         inputManager.EnableJoining();
+
+        arenaManager.InitializeArena();
     }
     
     protected virtual void Update()
