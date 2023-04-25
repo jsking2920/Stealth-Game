@@ -49,8 +49,9 @@ MonoBehaviour:
   doNpcsRespawn: 0
   startGameMessages:
   - FIND AND ASSASSINATE THE IMPOSTERS
-  name: Hunted
+  _name: Hunted
   scoringRules: []
+  ruleIsGood: 
   playerRespawnTime: 3
   uiManager: {fileID: 0}
   inputManager: {fileID: 0}

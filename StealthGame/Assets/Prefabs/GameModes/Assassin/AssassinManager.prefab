@@ -49,7 +49,7 @@ MonoBehaviour:
   doNpcsRespawn: 0
   startGameMessages:
   - ASSASSINATE THE MARKED NPC AND KILL THE OPPOSITION
-  name: Assassination
+  _name: Assassination
   scoringRules:
   - +3 points for killing players
   - +1 point for killing players
