@@ -9,12 +9,18 @@ public class Arena : MonoBehaviour
 
     public float rotationSpeed;
     public Transform[] rotatingObjects;
+    private Vector3 rotationVec;
+
+    private void Start()
+    {
+        rotationVec = new Vector3(0.0f, 0.0f, 1.0f * rotationSpeed);
+    }
 
     public void Update()
     {
         foreach (Transform t in rotatingObjects)
         {
-            t.Rotate(new Vector3(0.0f, 0.0f, 1.0f * rotationSpeed));
+            t.Rotate(rotationVec);
         }
     }
 }
