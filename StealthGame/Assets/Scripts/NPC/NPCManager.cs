@@ -49,7 +49,6 @@ public class NPCManager : MonoBehaviour
 
     public void SpawnNPCs(int num = 100) // not all of these will for sure get spawned, it will attempt 100 spawns, 10 times each max
     {
-        Debug.Log("spawning");
         for (int i = 0; i < num; i++)
         {
             /* Try to place the objects multiple times before giving up */

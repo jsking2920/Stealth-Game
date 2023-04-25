@@ -15,7 +15,7 @@ public class GameModeManager : MonoBehaviour
     public int numberOfNpcs = 140;
     public bool doNpcsRespawn = false; // unimplemented currently
     public List<string> startGameMessages; // one selected at random
-    public String name;
+    public String _name;
     public List<String> scoringRules;
     public List<bool> ruleIsGood;// true = green, false = red
 
@@ -42,8 +42,8 @@ public class GameModeManager : MonoBehaviour
     {
         if (S != null)
         {
-            Debug.LogError("Two Game Managers!!!");
-            Destroy(gameObject);
+            Debug.Log("Game manager singleton being replaced");
+            Destroy(S.gameObject);
         }
         S = this;
 
@@ -65,7 +65,7 @@ public class GameModeManager : MonoBehaviour
     protected virtual void Start()
     {
         gameState = GameState.joining;
-        uiManager.OnLobbyEnter(name, scoringRules, ruleIsGood);
+        uiManager.OnLobbyEnter(_name, scoringRules, ruleIsGood);
 
         inputManager.onPlayerJoined += OnPlayerJoin;
         inputManager.EnableJoining();
@@ -84,11 +84,6 @@ public class GameModeManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePause();
-        }
-        // Start game and stop allowing joining on Space
-        else if (gameState == GameState.joining && Input.GetKeyDown(KeyCode.Space))
-        {
-            StartGame();
         }
     }
     

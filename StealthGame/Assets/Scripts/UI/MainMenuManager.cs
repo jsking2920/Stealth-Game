@@ -90,6 +90,11 @@ public class MainMenuManager : MonoBehaviour
         gamemodePanelButtons[currentGamemodeIndex].Select();
     }
 
+    public void PlayButton(GameObject prefab)
+    {
+        SceneManager.S.btn_PlayGame(prefab);
+    }
+
     public void Quit()
     {
         Application.Quit();
