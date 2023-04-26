@@ -67,6 +67,10 @@ public class Player : MonoBehaviour
         {
             OnStab(context);
         }
+        else if (context.action.name == _actionMap.Player.A.name)
+        {
+            GameModeManager.S.uiManager.AnimateScore(teamIndex);
+        }
         else if (context.action.name == _actionMap.Player.Pause.name && context.performed)
         {
             if (GameModeManager.S.gameState == GameModeManager.GameState.joining)
@@ -136,7 +140,7 @@ public class Player : MonoBehaviour
         _spriteRenderer.enabled = true;
         _aiRb.enabled = true;
         _sensor.SetActive(true);
-        GameModeManager.S.SetSpawnPosition(_transform);
+        GameModeManager.S.SetRepawnPosition(this);
     }
 
     public void RandomizeColor()

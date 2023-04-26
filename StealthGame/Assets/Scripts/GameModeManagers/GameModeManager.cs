@@ -158,12 +158,14 @@ public class GameModeManager : MonoBehaviour
     public void RestartGame()
     {
         if (winningTeam != null) winningTeam.DestroyPlayers();
+        Time.timeScale = 1.0f;
         sceneManager.btn_RestartGame();
     }
 
     public void QuitToMenu()
     {
         if (winningTeam != null) winningTeam.DestroyPlayers();
+        Time.timeScale = 1.0f;
         sceneManager.ToMenu();
     }
 
@@ -186,7 +188,6 @@ public class GameModeManager : MonoBehaviour
     {
         Player newPlayer = playerInput.gameObject.GetComponent<Player>();
         newPlayer.Setup();
-        SetSpawnPosition(newPlayer.transform);
 
         // if theres at least 1 team and the most recently created team has less players than required
         if (teams.Count > 0 && teams[teams.Count - 1].players.Count < playersPerTeam)
@@ -201,12 +202,49 @@ public class GameModeManager : MonoBehaviour
             teams.Add(newTeam);
             uiManager.AddTeamScoreText(newTeam);
         }
+        SetSpawnPosition(newPlayer);
     }
 
     // TODO: Allow different arenas to have predefined spawn positions
-    public virtual void SetSpawnPosition(Transform playerTransform)
+    public virtual void SetSpawnPosition(Player p)
     {
-        npcManager.RandomizePosition(playerTransform);
+        Camera cam = Camera.main;
+        float depth = p.transform.position.z - cam.transform.position.z;
+
+        Vector3 lowerLeft = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, depth)) + new Vector3(3.0f, 3.0f, 0.0f);
+        Vector3 lowerRight = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, depth)) + new Vector3(-3.0f, 3.0f, 0.0f);
+        Vector3 upperLeft = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height, depth)) + new Vector3(3.0f, -3.0f, 0.0f);
+        Vector3 upperRight = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, depth)) + new Vector3(-3.0f, -3.0f, 0.0f);
+
+        switch (p.teamIndex)
+        {
+            case 0:
+                p.transform.position = upperLeft;
+                break;
+            case 1:
+                p.transform.position = upperRight;
+                break;
+            case 2:
+                p.transform.position = lowerLeft;
+                break;
+            case 3:
+                p.transform.position = lowerRight;
+                break;
+            case 4:
+                npcManager.RandomizePosition(p.transform);
+                break;
+            case 5:
+                npcManager.RandomizePosition(p.transform);
+                break;
+            default:
+                npcManager.RandomizePosition(p.transform);
+                break;
+        }
+    }
+
+    public virtual void SetRepawnPosition(Player p)
+    {
+        npcManager.RandomizePosition(p.transform);
     }
 
     public virtual void OnPlayerKilledPlayer(Player killer, Player victim)
