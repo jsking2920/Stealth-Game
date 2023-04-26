@@ -140,7 +140,7 @@ public class Player : MonoBehaviour
         _spriteRenderer.enabled = true;
         _aiRb.enabled = true;
         _sensor.SetActive(true);
-        GameModeManager.S.SetRepawnPosition(this);
+        GameModeManager.S.OnRespawn(this);
     }
 
     public void RandomizeColor()

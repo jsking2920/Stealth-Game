@@ -242,6 +242,11 @@ public class GameModeManager : MonoBehaviour
         }
     }
 
+    public virtual void OnRespawn(Player p)
+    {
+        SetRepawnPosition(p);
+    }
+
     public virtual void SetRepawnPosition(Player p)
     {
         npcManager.RandomizePosition(p.transform);
