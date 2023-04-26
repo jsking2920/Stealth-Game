@@ -71,6 +71,7 @@ public class GameModeManager : MonoBehaviour
         inputManager.EnableJoining();
 
         arenaManager.InitializeArena();
+        Shuffle(colorManager.currentColorProfile.teamAppearances);
     }
     
     protected virtual void Update()
@@ -107,7 +108,6 @@ public class GameModeManager : MonoBehaviour
         uiManager.OnGameStart(startGameMessages[Random.Range(0, startGameMessages.Count)]);
         gameState = GameState.playing;
 
-        Shuffle(colorManager.currentColorProfile.teamAppearances);
         foreach (Team team in teams)
         {
             foreach (Player player in team.players)
