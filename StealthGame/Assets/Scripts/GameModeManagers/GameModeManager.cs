@@ -158,14 +158,14 @@ public class GameModeManager : MonoBehaviour
     public void RestartGame()
     {
         if (winningTeam != null) winningTeam.DestroyPlayers();
-        Destroy(inputManager.gameObject);
+        Time.timeScale = 1.0f;
         sceneManager.btn_RestartGame();
     }
 
     public void QuitToMenu()
     {
         if (winningTeam != null) winningTeam.DestroyPlayers();
-        Destroy(inputManager.gameObject);
+        Time.timeScale = 1.0f;
         sceneManager.ToMenu();
     }
 
