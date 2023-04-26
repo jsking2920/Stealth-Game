@@ -74,6 +74,7 @@ public class DeathmatchManager : TimedGameMode
             int rand = Random.Range(0, colors.Count);
             player.SetColor(colors[rand]);
             uiManager.teamTexts[player.teamIndex].color = colors[rand];
+            uiManager.teamImages[player.teamIndex].color = colors[rand];
         }
     }
 }
