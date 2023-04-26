@@ -87,7 +87,7 @@ public class AssassinV2Manager : TimedGameMode
         Player newPlayer = playerInput.gameObject.GetComponent<Player>();
         newPlayer.Setup();
 
-        SetSpawnPosition(newPlayer.transform);
+        
 
         // if theres at least 1 team and the most recently created team has less players than required
         if (teams.Count > 0 && teams[teams.Count - 1].players.Count < playersPerTeam)
@@ -114,5 +114,7 @@ public class AssassinV2Manager : TimedGameMode
             newPlayer._maxVelocity += assassinSpeedIncrease;
             uiManager.AddPlayerLivesText(newPlayer);
         }
+
+        SetSpawnPosition(newPlayer);
     }
 }

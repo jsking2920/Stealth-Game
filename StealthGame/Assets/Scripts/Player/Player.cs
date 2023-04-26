@@ -136,7 +136,7 @@ public class Player : MonoBehaviour
         _spriteRenderer.enabled = true;
         _aiRb.enabled = true;
         _sensor.SetActive(true);
-        GameModeManager.S.SetSpawnPosition(_transform);
+        GameModeManager.S.SetRepawnPosition(this);
     }
 
     public void RandomizeColor()
