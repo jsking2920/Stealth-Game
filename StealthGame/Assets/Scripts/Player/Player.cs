@@ -125,8 +125,8 @@ public class Player : MonoBehaviour
         }
         AudioManager.S.PlayExplosion();
         StartCoroutine(GameModeManager.S.uiManager.FlashScoreCo(
-            GameModeManager.S.uiManager.teamTexts[playerIndex], 
-            GameModeManager.S.uiManager.teamImages[playerIndex]));
+            GameModeManager.S.uiManager.teamTexts[teamIndex], 
+            GameModeManager.S.uiManager.teamImages[teamIndex]));
     }
     
     private IEnumerator RespawnCo()
