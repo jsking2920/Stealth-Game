@@ -161,6 +161,21 @@ public class UIManager : MonoBehaviour
         timerText.text = string.Format("{0:0}:{1:00}", minutes, seconds);
     }
 
+    public void AnimateScore(int teamIndex)
+    {
+        StartCoroutine(Co_AnimateScore(teamTexts[teamIndex], teamImages[teamIndex]));
+    }
+
+    private IEnumerator Co_AnimateScore(TextMeshProUGUI t, Image i)
+    {
+        Vector3 originalScale = t.transform.localScale;
+        t.transform.localScale = new Vector3(1.35f, 1.35f, 1.0f);
+        i.transform.localScale = new Vector3(1.35f, 1.35f, 1.0f);
+        yield return new WaitForSeconds(1.0f);
+        t.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        i.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+    }
+
     #region Button Callbacks 
     public void btn_TogglePause()
     {
