@@ -28,6 +28,7 @@ public class GameModeManager : MonoBehaviour
     [HideInInspector] public SceneManager sceneManager;
     [HideInInspector] public ColorManager colorManager;
     [HideInInspector] public ArenaManager arenaManager;
+    [HideInInspector] public AudioManager audioManager;
     // TODO: Implement different arenas
     // [HideInInspector] public GameObject arenaPrefab;
 
@@ -54,6 +55,7 @@ public class GameModeManager : MonoBehaviour
         sceneManager = FindObjectOfType<SceneManager>();
         colorManager = FindObjectOfType<ColorManager>();
         arenaManager = FindObjectOfType<ArenaManager>();
+        audioManager = FindObjectOfType<AudioManager>();
         
         if (!uiManager || !inputManager || !npcManager || !sceneManager || !colorManager)
         {
@@ -71,6 +73,8 @@ public class GameModeManager : MonoBehaviour
         inputManager.EnableJoining();
 
         arenaManager.InitializeArena();
+
+        audioManager.PlayGameMusic();
     }
     
     protected virtual void Update()
@@ -166,6 +170,7 @@ public class GameModeManager : MonoBehaviour
     {
         if (winningTeam != null) winningTeam.DestroyPlayers();
         Time.timeScale = 1.0f;
+        audioManager.PlayMenuMusic();
         sceneManager.ToMenu();
     }
 

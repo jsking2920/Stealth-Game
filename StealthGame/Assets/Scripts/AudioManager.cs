@@ -12,6 +12,10 @@ public class AudioManager : MonoBehaviour
 
     private AudioSource source;
 
+    [SerializeField] private AudioClip menuMusic;
+    [SerializeField] private AudioClip gameMusic;
+    [SerializeField] private AudioSource backgroundMusicSource;
+
     private void Awake()
     {
         if (S != null)
@@ -28,6 +32,24 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         source = GetComponent<AudioSource>();
+
+        backgroundMusicSource.loop = true;
+        backgroundMusicSource.clip = menuMusic;
+        backgroundMusicSource.Play();
+    }
+
+    public void PlayGameMusic()
+    {
+        backgroundMusicSource.Stop();
+        backgroundMusicSource.clip = gameMusic;
+        backgroundMusicSource.Play();
+    }
+
+    public void PlayMenuMusic()
+    {
+        backgroundMusicSource.Stop();
+        backgroundMusicSource.clip = menuMusic;
+        backgroundMusicSource.Play();
     }
 
     public void PlayExplosion()
