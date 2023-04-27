@@ -13,22 +13,30 @@ MonoBehaviour:
   m_Name: Default
   m_EditorClassIdentifier: 
   teamAppearances:
-  - color: {r: 0.25882354, g: 0.34509805, b: 1, a: 1}
-    sprite: {fileID: 21300000, guid: 648c2456aad63304b80a9ba52e91aaab, type: 3}
-  - color: {r: 1, g: 0.25882354, b: 0.25882354, a: 1}
-    sprite: {fileID: 21300000, guid: cc1df749708ada9468277aa2e0b96889, type: 3}
-  - color: {r: 0.23137255, g: 1, b: 0.9647059, a: 1}
-    sprite: {fileID: 21300000, guid: e1455b411edf26f41a9fc5248e9ec658, type: 3}
-  - color: {r: 0.13333334, g: 0.9254902, b: 0.20392157, a: 1}
-    sprite: {fileID: 21300000, guid: f25538e670e34984aaf4ffe938247ed8, type: 3}
   - color: {r: 0.79607844, g: 1, b: 0.19215687, a: 1}
+    colorName: Yellow
     sprite: {fileID: 21300000, guid: a8cd9efabbf2041fda2e2659cecfc843, type: 3}
-  - color: {r: 1, g: 0.25882354, b: 0.69803923, a: 1}
-    sprite: {fileID: 21300000, guid: cb55b103facb949ee8cbd58ba7c4cf1f, type: 3}
+  - color: {r: 1, g: 0.25882354, b: 0.25882354, a: 1}
+    colorName: Red
+    sprite: {fileID: 21300000, guid: cc1df749708ada9468277aa2e0b96889, type: 3}
+  - color: {r: 0.13333334, g: 0.9254902, b: 0.20392157, a: 1}
+    colorName: Green
+    sprite: {fileID: 21300000, guid: f25538e670e34984aaf4ffe938247ed8, type: 3}
   - color: {r: 0.7844383, g: 0.30588233, b: 1, a: 1}
+    colorName: Purple
     sprite: {fileID: 21300000, guid: a2cc50d900ea84b31bde1b6f675bfc89, type: 3}
+  - color: {r: 0.23137255, g: 1, b: 0.9647059, a: 1}
+    colorName: Cyan
+    sprite: {fileID: 21300000, guid: e1455b411edf26f41a9fc5248e9ec658, type: 3}
+  - color: {r: 0.25882354, g: 0.34509805, b: 1, a: 1}
+    colorName: Blue
+    sprite: {fileID: 21300000, guid: 648c2456aad63304b80a9ba52e91aaab, type: 3}
   - color: {r: 1, g: 0.5989303, b: 0, a: 1}
+    colorName: Orange
     sprite: {fileID: 21300000, guid: a08233dc150574821b26edbfce8b6049, type: 3}
+  - color: {r: 1, g: 0.25882354, b: 0.69803923, a: 1}
+    colorName: Pink
+    sprite: {fileID: 21300000, guid: cb55b103facb949ee8cbd58ba7c4cf1f, type: 3}
   playerAppearances: []
   npcColors:
   - {r: 0.25943398, g: 0.34543514, b: 1, a: 1}
