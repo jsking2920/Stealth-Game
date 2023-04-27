@@ -1,10 +1,7 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityMovementAI;
-using Random = UnityEngine.Random;
 
 public class Player : MonoBehaviour
 {
@@ -124,7 +121,22 @@ public class Player : MonoBehaviour
             transform.position = new Vector3(1000, 1000, 1000);
         }
         AudioManager.S.PlayExplosion();
+
+        // Rumble
+        Gamepad gamepad = _playerInput.GetDevice<Gamepad>();
+        if (gamepad != null)
+        {
+            StartCoroutine(RumbleCo(gamepad));
+        }
+
         StartCoroutine(GameModeManager.S.uiManager.FlashScoreCo(teamIndex));
+    }
+
+    private IEnumerator RumbleCo(Gamepad g)
+    {
+        g.SetMotorSpeeds(0.6f, 0.6f);
+        yield return new WaitForSeconds(0.8f);
+        g.SetMotorSpeeds(0.0f, 0.0f);
     }
     
     private IEnumerator RespawnCo()
