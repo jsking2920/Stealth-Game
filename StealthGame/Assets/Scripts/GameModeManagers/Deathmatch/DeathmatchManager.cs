@@ -48,6 +48,8 @@ public class DeathmatchManager : TimedGameMode
     {
         teams[killer.teamIndex].intScore = Mathf.Clamp(teams[killer.teamIndex].intScore - npcKillPenalty, 0, 10000);
         uiManager.UpdateTeamScore(killer.teamIndex, teams[killer.teamIndex].intScore.ToString());
+        
+        killer.PlayScoreFeedback(npcKillPenalty, false);
 
         base.OnPlayerKilledNPC(killer, npc);
     }
@@ -63,10 +65,14 @@ public class DeathmatchManager : TimedGameMode
         {
             // team kill
             killerTeam.intScore = Mathf.Clamp(killerTeam.intScore - teamKillPenalty, 0, 10000);
+            
+            killer.PlayScoreFeedback(teamKillPenalty, false);
         }
         else
         {
             killerTeam.intScore += killValue;
+            
+            killer.PlayScoreFeedback(killValue, true);
         }
         uiManager.UpdateTeamScore(killer.teamIndex, teams[killer.teamIndex].intScore.ToString());
     }

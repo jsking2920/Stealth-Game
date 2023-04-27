@@ -1,4 +1,7 @@
 using System.Collections;
+using System.Net.Sockets;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityMovementAI;
@@ -13,6 +16,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject _sensor;
     [SerializeField] private PlayerKnife _knife;
     [SerializeField] private GameObject _knifeParentObject;
+    [SerializeField] private GameObject scoreTextObject;
 
     [SerializeField] private GameObject explosionPrefab;
 
@@ -187,5 +191,30 @@ public class Player : MonoBehaviour
         ps.Play();
         Destroy(ps.gameObject, main.duration + 1.0f);
         AudioManager.S.PlayExplosion();
+    }
+
+    public void PlayScoreFeedback(int score, bool isPositive)
+    {
+        StartCoroutine(ScoreFeedbackCo(score, isPositive));
+    }
+
+    private IEnumerator ScoreFeedbackCo(int score, bool isPositive)
+    {
+        if (isPositive)
+        {
+            scoreTextObject.GetComponent<TextMeshProUGUI>().text = "+" + score;
+            scoreTextObject.GetComponent<TextMeshProUGUI>().color = new Color(0, 255, 15, 255);
+        }
+        else
+        {
+            scoreTextObject.GetComponent<TextMeshProUGUI>().text = "-" + score;
+            scoreTextObject.GetComponent<TextMeshProUGUI>().color = new Color(255, 87, 0, 255);
+        }
+
+        scoreTextObject.SetActive(true);
+        scoreTextObject.GetComponent<Animator>().SetTrigger("OnKill");
+
+        yield return new WaitForSeconds(1f);
+        scoreTextObject.SetActive(false);
     }
 }
