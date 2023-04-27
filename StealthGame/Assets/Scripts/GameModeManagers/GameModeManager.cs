@@ -17,7 +17,7 @@ public class GameModeManager : MonoBehaviour
     public List<string> startGameMessages; // one selected at random
     public String _name;
     public List<String> scoringRules;
-    public List<bool> ruleIsGood;// true = green, false = red
+    public List<bool> ruleIsGood; // true = green, false = red
 
     public float playerRespawnTime = 3.0f;
     

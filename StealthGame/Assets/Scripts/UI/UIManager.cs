@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
     
     [SerializeField] private GameObject endGamePanelButtons;
     [SerializeField] private TextMeshProUGUI endGameMessage;
+    public float timeBeforeEndScreen = 3f;
     
     [SerializeField] private Image blackScreen; // used for fade to black/cuts
     [SerializeField] private GameObject lobbyPanel;
@@ -81,7 +82,7 @@ public class UIManager : MonoBehaviour
 
         endGameMessage.text = message;
         endGameMessage.enabled = true;
-        StartCoroutine(ShowEndPanelCo(3f));
+        StartCoroutine(ShowEndPanelCo(timeBeforeEndScreen));
     }
 
     IEnumerator ShowEndPanelCo(float seconds)

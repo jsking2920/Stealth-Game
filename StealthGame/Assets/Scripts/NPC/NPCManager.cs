@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using System.Collections.Generic;
 using UnityMovementAI;
 using Random = UnityEngine.Random;
@@ -66,10 +67,17 @@ public class NPCManager : MonoBehaviour
     {
         foreach (MovementAIRigidbody npc in npcs)
         {
-            playerAlive.PlayExplosionNPC(npc.transform.position, npc.GetComponent<SpriteRenderer>().color);
-            Destroy(npc.gameObject);
+            StartCoroutine(DestroyNPCWithDelay(playerAlive, npc));
         }
         npcs.Clear();
+    }
+
+    IEnumerator DestroyNPCWithDelay(Player playerAlive, MovementAIRigidbody npc)
+    {
+        float rand = Random.Range(0, GameModeManager.S.uiManager.timeBeforeEndScreen);
+        yield return new WaitForSeconds(rand);
+        playerAlive.PlayExplosionNPC(npc.transform.position, npc.GetComponent<SpriteRenderer>().color);
+        Destroy(npc.gameObject);
     }
 
     public bool TryToCreateObject()

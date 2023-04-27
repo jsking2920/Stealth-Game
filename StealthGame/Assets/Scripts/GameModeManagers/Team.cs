@@ -1,9 +1,10 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [System.Serializable]
-public class Team
+public class Team : MonoBehaviour
 {
     public int index; // Needs to be unique, and increment up from 0, set on team creation
     public int playerIndex;
@@ -65,9 +66,16 @@ public class Team
         }
         foreach (Player p in players)
         {
-            p.PlayExplosionSelf();
-            GameObject.Destroy(p.gameObject);
+            StartCoroutine(DestroyPlayerWithDelay(p));
         }
         players.Clear();
+    }
+
+    IEnumerator DestroyPlayerWithDelay(Player p)
+    {
+        float rand = Random.Range(0, GameModeManager.S.uiManager.timeBeforeEndScreen);
+        yield return new WaitForSeconds(rand);
+        p.PlayExplosionSelf();
+        Destroy(p.gameObject);
     }
 }
