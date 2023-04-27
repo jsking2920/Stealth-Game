@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject _sensor;
     [SerializeField] private PlayerKnife _knife;
     [SerializeField] private GameObject _knifeParentObject;
-    [SerializeField] private GameObject scoreTextObject;
+    [SerializeField] private GameObject scoreTextPrefab;
 
     [SerializeField] private GameObject explosionPrefab;
 
@@ -193,28 +193,28 @@ public class Player : MonoBehaviour
         AudioManager.S.PlayExplosion();
     }
 
-    public void PlayScoreFeedback(int score, bool isPositive)
+    public void PlayScoreFeedback(Vector3 location, int score, bool isPositive)
     {
-        StartCoroutine(ScoreFeedbackCo(score, isPositive));
+        GameObject scoreChange = Instantiate(scoreTextPrefab, location, Quaternion.identity);
+        StartCoroutine(ScoreFeedbackCo(scoreChange, score, isPositive));
     }
 
-    private IEnumerator ScoreFeedbackCo(int score, bool isPositive)
+    private IEnumerator ScoreFeedbackCo(GameObject scoreTextObject, int score, bool isPositive)
     {
         if (isPositive)
         {
-            scoreTextObject.GetComponent<TextMeshProUGUI>().text = "+" + score;
-            scoreTextObject.GetComponent<TextMeshProUGUI>().color = new Color(0, 255, 15, 255);
+            scoreTextObject.GetComponentInChildren<TextMeshProUGUI>().text = "+" + score;
+            scoreTextObject.GetComponentInChildren<TextMeshProUGUI>().color = new Color32(0, 255, 15, 255);
         }
         else
         {
-            scoreTextObject.GetComponent<TextMeshProUGUI>().text = "-" + score;
-            scoreTextObject.GetComponent<TextMeshProUGUI>().color = new Color(255, 87, 0, 255);
+            scoreTextObject.GetComponentInChildren<TextMeshProUGUI>().text = "-" + score;
+            scoreTextObject.GetComponentInChildren<TextMeshProUGUI>().color = new Color32(255, 87, 0, 255);
         }
 
-        scoreTextObject.SetActive(true);
-        scoreTextObject.GetComponent<Animator>().SetTrigger("OnKill");
+        scoreTextObject.GetComponentInChildren<Animator>().SetTrigger("OnKill");
 
-        yield return new WaitForSeconds(1f);
-        scoreTextObject.SetActive(false);
+        yield return new WaitForSeconds(2f);
+        Destroy(scoreTextObject);
     }
 }
