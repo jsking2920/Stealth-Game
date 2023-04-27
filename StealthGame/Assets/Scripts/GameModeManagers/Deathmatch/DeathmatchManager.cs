@@ -62,8 +62,12 @@ public class DeathmatchManager : TimedGameMode
             killerTeam.intScore += killValue;
         }
         uiManager.UpdateTeamScore(killer.teamIndex, teams[killer.teamIndex].intScore.ToString());
-        
-        RandomizeColorForFFA(victim);
+    }
+
+    public override void OnRespawn(Player p)
+    {
+        base.OnRespawn(p);
+        RandomizeColorForFFA(p);
     }
 
     public void RandomizeColorForFFA(Player player)
@@ -74,6 +78,7 @@ public class DeathmatchManager : TimedGameMode
             int rand = Random.Range(0, colors.Count);
             player.SetColor(colors[rand]);
             uiManager.teamTexts[player.teamIndex].color = colors[rand];
+            uiManager.teamImages[player.teamIndex].color = colors[rand];
         }
     }
 }
