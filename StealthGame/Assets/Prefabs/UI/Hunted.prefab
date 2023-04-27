@@ -151,18 +151,26 @@ PrefabInstance:
       value: Hunted players win by surviving until the end. The hunters work together
         to find and stab them without killing AI ships or eachother.
       objectReference: {fileID: 0}
+    - target: {fileID: 290009002206891146, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: abb68c36ddff5064d856e8554de9e64b, type: 3}
     - target: {fileID: 290009002920547466, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 290009002920547466, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: btn_PlayGame
+      value: PlayButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 290009002920547466, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MainMenuManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 290009002920547466, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 2331715074053790893, guid: 2a3e67a0c60e79e459249aee32414636, type: 3}
+      objectReference: {fileID: 1991438190750315367, guid: 179acad1e24194e69b27e73d5f3ee21e, type: 3}
     - target: {fileID: 290009002920547467, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 24.206055
@@ -201,7 +209,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 290009003341301064, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 290009003341301067, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
       propertyPath: m_Pivot.x

@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Default
   m_EditorClassIdentifier: 
   teamAppearances:
-  - color: {r: 0.89666224, g: 1, b: 0.19215685, a: 1}
+  - color: {r: 0.995508, g: 1, b: 0.135849, a: 1}
     colorName: Yellow
     sprite: {fileID: 21300000, guid: a8cd9efabbf2041fda2e2659cecfc843, type: 3}
-  - color: {r: 1, g: 0.25882354, b: 0.25882354, a: 1}
+  - color: {r: 0.990566, g: 0.1812922, b: 0.1812922, a: 1}
     colorName: Red
     sprite: {fileID: 21300000, guid: cc1df749708ada9468277aa2e0b96889, type: 3}
   - color: {r: 0.13333334, g: 0.9254902, b: 0.20392157, a: 1}
@@ -34,17 +34,17 @@ MonoBehaviour:
   - color: {r: 1, g: 0.5989303, b: 0, a: 1}
     colorName: Orange
     sprite: {fileID: 21300000, guid: a08233dc150574821b26edbfce8b6049, type: 3}
-  - color: {r: 0.9811321, g: 0.48501244, b: 0.8812217, a: 1}
+  - color: {r: 1, g: 0.44716978, b: 0.85203123, a: 1}
     colorName: Pink
     sprite: {fileID: 21300000, guid: cb55b103facb949ee8cbd58ba7c4cf1f, type: 3}
   playerAppearances: []
   npcColors:
   - {r: 0.25943398, g: 0.34543514, b: 1, a: 1}
-  - {r: 1, g: 0.25943398, b: 0.25943398, a: 1}
+  - {r: 0.99215686, g: 0.18039216, b: 0.18039216, a: 1}
   - {r: 0.13519046, g: 0.9245283, b: 0.20214286, a: 1}
-  - {r: 0.98039216, g: 0.4862745, b: 0.88235295, a: 1}
+  - {r: 1, g: 0.44705883, b: 0.8509804, a: 1}
   - {r: 0.23113209, g: 1, b: 0.9631359, a: 1}
-  - {r: 0.8980392, g: 1, b: 0.19215687, a: 1}
+  - {r: 0.99607843, g: 1, b: 0.13725491, a: 1}
   - {r: 0.627451, g: 0.105882354, b: 1, a: 1}
   - {r: 1, g: 0.6, b: 0, a: 1}
   npcSprites:
