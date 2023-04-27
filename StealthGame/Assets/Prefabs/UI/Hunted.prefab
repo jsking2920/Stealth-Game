@@ -149,7 +149,7 @@ PrefabInstance:
     - target: {fileID: 290009001855529645, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
       propertyPath: m_text
       value: Hunted players win by surviving until the end. The hunters work together
-        to find and stab them without killing AI ships or eachother.
+        to find and stab them without killing AI ships or eachother. (3-4 Players)
       objectReference: {fileID: 0}
     - target: {fileID: 290009002206891146, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
       propertyPath: m_Sprite
@@ -217,7 +217,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 290009003162204702, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 290009003341301064, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
       propertyPath: m_Name
@@ -225,7 +225,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 290009003341301064, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 290009003341301067, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
       propertyPath: m_Pivot.x

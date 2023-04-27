@@ -80,10 +80,13 @@ public class AssassinManager : TimedGameMode
         if (npc.gameObject == curTarget.gameObject)
         {
             teams[killer.teamIndex].intScore += assassinationValue;
+            killer.PlayScoreFeedback(npc.gameObject.transform.position, assassinationValue, true);
         }   
         else
         {
             teams[killer.teamIndex].intScore = Mathf.Clamp(teams[killer.teamIndex].intScore - npcKillPenalty, 0, 10000);
+            killer.PlayScoreFeedback(npc.gameObject.transform.position, npcKillPenalty, false);
+
             killer.OnStabbed(null); // killing wrong target forces you to respawn
         }
 
@@ -103,10 +106,12 @@ public class AssassinManager : TimedGameMode
         {
             // team kill
             killerTeam.intScore = Mathf.Clamp(killerTeam.intScore - teamKillPenalty, 0, 10000);
+            killer.PlayScoreFeedback(victim.gameObject.transform.position, teamKillPenalty, false);
         }
         else
         {
             killerTeam.intScore += playerKillValue;
+            killer.PlayScoreFeedback(victim.gameObject.transform.position, playerKillValue, true);
         }
         uiManager.UpdateTeamScore(killer.teamIndex, teams[killer.teamIndex].intScore.ToString());
     }
