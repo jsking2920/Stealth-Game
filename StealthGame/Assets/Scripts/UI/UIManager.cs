@@ -89,6 +89,7 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(3f);
         endGamePanelButtons.SetActive(true);
         endGamePanelButtons.transform.GetChild(0).GetComponent<Button>().Select();
+        Time.timeScale = 0f;
     }
 
     public void OnGameStart(string message)
