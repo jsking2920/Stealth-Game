@@ -33,7 +33,7 @@ public class GameModeManager : MonoBehaviour
     // [HideInInspector] public GameObject arenaPrefab;
 
     public List<Team> teams = new List<Team>();
-    private Team winningTeam = null;
+    private List<Team> winningTeam = null;
     [HideInInspector] public bool playerInteractionEnabled = false;
 
     [HideInInspector] public enum GameState { joining, playing, paused, ended }
@@ -119,11 +119,17 @@ public class GameModeManager : MonoBehaviour
         gameState = GameState.ended;
         winningTeam = GetWinningTeam();
 
-        npcManager.DestroyNPCs(winningTeam.players[0]);
+        npcManager.DestroyNPCs(winningTeam[0].players[0]);
 
         foreach (Team team in teams)
         {
-            if (team.index != winningTeam.index)
+            bool won = false;
+            foreach (Team winner in winningTeam)
+            {
+                if (team.index == winner.index)
+                    won = true;
+            }
+            if (!won)
             {
                 team.DestroyPlayers();
             }
@@ -137,11 +143,14 @@ public class GameModeManager : MonoBehaviour
         string winningColorName = "";
         foreach (ColorData.PlayerAppearance colorData in colorManager.currentColorProfile.teamAppearances)
         {
-            if (colorData.color == winningTeam.teamColor)
+            if (colorData.color == winningTeam[0].teamColor)
             {
                 winningColorName = colorData.colorName;
             }
         }
+
+        if (winningTeam.Count > 1)
+            return "Draw!";
         return winningColorName + " Wins!";
     }
 
@@ -163,14 +172,22 @@ public class GameModeManager : MonoBehaviour
 
     public void RestartGame()
     {
-        if (winningTeam != null) winningTeam.DestroyPlayers();
+        if (winningTeam != null)
+        {
+            foreach (Team team in winningTeam)
+                team.DestroyPlayers();
+        }
         Time.timeScale = 1.0f;
         sceneManager.btn_RestartGame();
     }
 
     public void QuitToMenu()
     {
-        if (winningTeam != null) winningTeam.DestroyPlayers();
+        if (winningTeam != null)
+        {
+            foreach (Team team in winningTeam)
+                team.DestroyPlayers();
+        }
         Time.timeScale = 1.0f;
         audioManager.PlayMenuMusic();
         sceneManager.ToMenu();
@@ -186,7 +203,7 @@ public class GameModeManager : MonoBehaviour
         return false;
     }
 
-    protected virtual Team GetWinningTeam()
+    protected virtual List<Team> GetWinningTeam()
     {
         return null;
     }

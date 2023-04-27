@@ -39,17 +39,22 @@ public class AssassinV2Manager : TimedGameMode
 
     protected override string GetWinMessage()
     {
-        return GetWinningTeam().index == 0 ? "Victims Win!" : "Assassins Win!";
+        return GetWinningTeam()[0].index == 0 ? "Victims Win!" : "Assassins Win!";
     }
 
-    protected override Team GetWinningTeam()
+    protected override List<Team> GetWinningTeam()
     {
+        List<Team> winners = new List<Team>();
         //if team 0 is all dead, team 1 wins 
         //if team 0 is not all dead, team 0 wins, 
-        
+
         if (CheckIfThereArePlayersLeft(teams[0]))
-            return teams[0]; 
-        return teams[1];
+        {
+            winners.Add(teams[0]);
+            return winners;
+        }
+        winners.Add(teams[1]);
+        return winners;
     }
 
     protected override bool CheckEndCondition()

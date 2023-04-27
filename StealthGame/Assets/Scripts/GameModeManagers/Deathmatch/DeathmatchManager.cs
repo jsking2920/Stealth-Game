@@ -19,12 +19,13 @@ public class DeathmatchManager : TimedGameMode
 
     protected override string GetWinMessage()
     {
-        return base.GetWinMessage() + "\n" + GetWinningTeam().intScore + " Kills";
+        return base.GetWinMessage() + "\n" + GetWinningTeam()[0].intScore + " Kills";
     }
 
-    protected override Team GetWinningTeam()
+    protected override List<Team> GetWinningTeam()
     {
         Team winningTeam = teams[0];
+        List<Team> winningTeams = new List<Team>();
 
         foreach (Team team in teams)
         {
@@ -34,7 +35,13 @@ public class DeathmatchManager : TimedGameMode
             }
         }
 
-        return winningTeam;
+        foreach (Team team in teams)
+        {
+            if (team.intScore == winningTeam.intScore)
+                winningTeams.Add(team);
+        }
+
+        return winningTeams;
     }
 
     public override void OnPlayerKilledNPC(Player killer, MovementAIRigidbody npc)
