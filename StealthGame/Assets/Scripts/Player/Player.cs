@@ -124,9 +124,7 @@ public class Player : MonoBehaviour
             transform.position = new Vector3(1000, 1000, 1000);
         }
         AudioManager.S.PlayExplosion();
-        StartCoroutine(GameModeManager.S.uiManager.FlashScoreCo(
-            GameModeManager.S.uiManager.teamTexts[teamIndex], 
-            GameModeManager.S.uiManager.teamImages[teamIndex]));
+        StartCoroutine(GameModeManager.S.uiManager.FlashScoreCo(teamIndex));
     }
     
     private IEnumerator RespawnCo()
