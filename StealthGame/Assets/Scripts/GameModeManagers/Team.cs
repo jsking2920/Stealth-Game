@@ -66,7 +66,8 @@ public class Team : MonoBehaviour
         }
         foreach (Player p in players)
         {
-            StartCoroutine(DestroyPlayerWithDelay(p));
+            p.PlayExplosionSelf();
+            Destroy(p.gameObject);
         }
         players.Clear();
     }

@@ -32,7 +32,7 @@ public class GameModeManager : MonoBehaviour
     // TODO: Implement different arenas
     // [HideInInspector] public GameObject arenaPrefab;
 
-    [HideInInspector] public List<Team> teams = new List<Team>();
+    public List<Team> teams = new List<Team>();
     private Team winningTeam = null;
     [HideInInspector] public bool playerInteractionEnabled = false;
 
@@ -123,7 +123,7 @@ public class GameModeManager : MonoBehaviour
 
         foreach (Team team in teams)
         {
-            if (winningTeam != null && team.index != winningTeam.index)
+            if (team.index != winningTeam.index)
             {
                 team.DestroyPlayers();
             }
