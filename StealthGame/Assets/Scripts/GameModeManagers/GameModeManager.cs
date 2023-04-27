@@ -141,7 +141,22 @@ public class GameModeManager : MonoBehaviour
 
     protected virtual string GetWinMessage()
     {
-        return "You Win!";
+        Color winningColor = Color.white;
+        foreach (Team team in teams)
+        {
+            if (team.players.Count > 0)
+                winningColor = team.teamColor;
+        }
+
+        string winningColorName = "";
+        foreach (ColorData.PlayerAppearance colorData in colorManager.currentColorProfile.teamAppearances)
+        {
+            if (colorData.color == winningColor)
+            {
+                winningColorName = colorData.colorName;
+            }
+        }
+        return winningColorName + " Wins!";
     }
 
     public void TogglePause()

@@ -26,7 +26,8 @@ public class ColorData : ScriptableObject
     public class PlayerAppearance
     {
         public Color color;
-        public Sprite sprite; 
+        public string colorName;
+        public Sprite sprite;
     }
     
     public List<PlayerAppearance> teamAppearances;

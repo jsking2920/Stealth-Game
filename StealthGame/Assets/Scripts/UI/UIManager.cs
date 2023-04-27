@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private Button resumeButton;
     [SerializeField] private GameObject endGamePanel;
+    [SerializeField] private TextMeshProUGUI endGameMessage;
     [SerializeField] private Image blackScreen; // used for fade to black/cuts
     [SerializeField] private GameObject lobbyPanel;
 
@@ -72,10 +73,11 @@ public class UIManager : MonoBehaviour
     // TODO: rethink win screen UI
     public void OnGameEnd(string message = "You Win")
     {
-        centerScreenMessage.text = message;
-        centerScreenMessage.gameObject.SetActive(true);
+        // centerScreenMessage.text = message;
+        // centerScreenMessage.gameObject.SetActive(true);
         timerText.gameObject.SetActive(false);
 
+        endGameMessage.text = message;
         endGamePanel.SetActive(true);
     }
 
