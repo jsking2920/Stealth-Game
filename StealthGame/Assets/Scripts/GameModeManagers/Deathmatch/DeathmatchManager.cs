@@ -19,7 +19,7 @@ public class DeathmatchManager : TimedGameMode
 
     protected override string GetWinMessage()
     {
-        return base.GetWinMessage() + "\n" + GetWinningTeam()[0].intScore + " Kills";
+        return base.GetWinMessage() + "\n" + "Score: " + GetWinningTeam()[0].intScore;
     }
 
     protected override List<Team> GetWinningTeam()
