@@ -66,7 +66,10 @@ public class Player : MonoBehaviour
         }
         else if (context.action.name == _actionMap.Player.A.name)
         {
-            GameModeManager.S.uiManager.AnimateScore(teamIndex);
+            if (GameModeManager.S.gameState == GameModeManager.GameState.playing)
+            {
+                GameModeManager.S.uiManager.AnimateScore(teamIndex);
+            }
         }
         else if (context.action.name == _actionMap.Player.Pause.name && context.performed)
         {
