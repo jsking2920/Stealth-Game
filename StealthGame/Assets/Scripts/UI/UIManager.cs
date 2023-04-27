@@ -14,8 +14,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private Button resumeButton;
-    [SerializeField] private GameObject endGamePanel;
+    
+    [SerializeField] private GameObject endGamePanelButtons;
     [SerializeField] private TextMeshProUGUI endGameMessage;
+    
     [SerializeField] private Image blackScreen; // used for fade to black/cuts
     [SerializeField] private GameObject lobbyPanel;
 
@@ -36,7 +38,8 @@ public class UIManager : MonoBehaviour
         blackScreen.gameObject.SetActive(false);
         timerText.gameObject.SetActive(false);
         pausePanel.SetActive(false);
-        endGamePanel.SetActive(false);
+        endGameMessage.enabled = false;
+        endGamePanelButtons.SetActive(false);
 
         centerScreenMessage.gameObject.SetActive(false);
         centerScreenMessage.text = "Press Space To Start";
@@ -77,7 +80,15 @@ public class UIManager : MonoBehaviour
         timerText.gameObject.SetActive(false);
 
         endGameMessage.text = message;
-        endGamePanel.SetActive(true);
+        endGameMessage.enabled = true;
+        StartCoroutine(ShowEndPanelCo(3f));
+    }
+
+    IEnumerator ShowEndPanelCo(float seconds)
+    {
+        yield return new WaitForSeconds(3f);
+        endGamePanelButtons.SetActive(true);
+        endGamePanelButtons.transform.GetChild(0).GetComponent<Button>().Select();
     }
 
     public void OnGameStart(string message)
