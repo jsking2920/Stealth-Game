@@ -8,8 +8,7 @@ public class UIManager : MonoBehaviour
 {
     public TextMeshProUGUI[] teamTexts; // need to have as many of these as there can be teams
     public Image[] teamImages;
-    [SerializeField] private int scoreFlashCount = 6;
-    [SerializeField] private float scoreFlashInterval = 0.1f;
+    private int scoreFlashCount = 12;
 
     [SerializeField] private TextMeshProUGUI centerScreenMessage;
     [SerializeField] private TextMeshProUGUI timerText;
@@ -127,12 +126,14 @@ public class UIManager : MonoBehaviour
     public IEnumerator FlashScoreCo(int teamIndex)
     {
         Image circle = teamImages[teamIndex];
-        Color c = circle.color;
-        for (int i = 0; i < scoreFlashCount; i++)
+        float interval = GameModeManager.S.playerRespawnTime / (scoreFlashCount * 2);
+
+        for (int i = 0; i < scoreFlashCount - 1; i++)
         {
-            circle.color = Color.clear;
-            yield return new WaitForSeconds(scoreFlashInterval);
-            circle.color = c;
+            circle.enabled = false;
+            yield return new WaitForSeconds(interval);
+            circle.enabled = true;
+            yield return new WaitForSeconds(interval);
         }
     }
     
