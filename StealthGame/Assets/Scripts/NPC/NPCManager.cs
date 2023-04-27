@@ -62,10 +62,11 @@ public class NPCManager : MonoBehaviour
         }
     }
 
-    public void DestroyNPCs()
+    public void DestroyNPCs(Player playerAlive)
     {
         foreach (MovementAIRigidbody npc in npcs)
         {
+            playerAlive.PlayExplosionNPC(npc.transform.position, npc.GetComponent<SpriteRenderer>().color);
             Destroy(npc.gameObject);
         }
         npcs.Clear();

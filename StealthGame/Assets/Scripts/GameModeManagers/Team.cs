@@ -65,6 +65,7 @@ public class Team
         }
         foreach (Player p in players)
         {
+            p.PlayExplosionSelf();
             GameObject.Destroy(p.gameObject);
         }
         players.Clear();

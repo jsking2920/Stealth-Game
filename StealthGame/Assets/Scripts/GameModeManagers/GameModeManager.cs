@@ -117,9 +117,10 @@ public class GameModeManager : MonoBehaviour
     protected virtual void EndGame()
     {
         gameState = GameState.ended;
-        npcManager.DestroyNPCs();
-
         winningTeam = GetWinningTeam();
+
+        npcManager.DestroyNPCs(winningTeam.players[0]);
+
         foreach (Team team in teams)
         {
             if (winningTeam != null && team.index != winningTeam.index)
