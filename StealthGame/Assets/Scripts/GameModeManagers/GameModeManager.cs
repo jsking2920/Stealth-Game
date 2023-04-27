@@ -133,17 +133,10 @@ public class GameModeManager : MonoBehaviour
 
     protected virtual string GetWinMessage()
     {
-        Color winningColor = Color.white;
-        foreach (Team team in teams)
-        {
-            if (team.players.Count > 0)
-                winningColor = team.teamColor;
-        }
-
         string winningColorName = "";
         foreach (ColorData.PlayerAppearance colorData in colorManager.currentColorProfile.teamAppearances)
         {
-            if (colorData.color == winningColor)
+            if (colorData.color == winningTeam.teamColor)
             {
                 winningColorName = colorData.colorName;
             }
