@@ -30,10 +30,10 @@ public class AssassinV2Manager : TimedGameMode
     public override void StartGame()
     {
         base.StartGame();
-        List<Player> assassins = teams[1].players;
-        foreach (Player killer in assassins)
+        List<Player> victims = teams[0].players;
+        foreach (Player victim in victims)
         {
-            killer.SetColor(assassinColor);
+            GameModeManager.S.colorManager.SetPlayerAppearance(victim);
         }
     }
 
@@ -59,7 +59,7 @@ public class AssassinV2Manager : TimedGameMode
 
     protected override bool CheckEndCondition()
     {
-        return base.CheckEndCondition() || (teams.Count > 0 && (!CheckIfThereArePlayersLeft(teams[0]) || !CheckIfThereArePlayersLeft(teams[1])));
+        return base.CheckEndCondition() || (teams.Count >= 2 && (!CheckIfThereArePlayersLeft(teams[0]) || !CheckIfThereArePlayersLeft(teams[1])));
     }
 
     public override void OnPlayerKilledNPC(Player killer, MovementAIRigidbody npc)
@@ -67,7 +67,7 @@ public class AssassinV2Manager : TimedGameMode
         killer.lives--;
         killer.OnStabbed(null); // killing wrong target forces you to respawn
 
-        uiManager.UpdateLivesText(killer.playerIndex, (killer.lives + 1).ToString());
+        uiManager.UpdateLivesText(killer.playerIndex, (killer.lives).ToString());
 
         base.OnPlayerKilledNPC(killer, npc);
     }
@@ -113,11 +113,13 @@ public class AssassinV2Manager : TimedGameMode
         {
             newPlayer.canStab = false;
             newPlayer.lives = 1;
+            GameModeManager.S.colorManager.SetLobbyAppearance(newPlayer);
         }
         else
         {
             newPlayer._maxVelocity += assassinSpeedIncrease;
             uiManager.AddPlayerLivesText(newPlayer);
+            newPlayer.SetColor(Color.white);
         }
 
         SetSpawnPosition(newPlayer);

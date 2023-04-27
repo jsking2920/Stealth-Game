@@ -63,7 +63,8 @@ public class ColorManager : MonoBehaviour
 
     public void SetLobbyAppearance(Player player)
     {
-        ColorData.PlayerAppearance reference = teamAppearances[0];
+        int rand = Random.Range(0, teamAppearances.Count);
+        ColorData.PlayerAppearance reference = teamAppearances[rand];
         player.SetColor(Color.gray);
         player.gameObject.GetComponent<SpriteRenderer>().sprite = reference.sprite;
     }
