@@ -126,7 +126,7 @@ public class UIManager : MonoBehaviour
     }
 
     public IEnumerator FlashScoreCo(int teamIndex)
-    {
+    {   
         Image circle = teamImages[teamIndex];
         float interval = GameModeManager.S.playerRespawnTime / (scoreFlashCount * 2);
 
@@ -184,14 +184,47 @@ public class UIManager : MonoBehaviour
         StartCoroutine(Co_AnimateScore(teamTexts[teamIndex], teamImages[teamIndex]));
     }
 
-    private IEnumerator Co_AnimateScore(TextMeshProUGUI t, Image i)
+    private IEnumerator Co_AnimateScore(TextMeshProUGUI t, Image img)
     {
         Vector3 originalScale = t.transform.localScale;
-        t.transform.localScale = new Vector3(1.35f, 1.35f, 1.0f);
-        i.transform.localScale = new Vector3(1.35f, 1.35f, 1.0f);
-        yield return new WaitForSeconds(1.0f);
-        t.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-        i.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        Vector3 targetScale = new Vector3(1.25f, 1.25f, 1.0f);
+
+        float halfDuration = 0.08f;
+        float timer = 0.0f;
+
+        while (timer < halfDuration)
+        {
+            img.transform.localScale = Vector3.Lerp(originalScale, targetScale, Mathf.InverseLerp(0.0f, halfDuration, timer));
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        
+        timer = halfDuration;
+
+        while (timer > 0.0f)
+        {
+            img.transform.localScale = Vector3.Lerp(originalScale, targetScale, Mathf.InverseLerp(0.0f, halfDuration, timer));
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+
+        while (timer < halfDuration)
+        {
+            img.transform.localScale = Vector3.Lerp(originalScale, targetScale, Mathf.InverseLerp(0.0f, halfDuration, timer));
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        timer = halfDuration;
+
+        while (timer > 0.0f)
+        {
+            img.transform.localScale = Vector3.Lerp(originalScale, targetScale, Mathf.InverseLerp(0.0f, halfDuration, timer));
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+
+        img.transform.localScale = originalScale;
     }
 
     #region Button Callbacks 
