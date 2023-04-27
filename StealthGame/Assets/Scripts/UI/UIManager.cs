@@ -17,7 +17,7 @@ public class UIManager : MonoBehaviour
     
     [SerializeField] private GameObject endGamePanelButtons;
     [SerializeField] private TextMeshProUGUI endGameMessage;
-    public float timeBeforeEndScreen = 3f;
+    public float timeBeforeEndScreen = 6f;
     
     [SerializeField] private Image blackScreen; // used for fade to black/cuts
     [SerializeField] private GameObject lobbyPanel;
@@ -79,15 +79,16 @@ public class UIManager : MonoBehaviour
         // centerScreenMessage.text = message;
         // centerScreenMessage.gameObject.SetActive(true);
         timerText.gameObject.SetActive(false);
-
-        endGameMessage.text = message;
-        endGameMessage.enabled = true;
-        StartCoroutine(ShowEndPanelCo(timeBeforeEndScreen));
+        
+        StartCoroutine(ShowEndPanelCo(timeBeforeEndScreen, message));
     }
 
-    IEnumerator ShowEndPanelCo(float seconds)
+    IEnumerator ShowEndPanelCo(float seconds, string message)
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(seconds / 3);
+        endGameMessage.text = message;
+        endGameMessage.enabled = true;
+        yield return new WaitForSeconds(seconds);
         endGamePanelButtons.SetActive(true);
         endGamePanelButtons.transform.GetChild(0).GetComponent<Button>().Select();
         Time.timeScale = 0f;

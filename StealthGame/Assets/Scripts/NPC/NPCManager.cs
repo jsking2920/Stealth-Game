@@ -74,7 +74,7 @@ public class NPCManager : MonoBehaviour
 
     IEnumerator DestroyNPCWithDelay(Player playerAlive, MovementAIRigidbody npc)
     {
-        float rand = Random.Range(0, GameModeManager.S.uiManager.timeBeforeEndScreen);
+        float rand = Random.Range(0, GameModeManager.S.uiManager.timeBeforeEndScreen / 3);
         yield return new WaitForSeconds(rand);
         playerAlive.PlayExplosionNPC(npc.transform.position, npc.GetComponent<SpriteRenderer>().color);
         Destroy(npc.gameObject);

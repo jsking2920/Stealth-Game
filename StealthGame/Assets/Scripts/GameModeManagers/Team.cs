@@ -73,7 +73,7 @@ public class Team : MonoBehaviour
 
     IEnumerator DestroyPlayerWithDelay(Player p)
     {
-        float rand = Random.Range(0, GameModeManager.S.uiManager.timeBeforeEndScreen);
+        float rand = Random.Range(0, GameModeManager.S.uiManager.timeBeforeEndScreen / 3);
         yield return new WaitForSeconds(rand);
         p.PlayExplosionSelf();
         Destroy(p.gameObject);
