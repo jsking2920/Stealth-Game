@@ -117,20 +117,6 @@ public class GameModeManager : MonoBehaviour
     protected virtual void EndGame()
     {
         gameState = GameState.ended;
-        
-        foreach (Team team in teams)
-        {
-            team.DisableAllKnifing();
-        }
-
-        StartCoroutine(WaitBeforeEndingGame());
-    }
-    
-    // ensure that all players have respawned before ending the game
-    IEnumerator WaitBeforeEndingGame()
-    {
-        yield return new WaitForSeconds(playerRespawnTime);
-        
         winningTeam = GetWinningTeam();
 
         npcManager.DestroyNPCs(winningTeam.players[0]);

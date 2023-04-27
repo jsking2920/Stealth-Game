@@ -58,14 +58,6 @@ public class Team : MonoBehaviour
         GameModeManager.S.colorManager.SetPlayerAppearance(p);
     }
 
-    public void DisableAllKnifing()
-    {
-        foreach (Player player in players)
-        {
-            player.canStab = false;
-        }
-    }
-
     public void DestroyPlayers()
     {
         foreach(PlayerInput pi in playerInputs)
