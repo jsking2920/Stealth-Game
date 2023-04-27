@@ -50,7 +50,7 @@ public class AssassinManager : TimedGameMode
 
     protected override string GetWinMessage()
     {
-        return "You Win\n" + GetWinningTeam().intScore;
+        return base.GetWinMessage() + "\n" + GetWinningTeam().intScore + " Kills";
     }
 
     protected override Team GetWinningTeam()
