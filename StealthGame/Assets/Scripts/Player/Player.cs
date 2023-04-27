@@ -123,7 +123,6 @@ public class Player : MonoBehaviour
             _sensor.SetActive(false);
             transform.position = new Vector3(1000, 1000, 1000);
         }
-        AudioManager.S.PlayExplosion();
 
         // Rumble
         Gamepad gamepad = _playerInput.GetDevice<Gamepad>();
@@ -177,6 +176,7 @@ public class Player : MonoBehaviour
         main.startColor = _spriteRenderer.color;
         ps.Play();
         Destroy(ps.gameObject, main.duration + 1.0f);
+        AudioManager.S.PlayExplosion();
     }
 
     public void PlayExplosionNPC(Vector3 pos, Color col)
@@ -186,5 +186,6 @@ public class Player : MonoBehaviour
         main.startColor = col;
         ps.Play();
         Destroy(ps.gameObject, main.duration + 1.0f);
+        AudioManager.S.PlayExplosion();
     }
 }
