@@ -67,7 +67,7 @@ public class AssassinV2Manager : TimedGameMode
 
     protected override string GetWinMessage()
     {
-        return GetWinningTeam()[0].index == 0 ? "Victims Win!" : "Assassins Win!";
+        return GetWinningTeam()[0].index == 0 ? "The Hunted Win!" : "The Hunters Win!";
     }
 
     protected override List<Team> GetWinningTeam()

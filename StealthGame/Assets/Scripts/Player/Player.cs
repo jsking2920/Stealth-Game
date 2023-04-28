@@ -56,6 +56,15 @@ public class Player : MonoBehaviour
         _transform.right = _rb.velocity.normalized;
     }
 
+    private void OnDestroy()
+    {
+        Gamepad gamepad = _playerInput.GetDevice<Gamepad>();
+        if (gamepad != null)
+        {
+            gamepad.SetMotorSpeeds(0.0f, 0.0f);
+        }
+    }
+
     #region Input Handling
 
     private void Input_onActionTriggered(InputAction.CallbackContext context)
