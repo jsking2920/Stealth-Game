@@ -90,6 +90,30 @@ public class AssassinV2Manager : TimedGameMode
         return base.CheckEndCondition() || (teams.Count >= 2 && (!CheckIfThereArePlayersLeft(teams[0]) || !CheckIfThereArePlayersLeft(teams[1])));
     }
 
+    public override void SetSpawnPosition(Player p)
+    {
+        Camera cam = Camera.main;
+        float depth = p.transform.position.z - cam.transform.position.z;
+
+        Vector3 lowerLeft = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, depth)) + new Vector3(3.0f, 3.0f, 0.0f);
+        Vector3 lowerRight = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, depth)) + new Vector3(-3.0f, 3.0f, 0.0f);
+        Vector3 upperLeft = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height, depth)) + new Vector3(3.0f, -3.0f, 0.0f);
+        Vector3 upperRight = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, depth)) + new Vector3(-3.0f, -3.0f, 0.0f);
+
+        switch (p.teamIndex)
+        {
+            case 0:
+                npcManager.RandomizePosition(p.transform);
+                break;
+            case 1:
+                p.transform.position = upperLeft;
+                break;
+            default:
+                npcManager.RandomizePosition(p.transform);
+                break;
+        }
+    }
+
     public override void OnPlayerKilledNPC(Player killer, MovementAIRigidbody npc)
     {
         killer.lives--;
