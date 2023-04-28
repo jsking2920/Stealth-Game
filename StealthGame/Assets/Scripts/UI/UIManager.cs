@@ -175,7 +175,7 @@ public class UIManager : MonoBehaviour
         Image i = teamImages[killersJoined];
         t.color = Color.white;
         i.color = Color.white;
-        t.text = (player.lives + 1).ToString();
+        t.text = (player.lives).ToString();
         t.gameObject.SetActive(true);
         i.gameObject.SetActive(true);
 
