@@ -202,13 +202,14 @@ public class GameModeManager : MonoBehaviour
 
     public void DestroyPlayersInTeam(Team t)
     {
-        foreach (PlayerInput pi in t.playerInputs)
+        for (int i = 0; i < t.playerCount; i++)
         {
-            pi.DeactivateInput();
+            t.players[i].TurnRumbleOff();
+            t.playerInputs[i].DeactivateInput();
+            t.players[i].PlayExplosionSelf();
         }
         foreach (Player p in t.players)
         {
-            p.PlayExplosionSelf();
             Destroy(p.gameObject);
         }
         t.players.Clear();

@@ -58,6 +58,16 @@ public class Player : MonoBehaviour
 
     private void OnDestroy()
     {
+        TurnRumbleOff();
+    }
+
+    private void OnDisable()
+    {
+        TurnRumbleOff();
+    }
+
+    public void TurnRumbleOff()
+    {
         Gamepad gamepad = _playerInput.GetDevice<Gamepad>();
         if (gamepad != null)
         {
