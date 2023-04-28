@@ -46,10 +46,19 @@ public class DeathmatchManager : TimedGameMode
 
     public override void OnPlayerKilledNPC(Player killer, MovementAIRigidbody npc)
     {
-        teams[killer.teamIndex].intScore = Mathf.Clamp(teams[killer.teamIndex].intScore - npcKillPenalty, 0, 10000);
-        uiManager.UpdateTeamScore(killer.teamIndex, teams[killer.teamIndex].intScore.ToString());
-        killer.PlayScoreFeedback(npc.gameObject.transform.position, npcKillPenalty, false);
+        int curScore = teams[killer.teamIndex].intScore;
 
+        if (curScore == 0)
+        {
+            killer.PlayScoreFeedback(npc.gameObject.transform.position, 0, false);
+        }
+        else
+        {
+            teams[killer.teamIndex].intScore = Mathf.Clamp(teams[killer.teamIndex].intScore - npcKillPenalty, 0, 10000);
+            killer.PlayScoreFeedback(npc.gameObject.transform.position, npcKillPenalty, false);
+        }
+        
+        uiManager.UpdateTeamScore(killer.teamIndex, teams[killer.teamIndex].intScore.ToString());
         base.OnPlayerKilledNPC(killer, npc);
     }
 
@@ -62,9 +71,16 @@ public class DeathmatchManager : TimedGameMode
 
         if (killerTeam.index == victimTeam.index)
         {
+            if (teams[killer.teamIndex].intScore == 0)
+            {
+                killer.PlayScoreFeedback(victim.gameObject.transform.position, 0, false);
+            }
+            else
+            {
+                killer.PlayScoreFeedback(victim.gameObject.transform.position, teamKillPenalty, false);
+            }
             // team kill
             killerTeam.intScore = Mathf.Clamp(killerTeam.intScore - teamKillPenalty, 0, 10000);
-            killer.PlayScoreFeedback(victim.gameObject.transform.position, teamKillPenalty, false);
         }
         else
         {

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [System.Serializable]
-public class Team : MonoBehaviour
+public class Team
 {
     public int index; // Needs to be unique, and increment up from 0, set on team creation
     public int playerIndex;
@@ -58,20 +58,7 @@ public class Team : MonoBehaviour
         GameModeManager.S.colorManager.SetPlayerAppearance(p);
     }
 
-    public void DestroyPlayers()
-    {
-        foreach(PlayerInput pi in playerInputs)
-        {
-            pi.DeactivateInput();
-        }
-        foreach (Player p in players)
-        {
-            p.PlayExplosionSelf();
-            Destroy(p.gameObject);
-        }
-        players.Clear();
-    }
-
+    /*
     IEnumerator DestroyPlayerWithDelay(Player p)
     {
         float rand = Random.Range(0, GameModeManager.S.uiManager.timeBeforeEndScreen / 3);
@@ -79,4 +66,5 @@ public class Team : MonoBehaviour
         p.PlayExplosionSelf();
         Destroy(p.gameObject);
     }
+    */
 }

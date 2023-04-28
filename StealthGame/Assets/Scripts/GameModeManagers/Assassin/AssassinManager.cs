@@ -77,6 +77,7 @@ public class AssassinManager : TimedGameMode
 
     public override void OnPlayerKilledNPC(Player killer, MovementAIRigidbody npc)
     {
+        int curScore = teams[killer.teamIndex].intScore;
         if (npc.gameObject == curTarget.gameObject)
         {
             teams[killer.teamIndex].intScore += assassinationValue;
@@ -84,9 +85,16 @@ public class AssassinManager : TimedGameMode
         }   
         else
         {
-            teams[killer.teamIndex].intScore = Mathf.Clamp(teams[killer.teamIndex].intScore - npcKillPenalty, 0, 10000);
-            killer.PlayScoreFeedback(npc.gameObject.transform.position, npcKillPenalty, false);
-
+            if (curScore == 0)
+            {
+                killer.PlayScoreFeedback(npc.gameObject.transform.position, 0, false);
+            }
+            else
+            {
+                teams[killer.teamIndex].intScore = teams[killer.teamIndex].intScore - npcKillPenalty;
+                killer.PlayScoreFeedback(npc.gameObject.transform.position, npcKillPenalty, false);
+            }
+            
             killer.OnStabbed(null); // killing wrong target forces you to respawn
         }
 
@@ -102,11 +110,20 @@ public class AssassinManager : TimedGameMode
         Team killerTeam = teams[killer.teamIndex];
         Team victimTeam = teams[victim.teamIndex];
 
+        int curScore = teams[killer.teamIndex].intScore;
+
         if (killerTeam.index == victimTeam.index)
         {
             // team kill
-            killerTeam.intScore = Mathf.Clamp(killerTeam.intScore - teamKillPenalty, 0, 10000);
-            killer.PlayScoreFeedback(victim.gameObject.transform.position, teamKillPenalty, false);
+            if (curScore == 0)
+            {
+                killer.PlayScoreFeedback(victim.gameObject.transform.position, 0, false);
+            }
+            else
+            {
+                killerTeam.intScore = Mathf.Clamp(killerTeam.intScore - teamKillPenalty, 0, 10000);
+                killer.PlayScoreFeedback(victim.gameObject.transform.position, teamKillPenalty, false);
+            }
         }
         else
         {

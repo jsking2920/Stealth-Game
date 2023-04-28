@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityMovementAI;
+using static UnityEditor.Experimental.GraphView.GraphView;
 using Random = UnityEngine.Random;
 
 public class GameModeManager : MonoBehaviour
@@ -131,7 +132,7 @@ public class GameModeManager : MonoBehaviour
             }
             if (!won)
             {
-                team.DestroyPlayers();
+                DestroyPlayersInTeam(team);
             }
         }
 
@@ -175,10 +176,24 @@ public class GameModeManager : MonoBehaviour
         if (winningTeam != null)
         {
             foreach (Team team in winningTeam)
-                team.DestroyPlayers();
+                DestroyPlayersInTeam(team);
         }
         Time.timeScale = 1.0f;
         sceneManager.btn_RestartGame();
+    }
+
+    public void DestroyPlayersInTeam(Team t)
+    {
+        foreach (PlayerInput pi in t.playerInputs)
+        {
+            pi.DeactivateInput();
+        }
+        foreach (Player p in t.players)
+        {
+            p.PlayExplosionSelf();
+            Destroy(p.gameObject);
+        }
+        t.players.Clear();
     }
 
     public void QuitToMenu()
@@ -186,7 +201,9 @@ public class GameModeManager : MonoBehaviour
         if (winningTeam != null)
         {
             foreach (Team team in winningTeam)
-                team.DestroyPlayers();
+            {
+                DestroyPlayersInTeam(team);
+            }   
         }
         Time.timeScale = 1.0f;
         audioManager.PlayMenuMusic();
