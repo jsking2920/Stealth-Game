@@ -157,10 +157,13 @@ public class UIManager : MonoBehaviour
     public void AddTeamScoreText(Team team)
     {
         TextMeshProUGUI t = teamTexts[teamsJoined];
+        Image i = teamImages[teamsJoined];
         t.color = team.teamColor;
-        teamImages[teamsJoined].color = team.teamColor;
+        i.color = team.teamColor;
         t.text = useFloatScore ? team.floatScore.ToString() : team.intScore.ToString();
         t.gameObject.SetActive(true);
+        i.gameObject.SetActive(true);
+
         teamImages[teamsJoined].gameObject.SetActive(true);
 
         teamsJoined++;
@@ -169,9 +172,12 @@ public class UIManager : MonoBehaviour
     public void AddPlayerLivesText(Player player)
     {
         TextMeshProUGUI t = teamTexts[killersJoined];
+        Image i = teamImages[killersJoined];
         t.color = Color.white;
+        i.color = Color.white;
         t.text = (player.lives + 1).ToString();
         t.gameObject.SetActive(true);
+        i.gameObject.SetActive(true);
 
         killersJoined++;
         teamsJoined++;
