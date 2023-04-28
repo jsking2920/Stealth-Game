@@ -444,7 +444,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 290009001855529645, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
       propertyPath: m_fontSize
-      value: 15.45
+      value: 14.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 290009001855529682, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.4656393
+      objectReference: {fileID: 0}
+    - target: {fileID: 290009001855529682, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 290009002206891146, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
       propertyPath: m_Sprite
@@ -484,7 +492,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 290009003162204697, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 124.66
+      value: 112.81
       objectReference: {fileID: 0}
     - target: {fileID: 290009003341301064, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
       propertyPath: m_Name
