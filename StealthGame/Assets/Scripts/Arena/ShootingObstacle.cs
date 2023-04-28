@@ -17,6 +17,9 @@ public class ShootingObstacle : MonoBehaviour
 
     void Update()
     {
-        _transform.position += direction * speed;
+        if (GameModeManager.S.gameState != GameModeManager.GameState.paused)
+        {
+            _transform.position += direction * speed;
+        }
     }
 }

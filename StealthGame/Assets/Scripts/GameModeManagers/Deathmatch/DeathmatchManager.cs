@@ -17,6 +17,58 @@ public class DeathmatchManager : TimedGameMode
         uiManager.useFloatScore = false;
     }
 
+    protected override bool CheckReadyToStart()
+    {
+        int playersJoined = 0;
+        foreach (Team t in teams)
+        {
+            playersJoined += t.playerCount;
+        }
+
+        if (playersPerTeam == 1 && playersJoined > 1)
+        {
+            return true;
+        }
+        else if (playersPerTeam == 2 && playersJoined > 2)
+        {
+            return true;
+        }
+        else if (playersPerTeam == 3 && playersJoined > 3)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    protected override void NotReadyWarning()
+    {
+        int playersJoined = 0;
+        foreach (Team t in teams)
+        {
+            playersJoined += t.playerCount;
+        }
+
+        if (playersPerTeam == 1 && playersJoined < 2)
+        {
+            uiManager.NotReadyWarning("2 Players Minimum Required!");
+        }
+        else if (playersPerTeam == 2 && playersJoined < 3)
+        {
+            uiManager.NotReadyWarning("3 Players Minimum Required!");
+        }
+        else if (playersPerTeam == 3 && playersJoined < 4)
+        {
+            uiManager.NotReadyWarning("4 Players Minimum Required!");
+        }
+        else
+        {
+            uiManager.NotReadyWarning("Not Ready");
+        }
+    }
+
     protected override string GetWinMessage()
     {
         return base.GetWinMessage() + "\n" + "Score: " + GetWinningTeam()[0].intScore;

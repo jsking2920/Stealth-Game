@@ -27,14 +27,42 @@ public class AssassinV2Manager : TimedGameMode
         uiManager.useFloatScore = false;
     }
 
-    public override void StartGame()
+    public override bool StartGame()
     {
-        base.StartGame();
-        List<Player> victims = teams[0].players;
-        foreach (Player victim in victims)
+        bool starting = base.StartGame();
+
+        if (CheckReadyToStart())
         {
-            GameModeManager.S.colorManager.SetPlayerAppearance(victim);
+            List<Player> victims = teams[0].players;
+            foreach (Player victim in victims)
+            {
+                GameModeManager.S.colorManager.SetPlayerAppearance(victim);
+            }
         }
+        return starting;
+    }
+
+    protected override bool CheckReadyToStart()
+    {
+        int playersJoined = 0;
+        foreach (Team t in teams)
+        {
+            playersJoined += t.playerCount;
+        }
+
+        if (playersJoined < 3)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    protected override void NotReadyWarning()
+    {
+        uiManager.NotReadyWarning("3 Players Minimum Required!");
     }
 
     protected override string GetWinMessage()

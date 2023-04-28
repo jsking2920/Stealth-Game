@@ -48,6 +48,29 @@ public class AssassinManager : TimedGameMode
         }
     }
 
+    protected override bool CheckReadyToStart()
+    {
+        int playersJoined = 0;
+        foreach (Team t in teams)
+        {
+            playersJoined += t.playerCount;
+        }
+
+        if (playersJoined < 2)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    protected override void NotReadyWarning()
+    {
+        uiManager.NotReadyWarning("2 Players Minimum Required!");
+    }
+
     protected override string GetWinMessage()
     {
         return base.GetWinMessage() + "\n" + "Score: " + GetWinningTeam()[0].intScore;

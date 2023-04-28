@@ -20,11 +20,15 @@ public class TimedGameMode : GameModeManager
         }
     }
 
-    public override void StartGame()
+    public override bool StartGame()
     {
-        timeRemaining = duration + uiManager.cutToBlackTime;
-        uiManager.ShowTimerAfterCut();
-        base.StartGame();
+        if (CheckReadyToStart())
+        {
+            timeRemaining = duration + uiManager.cutToBlackTime;
+            uiManager.ShowTimerAfterCut();
+        }
+        
+        return base.StartGame();
     }
 
     protected override bool CheckEndCondition()

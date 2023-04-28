@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private Button resumeButton;
+    [SerializeField] private TextMeshProUGUI readyUpWarningText;
     
     [SerializeField] private GameObject endGamePanelButtons;
     [SerializeField] private TextMeshProUGUI endGameMessage;
@@ -174,6 +175,21 @@ public class UIManager : MonoBehaviour
 
         killersJoined++;
         teamsJoined++;
+    }
+
+    public void NotReadyWarning(string message)
+    {
+        StartCoroutine(NotReadyWarningCo(message));
+    }
+
+    private IEnumerator NotReadyWarningCo(string message)
+    {
+        readyUpWarningText.gameObject.SetActive(true);
+        readyUpWarningText.text = message;
+
+        yield return new WaitForSeconds(3.0f);
+
+        readyUpWarningText.gameObject.SetActive(false);
     }
 
     public void UpdateTeamScore(int index, string score)

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityMovementAI;
-using static UnityEditor.Experimental.GraphView.GraphView;
 using Random = UnityEngine.Random;
 
 public class GameModeManager : MonoBehaviour
@@ -105,14 +104,33 @@ public class GameModeManager : MonoBehaviour
         }
     }
 
-    public virtual void StartGame()
+    public virtual bool StartGame()
     {
-        inputManager.DisableJoining();
-        npcManager.SpawnNPCs(numberOfNpcs);
-        winningTeam = null;
+        if (CheckReadyToStart())
+        {
+            inputManager.DisableJoining();
+            npcManager.SpawnNPCs(numberOfNpcs);
+            winningTeam = null;
 
-        uiManager.OnGameStart(startGameMessages[Random.Range(0, startGameMessages.Count)]);
-        gameState = GameState.playing;
+            uiManager.OnGameStart(startGameMessages[Random.Range(0, startGameMessages.Count)]);
+            gameState = GameState.playing;
+            return true;
+        }
+        else
+        {
+            NotReadyWarning();
+            return false;
+        }
+    }
+
+    protected virtual bool CheckReadyToStart()
+    {
+        return true;
+    }
+
+    protected virtual void NotReadyWarning()
+    {
+        uiManager.NotReadyWarning("Not Ready!");
     }
 
     protected virtual void EndGame()
