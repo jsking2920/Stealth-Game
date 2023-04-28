@@ -105,6 +105,17 @@ public class Player : MonoBehaviour
                 GameModeManager.S.TogglePause();
             }
         }
+        else if (context.action.name == _actionMap.Player.Back.name && context.performed)
+        {
+            if (GameModeManager.S.gameState == GameModeManager.GameState.joining)
+            {
+                GameModeManager.S.QuitToMenu();
+            }
+            else if (GameModeManager.S.gameState == GameModeManager.GameState.playing || GameModeManager.S.gameState == GameModeManager.GameState.paused)
+            {
+                GameModeManager.S.TogglePause();
+            }
+        }
     }
 
     private void OnMove(InputAction.CallbackContext context)

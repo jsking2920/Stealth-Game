@@ -100,14 +100,14 @@ public class AssassinManager : TimedGameMode
 
     public override void OnPlayerKilledNPC(Player killer, MovementAIRigidbody npc)
     {
-        int curScore = teams[killer.teamIndex].intScore;
-        if (npc.gameObject == curTarget.gameObject)
+        if (curTarget != null && npc.gameObject == curTarget.gameObject)
         {
             teams[killer.teamIndex].intScore += assassinationValue;
             killer.PlayScoreFeedback(npc.gameObject.transform.position, assassinationValue, true);
         }   
         else
         {
+            int curScore = teams[killer.teamIndex].intScore;
             if (curScore == 0)
             {
                 killer.PlayScoreFeedback(npc.gameObject.transform.position, 0, false);
