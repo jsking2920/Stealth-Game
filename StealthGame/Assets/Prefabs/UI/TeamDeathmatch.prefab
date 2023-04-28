@@ -144,12 +144,26 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 290009001642249305, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
       propertyPath: m_text
-      value: Team Deathmatch
+      value: 2v2 Deathmatch
+      objectReference: {fileID: 0}
+    - target: {fileID: 290009001642249305, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
+      propertyPath: m_fontSize
+      value: 33.7
       objectReference: {fileID: 0}
     - target: {fileID: 290009001855529645, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
       propertyPath: m_text
-      value: Stab players on the other team and avoid stabbing AI ships and your
-        teammates. Get more kills than the other team to win! (3-4 players)
+      value: 'Stab players on the other team and avoid stabbing AI ships and your
+        teammates. Get more kills than the other team to win!
+
+        (3-4 Players)'
+      objectReference: {fileID: 0}
+    - target: {fileID: 290009001855529645, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
+      propertyPath: m_fontSize
+      value: 13.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 290009001855529645, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
+      propertyPath: m_fontSizeMax
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 290009002206891146, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
       propertyPath: m_Sprite

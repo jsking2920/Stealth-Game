@@ -11,6 +11,19 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 33.7
       objectReference: {fileID: 0}
+    - target: {fileID: 290009001855529645, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
+      propertyPath: m_text
+      value: 'Stab other players and avoid stabbing AI ships. Stab the most players
+        to win!
+
+        (2-4 Players)
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 290009001855529645, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
+      propertyPath: m_fontSize
+      value: 14.4
+      objectReference: {fileID: 0}
     - target: {fileID: 290009002920547466, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: PlayButton
@@ -21,19 +34,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 290009003122058894, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 290009003122058894, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 290009003122058894, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 127.5583
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 290009003122058894, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -12.43835
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 290009003341301064, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
       propertyPath: m_Name
@@ -41,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 290009003341301064, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 290009003341301067, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
       propertyPath: m_Pivot.x
@@ -129,19 +142,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 290009003527912566, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 290009003527912566, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 290009003527912566, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 127.5583
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 290009003527912566, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -37.31505
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 766093595229338526, guid: d9d748f6b07dc4c83b80cb927f414ab8, type: 3}
       propertyPath: m_Color.b
