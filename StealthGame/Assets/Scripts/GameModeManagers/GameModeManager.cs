@@ -162,7 +162,9 @@ public class GameModeManager : MonoBehaviour
         string winningColorName = "";
         foreach (ColorData.PlayerAppearance colorData in colorManager.currentColorProfile.teamAppearances)
         {
-            if (colorData.color == winningTeam[0].teamColor)
+            Color profileColor = colorData.color;
+            Color winningColor = winningTeam[0].teamColor;
+            if (profileColor.Equals(winningColor))
             {
                 winningColorName = colorData.colorName;
             }
