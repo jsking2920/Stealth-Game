@@ -157,14 +157,20 @@ public class GameModeManager : MonoBehaviour
         uiManager.OnGameEnd(GetWinMessage()); 
     }
 
+    private static bool ColorIsEqual(Color me, Color other)
+    {
+        return (int) (me.r * 1000) == (int) (other.r * 1000) && 
+               (int) (me.g * 1000) == (int) (other.g * 1000) && 
+               (int) (me.b * 1000) == (int) (other.b * 1000) && 
+               (int) (me.a * 1000) == (int) (other.a * 1000);
+    }
+
     protected virtual string GetWinMessage()
     {
         string winningColorName = "";
         foreach (ColorData.PlayerAppearance colorData in colorManager.currentColorProfile.teamAppearances)
         {
-            Color profileColor = colorData.color;
-            Color winningColor = winningTeam[0].teamColor;
-            if (profileColor.Equals(winningColor))
+            if (ColorIsEqual(colorData.color, winningTeam[0].teamColor))
             {
                 winningColorName = colorData.colorName;
             }
