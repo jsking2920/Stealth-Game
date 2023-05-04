@@ -1,4 +1,4 @@
-# Stealth-Game
+# [Space Shank](https://scottking.itch.io/space-shank)
 Developed for 60-418 at CMU by Scott King, Adrian Ma, and Kelly Zheng
 
 # Attributions
