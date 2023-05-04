@@ -136,6 +136,7 @@ public class GameModeManager : MonoBehaviour
     protected virtual void EndGame()
     {
         gameState = GameState.ended;
+        playerInteractionEnabled = false;
         winningTeam = GetWinningTeam();
 
         npcManager.DestroyNPCs(winningTeam[0].players[0]);

@@ -61,10 +61,11 @@ MonoBehaviour:
   sceneManager: {fileID: 0}
   colorManager: {fileID: 0}
   arenaManager: {fileID: 0}
+  audioManager: {fileID: 0}
   teams: []
   playerInteractionEnabled: 0
   gameState: 0
-  duration: 90
+  duration: 60
   timeRemaining: 60
   killValue: 3
   npcKillPenalty: 1
