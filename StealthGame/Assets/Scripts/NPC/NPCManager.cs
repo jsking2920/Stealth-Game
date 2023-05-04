@@ -12,6 +12,8 @@ public class NPCManager : MonoBehaviour
     public float npcMinScale = 0.5f;
     public float npcMaxScale = 0.7f;
 
+    public float respawnDelay = 1.0f;
+
     public bool randomizeOrientation = true;
     public bool randomizeColor = true;
     //public Gradient colorGradient;
@@ -188,6 +190,31 @@ public class NPCManager : MonoBehaviour
     public void RemoveNPC(MovementAIRigidbody npc)
     {
         npcs.Remove(npc);
+    }
+
+    public void RemoveNPCAndRespawn(MovementAIRigidbody npc)
+    {
+        npcs.Remove(npc);
+        StartCoroutine(RespawnNPC());
+    }
+
+    private IEnumerator RespawnNPC()
+    {
+        yield return new WaitForSeconds(Random.Range(respawnDelay * 0.5f, respawnDelay * 1.5f));
+
+        if (GameModeManager.S.gameState == GameModeManager.GameState.playing)
+        {
+            float size = Random.Range(npcMinScale, npcMaxScale);
+            float halfSize = size / 2f;
+            Vector3 pos = GetRandomPos(halfSize, size);
+
+            Transform t = Instantiate(_npcPrefab, pos, Quaternion.identity, _npcParentTransform) as Transform;
+
+            SpriteRenderer sr = t.GetComponent<SpriteRenderer>();
+            if (sr) SetColorAndSprite(sr);
+
+            npcs.Add(t.GetComponent<MovementAIRigidbody>());
+        }
     }
 
     public void RandomizeColor(SpriteRenderer sr)

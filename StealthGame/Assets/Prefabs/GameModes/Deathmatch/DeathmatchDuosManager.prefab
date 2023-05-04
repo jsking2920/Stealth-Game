@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playersPerTeam: 2
   numberOfNpcs: 70
-  doNpcsRespawn: 0
+  doNpcsRespawn: 1
   startGameMessages:
   - DEATHMATCH
   _name: Team Deathmatch
@@ -62,6 +62,7 @@ MonoBehaviour:
   sceneManager: {fileID: 0}
   colorManager: {fileID: 0}
   arenaManager: {fileID: 0}
+  audioManager: {fileID: 0}
   teams: []
   playerInteractionEnabled: 0
   gameState: 0

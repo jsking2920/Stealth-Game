@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playersPerTeam: 1
   numberOfNpcs: 140
-  doNpcsRespawn: 0
+  doNpcsRespawn: 1
   startGameMessages:
   - ASSASSINATE THE MARKED NPC AND KILL THE OPPOSITION
   _name: Assassin

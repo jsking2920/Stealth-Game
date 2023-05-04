@@ -46,20 +46,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playersPerTeam: 3
   numberOfNpcs: 70
-  doNpcsRespawn: 0
-  doPlayersRespawn: 1
+  doNpcsRespawn: 1
   startGameMessages:
   - DEATHMATCH
+  _name: 
+  scoringRules: []
+  ruleIsGood: 
   playerRespawnTime: 3
   uiManager: {fileID: 0}
   inputManager: {fileID: 0}
   npcManager: {fileID: 0}
   sceneManager: {fileID: 0}
   colorManager: {fileID: 0}
+  arenaManager: {fileID: 0}
+  audioManager: {fileID: 0}
   teams: []
   playerInteractionEnabled: 0
   gameState: 0
   duration: 60
   timeRemaining: 60
+  killValue: 3
   npcKillPenalty: 1
   teamKillPenalty: 2

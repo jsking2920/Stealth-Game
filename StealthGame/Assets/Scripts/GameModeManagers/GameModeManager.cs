@@ -328,14 +328,15 @@ public class GameModeManager : MonoBehaviour
 
     public virtual void OnPlayerKilledNPC(Player killer, MovementAIRigidbody npc)
     {
-        npcManager.RemoveNPC(npc);
-        Destroy(npc.gameObject);
-
         if (doNpcsRespawn)
         {
-            // TODO: implement
-            //npcSpawner.SpawnNPC();
+            npcManager.RemoveNPCAndRespawn(npc);
         }
+        else
+        {
+            npcManager.RemoveNPC(npc);
+        }
+        Destroy(npc.gameObject);
     }
     
     public bool CheckIfThereArePlayersLeft(Team team)
