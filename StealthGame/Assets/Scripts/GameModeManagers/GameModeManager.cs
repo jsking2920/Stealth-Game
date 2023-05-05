@@ -160,10 +160,10 @@ public class GameModeManager : MonoBehaviour
 
     private static bool ColorIsEqual(Color me, Color other)
     {
-        return (int) (me.r * 1000) == (int) (other.r * 1000) && 
-               (int) (me.g * 1000) == (int) (other.g * 1000) && 
-               (int) (me.b * 1000) == (int) (other.b * 1000) && 
-               (int) (me.a * 1000) == (int) (other.a * 1000);
+        if (Mathf.Abs(me.r - other.r) > 0.1f || Mathf.Abs(me.g - other.g) > 0.1f ||
+            Mathf.Abs(me.b - other.b) > 0.1f || Mathf.Abs(me.a - other.a) > 0.1f)
+            return false;
+        return true;
     }
 
     protected virtual string GetWinMessage()
@@ -175,6 +175,8 @@ public class GameModeManager : MonoBehaviour
             {
                 winningColorName = colorData.colorName;
             }
+            Debug.Log("ColorData " + colorData.color);
+            Debug.Log("WinnerColor " + winningTeam[0].teamColor);
         }
 
         if (winningTeam.Count > 1)
