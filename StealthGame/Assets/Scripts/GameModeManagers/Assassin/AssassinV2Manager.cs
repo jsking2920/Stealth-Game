@@ -135,8 +135,6 @@ public class AssassinV2Manager : TimedGameMode
         {
             victim.lives -= 1;
         }
- 
-        uiManager.UpdateLivesText(killer.playerIndex, (killer.lives + 1).ToString());
     }
 
     protected override void OnPlayerJoin(PlayerInput playerInput)

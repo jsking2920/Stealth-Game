@@ -51,7 +51,7 @@ MonoBehaviour:
   - ASSASSINATE THE MARKED NPC AND KILL THE OPPOSITION
   _name: Assassin
   scoringRules:
-  - +3 points for killing players
+  - +3 points for killing the NPC target
   - +1 point for killing players
   - Killing non-target AI causes you to self-destruct
   ruleIsGood: 010100
