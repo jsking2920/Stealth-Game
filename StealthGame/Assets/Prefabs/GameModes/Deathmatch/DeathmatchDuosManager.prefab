@@ -48,7 +48,7 @@ MonoBehaviour:
   numberOfNpcs: 70
   doNpcsRespawn: 1
   startGameMessages:
-  - DEATHMATCH
+  - TEAM DEATHMATCH
   _name: Team Deathmatch
   scoringRules:
   - +3 points for killing players
